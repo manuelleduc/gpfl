@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.mleduc.gpfl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.mleduc.gpfl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.13.0",
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.13.0",
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.mleduc.gpfl,
+ fr.mleduc.gpfl.generator,
+ fr.mleduc.gpfl.gpfl,
+ fr.mleduc.gpfl.gpfl.impl,
+ fr.mleduc.gpfl.gpfl.util,
+ fr.mleduc.gpfl.interpreter,
+ fr.mleduc.gpfl.jvmmodel,
+ fr.mleduc.gpfl.parser.antlr,
+ fr.mleduc.gpfl.parser.antlr.internal,
+ fr.mleduc.gpfl.scoping,
+ fr.mleduc.gpfl.serializer,
+ fr.mleduc.gpfl.services,
+ fr.mleduc.gpfl.validation
+Import-Package: org.apache.log4j

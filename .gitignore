@@ -1,0 +1,9 @@
+
+
+fr\.mleduc\.gpfl/\.antlr-generator-3\.2\.0-patch\.jar
+
+*._trace
+
+*.xtendbin
+*/bin/
+

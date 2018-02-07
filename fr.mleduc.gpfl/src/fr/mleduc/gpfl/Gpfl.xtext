@@ -1,0 +1,50 @@
+grammar fr.mleduc.gpfl.Gpfl with org.eclipse.xtext.xbase.Xbase
+
+generate gpfl "http://www.mleduc.fr/gpfl/Gpfl"
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
+
+Program:
+	{Program}
+	'package' name=ID
+	"PROLOGUE"
+	("AUTOMATAS" automatas+=AutomataDef*)?
+	("INIT" initStmts+=Stmt*)?
+	"FILTER"
+	stmts+=Stmt*;
+
+Stmt returns xbase::XExpression:
+	Cmd |
+	{CondStmt} "cond" "(" exp=XExpression "," stmts+=Stmt* ")" |
+	{IterStmt} "iter" "(" exp=XExpression "," stmts+=Stmt* ")" |
+	{InterruptStmt} "newInterrupt" "(" timeout=INT "," periodic=XBooleanLiteral "," stmts+=Stmt* ")";
+
+Cmd returns xbase::XExpression:
+	{NopCmd} "nop" |
+	{AcceptCmd} "accept" |
+	{DropCmd} "drop" |
+	{SendCmd} "send" "(" port=Port "," fields+=Field* ")" |
+	{AlarmCmd} "alarm" "(" exp=XExpression ")" |
+	{SetCmd} "set" "(" name=ID "," exp=XExpression ")" |
+	{AutomatonCmd} "newAutomaton" "(" name=ID "," automaton=[AutomataDef|ID] ")" |
+	{StpCmd} "step" "(" automaton=[AutomatonCmd|ID] "," event=XExpression "," errors+=Stmt* ")";
+
+Field:
+	name=ID '->' value=XExpression;
+
+Port returns xbase::XExpression:
+// ports are privimites of the languages
+	{InPort} "inSide" | {OutPort} "outSide";
+
+AutomataDef:
+	"AUTOMATA" name=ID "init" "=" init=[State|ID] states+=State*;
+
+State:
+	name=ID transitions+=Transition*;
+
+Transition:
+// automata events are primitives of the language
+	'-' event=ID '->' target=[State|ID];
+
+@Override
+XLiteral returns xbase::XExpression:
+	Xbase::XLiteral | Port;
