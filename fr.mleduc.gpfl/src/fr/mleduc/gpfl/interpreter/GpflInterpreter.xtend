@@ -206,6 +206,10 @@ class GpflInterpreter implements IGpflInterpreter {
 		this.results.add(new Tuple(this.state.currentTime, new PacketResult(this.state.currentPacket, Port.IN)))
 		context.processed = true
 	}
+	
+	def dispatch doEvalute(IntLitCmd intLit, Context context) {
+		intLit.value
+	}
 
 	def dispatch Object doEvaluate(IntLitCmd intLit, Context context) {
 		intLit.value
