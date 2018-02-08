@@ -3,9 +3,11 @@
  */
 package fr.mleduc.lambda.ui.tests;
 
-import com.google.inject.Injector;
-import fr.mleduc.lambda.ui.internal.LambdaActivator;
 import org.eclipse.xtext.testing.IInjectorProvider;
+
+import com.google.inject.Injector;
+
+import fr.mleduc.lambda.ui.internal.LambdaActivator;
 
 public class LambdaUiInjectorProvider implements IInjectorProvider {
 

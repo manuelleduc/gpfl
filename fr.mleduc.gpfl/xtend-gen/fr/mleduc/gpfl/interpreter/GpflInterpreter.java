@@ -424,6 +424,10 @@ public class GpflInterpreter implements IGpflInterpreter {
     return _xblockexpression;
   }
   
+  protected int _doEvalute(final IntLitCmd intLit, final GpflInterpreter.Context context) {
+    return intLit.getValue();
+  }
+  
   protected Object _doEvaluate(final IntLitCmd intLit, final GpflInterpreter.Context context) {
     return Integer.valueOf(intLit.getValue());
   }
@@ -606,21 +610,21 @@ public class GpflInterpreter implements IGpflInterpreter {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("IterStmt ");
     _builder.append(expression);
-    return InputOutput.<String>println(_builder.toString());
+    return InputOutput.<Object>println(_builder.toString());
   }
   
   protected Object _doEvaluate(final NopCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("NopCmd ");
     _builder.append(expression);
-    return InputOutput.<String>println(_builder.toString());
+    return InputOutput.<Object>println(_builder.toString());
   }
   
   protected Object _doEvaluate(final SendCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("SendCmd ");
     _builder.append(expression);
-    return InputOutput.<String>println(_builder.toString());
+    return InputOutput.<Object>println(_builder.toString());
   }
   
   protected Object _doEvaluate(final SetCmd expression, final GpflInterpreter.Context context) {
