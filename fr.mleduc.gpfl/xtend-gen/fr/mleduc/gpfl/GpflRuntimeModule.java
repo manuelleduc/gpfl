@@ -4,23 +4,10 @@
 package fr.mleduc.gpfl;
 
 import fr.mleduc.gpfl.AbstractGpflRuntimeModule;
-import fr.mleduc.gpfl.scoping.GpflIdentifiableSimpleNameProvider;
-import fr.mleduc.gpfl.scoping.GpflResourceDescriptionStrategy;
-import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
-import org.eclipse.xtext.xbase.featurecalls.IdentifiableSimpleNameProvider;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 @SuppressWarnings("all")
 public class GpflRuntimeModule extends AbstractGpflRuntimeModule {
-  @Override
-  public Class<? extends IdentifiableSimpleNameProvider> bindIdentifiableSimpleNameProvider() {
-    return GpflIdentifiableSimpleNameProvider.class;
-  }
-  
-  @Override
-  public Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
-    return GpflResourceDescriptionStrategy.class;
-  }
 }

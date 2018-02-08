@@ -1,25 +1,18 @@
 package fr.mleduc.gpfl.tests;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import fr.mleduc.gpfl.gpfl.Program;
 import fr.mleduc.gpfl.interpreter.GpflInterpreter;
 import fr.mleduc.gpfl.tests.GpflInjectorProvider;
 import java.util.Collections;
 import java.util.List;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
-import org.eclipse.xtext.testing.validation.ValidationTestHelper;
-import org.eclipse.xtext.util.StringInputStream;
+import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,20 +24,15 @@ import org.junit.runner.RunWith;
 public class GpflInterpreterTest {
   @Inject
   @Extension
+  private ParseHelper<Program> parseHelper;
+  
+  @Inject
+  @Extension
   private GpflInterpreter _gpflInterpreter;
-  
-  @Inject
-  private ValidationTestHelper helper;
-  
-  @Inject
-  private Provider<XtextResourceSet> rsp;
   
   @Test
   public void test1() {
     try {
-      final XtextResourceSet rs = this.rsp.get();
-      rs.setClasspathURIContext(GpflInterpreterTest.class);
-      final Resource r = rs.createResource(URI.createURI("test.gpfl"));
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("package test ");
       _builder.newLine();
@@ -119,17 +107,12 @@ public class GpflInterpreterTest {
       _builder.newLine();
       _builder.append("drop");
       _builder.newLine();
-      final String program = _builder.toString();
-      StringInputStream _stringInputStream = new StringInputStream(program);
-      r.load(_stringInputStream, null);
-      this.helper.assertNoIssues(r);
-      EObject _head = IterableExtensions.<EObject>head(r.getContents());
-      final Program programModel = ((Program) _head);
+      final Program program = this.parseHelper.parse(_builder);
       Pair<String, String> _mappedTo = Pair.<String, String>of("pktType", "Ack");
       Pair<String, String> _mappedTo_1 = Pair.<String, String>of("clientId", "1");
       GpflInterpreter.Packet _packet = new GpflInterpreter.Packet(GpflInterpreter.Port.IN, Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(_mappedTo, _mappedTo_1)));
       GpflInterpreter.Tuple<Integer, GpflInterpreter.Packet> _tuple = new GpflInterpreter.Tuple<Integer, GpflInterpreter.Packet>(Integer.valueOf(1), _packet);
-      final List<String> res = this._gpflInterpreter.run(programModel, CollectionLiterals.<GpflInterpreter.Tuple<Integer, GpflInterpreter.Packet>>newArrayList(_tuple));
+      final List<String> res = this._gpflInterpreter.run(program, CollectionLiterals.<GpflInterpreter.Tuple<Integer, GpflInterpreter.Packet>>newArrayList(_tuple));
       Assert.assertEquals(CollectionLiterals.<Object>newArrayList(), res);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

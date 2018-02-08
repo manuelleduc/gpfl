@@ -1,6 +1,5 @@
 package fr.mleduc.gpfl.interpreter
 
-import com.google.inject.Inject
 import fr.mleduc.gpfl.gpfl.AcceptCmd
 import fr.mleduc.gpfl.gpfl.AlarmCmd
 import fr.mleduc.gpfl.gpfl.AutomataDef
@@ -23,17 +22,10 @@ import java.util.Map
 import java.util.PriorityQueue
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.eclipse.xtend.lib.annotations.ToString
-import org.eclipse.xtext.naming.QualifiedName
-import org.eclipse.xtext.util.CancelIndicator
 import org.eclipse.xtext.xbase.XBooleanLiteral
-import org.eclipse.xtext.xbase.interpreter.IEvaluationContext
-import org.eclipse.xtext.xbase.interpreter.impl.XbaseInterpreter
-import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations
+import fr.mleduc.gpfl.gpfl.IntLitCmd
 
-class GpflInterpreter extends XbaseInterpreter {
-
-	@Inject extension IJvmModelAssociations 
-
+class GpflInterpreter {
 
 	enum Port {
 		IN,
@@ -81,16 +73,45 @@ class GpflInterpreter extends XbaseInterpreter {
 		}
 	}
 
-	val indicator = CancelIndicator.NullImpl
+	@Accessors
+	public static class Context {
+		val Map<String, Object> values = newHashMap()
+		val Context parent
+
+		new() {
+			parent = null
+		}
+
+		private new(Context parent) {
+			this.parent = parent
+		}
+
+		def fork() {
+			new Context(this)
+		}
+
+		def Object getValue(String key) {
+			if (this.values.containsKey(key))
+				this.values.get(key)
+			else if(this.parent !== null) this.parent.getValue(key) else null
+		}
+
+		def setValue(String key, Object value) {
+			this.values.put(key, value)
+		}
+	}
+
+	def createContext() {
+		new Context
+	}
+
 	private val state = new GlobalState
 
 	def List<String> run(Program program, List<Tuple<Integer, Packet>> packets) {
-		
-		program.jvmElements.forEach[sourceElements]
-		
+
 		val context = this.createContext
-		program.initStmts.forEach[
-			doEvaluate(context, indicator)
+		program.initStmts.forEach [
+			doEvaluate(context)
 		]
 
 		val stack = new TimedPriorityQueue(packets)
@@ -113,19 +134,16 @@ class GpflInterpreter extends XbaseInterpreter {
 				}
 
 				interruption.right.stmts.forEach [
-					it.doEvaluate(context, indicator)
+					it.doEvaluate(context)
 				]
 
 			// TODO deal with this interruption
 			}
 
 			val packetContext = context.fork
-			packetContext.newValue(QualifiedName.create("_inPort"),
-				if(package.getPort == Port.IN) "inSide" else "outSide")
-			package.datas.forEach[p1, p2|packetContext.newValue(QualifiedName.create(p1), p2)]
-			program.stmts.forEach [
-				it.doEvaluate(packetContext, this.indicator)
-			]
+			packetContext.setValue("_inPort", if(package.getPort == Port.IN) "inSide" else "outSide")
+			package.datas.forEach[p1, p2|packetContext.setValue(p1, p2)]
+			program.stmts.forEach[it.doEvaluate(packetContext)]
 
 		}
 
@@ -137,68 +155,76 @@ class GpflInterpreter extends XbaseInterpreter {
 		!interruptions.empty && interruptions.peek.left <= this.state.currentTime
 	}
 
-	def dispatch doEvaluate(AcceptCmd expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(AcceptCmd expression, Context context) {
 		println('''AcceptCmd «expression»''')
 	}
+	
+	def dispatch doEvalute(IntLitCmd intLit, Context context) {
+		intLit.value
+	}
 
-	def dispatch doEvaluate(AlarmCmd expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(AlarmCmd expression, Context context) {
 		println('''AlarmCmd «expression»''')
 	}
 
-	def dispatch doEvaluate(AutomatonCmd expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(AutomatonCmd expression, Context context) {
 		val auto = new AutomatonInstance(expression.automaton, expression.automaton.init)
-		context.newValue(QualifiedName.create(expression.name), auto)
+		context.setValue(expression.name, auto)
 		auto
 	}
 
-	def dispatch doEvaluate(CondStmt condStmt, IEvaluationContext context, CancelIndicator indicator) {
-		val exp = this.evaluate(condStmt.exp, context, indicator)
-
-		if (Boolean.TRUE == exp) {
-			condStmt.stmts.map [
-				this.internalEvaluate(it, context, indicator)
-			].last
+	def dispatch doEvaluate(CondStmt condStmt, Context context) {
+//		val exp = this.invokeOperation(condStmt.exp, context)
+//
+//		if (Boolean.TRUE == exp) {
+//			condStmt.stmts.map [
+//				this.internalEvaluate(it, context)
+//			].last
+//		}
+		val conditionResult = doEvaluate(condStmt.exp, context);
+		if (Boolean.TRUE.equals(conditionResult)) {
+			condStmt.stmts.map[doEvaluate(it, context)].last
 		}
 	}
 
-	def dispatch doEvaluate(DropCmd expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(DropCmd expression, Context context) {
 		println('''DropCmd «expression»''')
 	}
 
-	def dispatch doEvaluate(InPort expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(InPort expression, Context context) {
 		println('''InPort «expression»''')
 		"InSide"
 	}
-	
-	def dispatch doEvaluate(OutPort expression, IEvaluationContext context, CancelIndicator indicator) {
+
+	def dispatch doEvaluate(OutPort expression, Context context) {
 		println('''OutPort «expression»''')
 		"outSide"
 	}
 
-	def dispatch doEvaluate(InterruptStmt expression, IEvaluationContext context, CancelIndicator indicator) {
+//	}
+	def dispatch doEvaluate(InterruptStmt expression, Context context) {
 		this.state.interrupts.add(new Tuple(this.state.currentTime + expression.timeout, expression))
 	}
 
-	def dispatch doEvaluate(IterStmt expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(IterStmt expression, Context context) {
 		println('''IterStmt «expression»''')
 	}
 
-	def dispatch doEvaluate(NopCmd expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(NopCmd expression, Context context) {
 		println('''NopCmd «expression»''')
 	}
 
-
-	def dispatch doEvaluate(SendCmd expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(SendCmd expression, Context context) {
 		println('''SendCmd «expression»''')
 	}
 
-	def dispatch doEvaluate(SetCmd expression, IEvaluationContext context, CancelIndicator indicator) {
-		val assigned = doEvaluate(expression.exp, context, indicator)
-		context.newValue(QualifiedName.create(expression.name), assigned)
+	def dispatch doEvaluate(SetCmd expression, Context context) {
+		val assigned = doEvaluate(expression.exp, context)
+		context.setValue(expression.name, assigned)
 		assigned
 	}
 
-	def dispatch doEvaluate(StpCmd expression, IEvaluationContext context, CancelIndicator indicator) {
+	def dispatch doEvaluate(StpCmd expression, Context context) {
 		println('''StpCmd «expression»''')
 	}
 }

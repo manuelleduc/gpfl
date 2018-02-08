@@ -1,40 +1,29 @@
 package fr.mleduc.gpfl.tests
 
 import com.google.inject.Inject
-import com.google.inject.Provider
+import fr.mleduc.gpfl.gpfl.Program
 import fr.mleduc.gpfl.interpreter.GpflInterpreter
 import fr.mleduc.gpfl.interpreter.GpflInterpreter.Packet
 import fr.mleduc.gpfl.interpreter.GpflInterpreter.Tuple
-import org.eclipse.emf.common.util.URI
-import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
-import org.eclipse.xtext.testing.validation.ValidationTestHelper
-import org.eclipse.xtext.util.StringInputStream
+import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import static fr.mleduc.gpfl.interpreter.GpflInterpreter.Port.*
 import static org.junit.Assert.*
-import fr.mleduc.gpfl.gpfl.Program
 
 @RunWith(XtextRunner)
 @InjectWith(GpflInjectorProvider)
 class GpflInterpreterTest {
 
-//	@Inject private extension ParseHelper<Program> parseHelper
+	@Inject private extension ParseHelper<Program> parseHelper
 	@Inject private extension GpflInterpreter
-	@Inject ValidationTestHelper helper
-	@Inject Provider<XtextResourceSet> rsp
 
-//	@Inject private IBatchTypeResolver typeResolver
 	@Test
 	def test1() {
 
-		val rs = rsp.get
-		rs.classpathURIContext = GpflInterpreterTest
-
-		val r = rs.createResource(URI.createURI("test.gpfl"))
 		val program = '''
 			package test 
 			PROLOGUE
@@ -65,14 +54,9 @@ class GpflInterpreterTest {
 			)
 			alarm("Unhandled message")
 			drop
-		'''
+		'''.parse
 
-		r.load(new StringInputStream(program), null)
-
-		helper.assertNoIssues(r)
-
-		val programModel = r.contents.head as Program
-		val res = programModel.run(newArrayList(new Tuple(1, new Packet(IN, #{"pktType" -> "Ack", "clientId" -> "1"}))))
+		val res = program.run(newArrayList(new Tuple(1, new Packet(IN, #{"pktType" -> "Ack", "clientId" -> "1"}))))
 
 		assertEquals(newArrayList, res)
 
