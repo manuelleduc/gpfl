@@ -65,7 +65,8 @@ CmdNot returns GExpression:
 	'!' expression=CmdLit | CmdLit;
 
 CmdLit returns GExpression:
-	{IntLitCmd} value=INT | {GBoolTrue} 'true' | {GBoolFalse} 'false' | {StringLit} value=STRING | {Variable} value=ID |
+	{IntLitCmd} value=INT | {GBoolTrue} 'true' | {GBoolFalse} 'false' | {StringLit} value=STRING | 
+	{Variable} value=ID |
 	{PortLit} (inSide?='inSide' | 'outSide') | '(' CmdExpr ')';
 
 Field:

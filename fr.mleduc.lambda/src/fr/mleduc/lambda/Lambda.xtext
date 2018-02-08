@@ -1,0 +1,17 @@
+grammar fr.mleduc.lambda.Lambda with fr.mleduc.gpfl.Gpfl
+
+generate lambda "http://www.mleduc.fr/lambda/Lambda"
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
+import "http://www.mleduc.fr/gpfl/Gpfl" as gpfl
+
+Lambda returns gpfl::Program:
+	Gpfl::Program; // root
+@ Override GExpression returns gpfl::GExpression:
+	{MethodDef} 'def' name=ID '(' (params+=Parameter (',' params+=Parameter)*)? ')' '{'
+	stmts+=GExpression*
+	'}' |
+	Gpfl::GExpression |
+	{MethodCall} 'call' method=[MethodDef|ID] '(' (params+=GExpression (',' params+=GExpression)*)? ')';
+
+Parameter:
+	{Parameter} name=ID;

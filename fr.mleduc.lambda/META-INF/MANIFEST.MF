@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.mleduc.lambda
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.mleduc.lambda; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.12.0",
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.12.0",
+ fr.mleduc.gpfl;bundle-version="1.0.0",
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.mleduc.lambda.lambda.util,
+ fr.mleduc.lambda.scoping,
+ fr.mleduc.lambda.parser.antlr.internal,
+ fr.mleduc.lambda,
+ fr.mleduc.lambda.parser.antlr,
+ fr.mleduc.lambda.serializer,
+ fr.mleduc.lambda.services,
+ fr.mleduc.lambda.validation,
+ fr.mleduc.lambda.generator,
+ fr.mleduc.lambda.lambda,
+ fr.mleduc.lambda.lambda.impl,
+ fr.mleduc.lambda.jvmmodel
+Import-Package: org.apache.log4j

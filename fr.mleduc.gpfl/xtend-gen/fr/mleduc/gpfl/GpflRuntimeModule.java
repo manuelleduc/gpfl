@@ -4,10 +4,15 @@
 package fr.mleduc.gpfl;
 
 import fr.mleduc.gpfl.AbstractGpflRuntimeModule;
+import fr.mleduc.gpfl.interpreter.GpflInterpreter;
+import fr.mleduc.gpfl.interpreter.IGpflInterpreter;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 @SuppressWarnings("all")
 public class GpflRuntimeModule extends AbstractGpflRuntimeModule {
+  public Class<? extends IGpflInterpreter> bindIGpflInterpreter() {
+    return GpflInterpreter.class;
+  }
 }

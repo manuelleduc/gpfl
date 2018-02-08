@@ -1,0 +1,880 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f9e6545f690, pid=20848, tid=140317861287680
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_51-b16) (build 1.8.0_51-b16)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.51-b03 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# V  [libjvm.so+0x899690]  Method::checked_resolve_jmethod_id(_jmethodID*)+0x20
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f9e600c6800):  JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=20866, stack(0x00007f9e4c371000,0x00007f9e4c472000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 128 (SI_KERNEL), si_addr: 0x0000000000000000
+
+Registers:
+RAX=0x0000000000000001, RBX=0x00007f9e600047f0, RCX=0x00007f9e665a3300, RDX=0x00007f9e65b64ba0
+RSP=0x00007f9e4c470a00, RBP=0x00007f9e4c470a10, RSI=0x00007f9e600c6800, RDI=0x3e3b6e6f69737365
+R8 =0x00007f9e1405bed0, R9 =0x0000000000000000, R10=0x0000000000000030, R11=0x00007f9e65d2e280
+R12=0x0000000000000017, R13=0x3e3b6e6f69737365, R14=0x00007f9e600c6800, R15=0x00007f9e4c470b17
+RIP=0x00007f9e6545f690, EFLAGS=0x0000000000010206, CSGSFS=0x002b000000000033, ERR=0x0000000000000000
+  TRAPNO=0x000000000000000d
+
+Top of Stack: (sp=0x00007f9e4c470a00)
+0x00007f9e4c470a00:   0000000000000074 00007f9e600047f0
+0x00007f9e4c470a10:   00007f9e4c470a80 00007f9e652f0f9e
+0x00007f9e4c470a20:   00007f9e4c470a40 00007f9e4c470a30
+0x00007f9e4c470a30:   00007f9e600c6800 0000000000000000
+0x00007f9e4c470a40:   00007f9e00000000 0000000000000000
+0x00007f9e4c470a50:   00007f9e4c470a70 00007f9e5ffffe40
+0x00007f9e4c470a60:   3e3b6e6f69737365 00007f9e4c470b17
+0x00007f9e4c470a70:   000000000000001f 00007f9e4c470b17
+0x00007f9e4c470a80:   00007f9e4c470ab0 00007f9e5fdeb8c2
+0x00007f9e4c470a90:   00007f9e4c470ab0 3e3b6e6f69737365
+0x00007f9e4c470aa0:   00007f9e4c470b80 00000000000000f8
+0x00007f9e4c470ab0:   00007f9e4c470b40 00007f9e5fdccaa0
+0x00007f9e4c470ac0:   00007f9e4c470af8 00007f9e4c470af0
+0x00007f9e4c470ad0:   00007f9e4c470ae8 00007f9e4c470b0c
+0x00007f9e4c470ae0:   0000000114003250 0000000000000000
+0x00007f9e4c470af0:   0000000000000000 0000000000000000
+0x00007f9e4c470b00:   00007f9e1400bc20 000000014c470b80
+0x00007f9e4c470b10:   0000000000000020 0000000000000002
+0x00007f9e4c470b20:   000000000000000f 0000000000000002
+0x00007f9e4c470b30:   00000000000f0200 000000000000000f
+0x00007f9e4c470b40:   00007f9e4c470d90 00007f9e5fdd79c6
+0x00007f9e4c470b50:   0000501600000013 00007f9e650f0200
+0x00007f9e4c470b60:   00007f9e0c0055f0 0000000000000000
+0x00007f9e4c470b70:   00007f9e4c470b80 00007f9e4c470d10
+0x00007f9e4c470b80:   00007f9e1402f195 000000000000006b
+0x00007f9e4c470b90:   00007f9e0c005660 00007f9e0000012c
+0x00007f9e4c470ba0:   00007f9e4c470bd0 00007f9e0c005990
+0x00007f9e4c470bb0:   00007f0000000000 000050160000068d
+0x00007f9e4c470bc0:   00007f9e00000d80 0000000000000000
+0x00007f9e4c470bd0:   9e7f000020000000 0b00000060fb0014
+0x00007f9e4c470be0:   7075727265746e69 2842000000646574
+0x00007f9e4c470bf0:   64656c6d2f72664c 2f6c6670672f6375 
+
+Instructions: (pc=0x00007f9e6545f690)
+0x00007f9e6545f670:   55 48 89 e5 53 48 83 ec 08 48 85 ff 75 12 31 db
+0x00007f9e6545f680:   48 89 d8 48 83 c4 08 5b c9 c3 66 0f 1f 44 00 00
+0x00007f9e6545f690:   48 8b 1f 48 85 db 74 e6 48 83 fb 37 74 e0 48 8b
+0x00007f9e6545f6a0:   03 48 89 df ff 50 10 84 c0 0f 1f 80 00 00 00 00 
+
+Register to memory mapping:
+
+RAX=0x0000000000000001 is an unknown value
+RBX=0x00007f9e600047f0 is an unknown value
+RCX=0x00007f9e665a3300: <offset 0x21a300> in /lib/x86_64-linux-gnu/libpthread.so.0 at 0x00007f9e66389000
+RDX=0x00007f9e65b64ba0: <offset 0xf9eba0> in /opt/java/jdk1.8.0_51/jre/lib/amd64/server/libjvm.so at 0x00007f9e64bc6000
+RSP=0x00007f9e4c470a00 is pointing into the stack for thread: 0x00007f9e600c6800
+RBP=0x00007f9e4c470a10 is pointing into the stack for thread: 0x00007f9e600c6800
+RSI=0x00007f9e600c6800 is a thread
+RDI=0x3e3b6e6f69737365 is an unknown value
+R8 =0x00007f9e1405bed0 is an unknown value
+R9 =0x0000000000000000 is an unknown value
+R10=0x0000000000000030 is an unknown value
+R11=0x00007f9e65d2e280: <offset 0x19f280> in /lib/x86_64-linux-gnu/libc.so.6 at 0x00007f9e65b8f000
+R12=0x0000000000000017 is an unknown value
+R13=0x3e3b6e6f69737365 is an unknown value
+R14=0x00007f9e600c6800 is a thread
+R15=0x00007f9e4c470b17 is pointing into the stack for thread: 0x00007f9e600c6800
+
+
+Stack: [0x00007f9e4c371000,0x00007f9e4c472000],  sp=0x00007f9e4c470a00,  free space=1022k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x899690]  Method::checked_resolve_jmethod_id(_jmethodID*)+0x20
+V  [libjvm.so+0x72af9e]  jvmti_IsMethodSynthetic+0x2be
+C  [libjdwp.so+0x258c2]  isMethodSynthetic+0x42
+C  [libjdwp.so+0x6aa0]  methods1+0x1b0
+C  [libjdwp.so+0x119c6]  debugLoop_run+0x2b6
+C  [libjdwp.so+0x247ff]  attachThread+0x2f
+V  [libjvm.so+0x797362]  JvmtiAgentThread::call_start_function()+0xc2
+V  [libjvm.so+0xa5cbcf]  JavaThread::thread_main_inner()+0xdf
+V  [libjvm.so+0xa5ccfc]  JavaThread::run()+0x11c
+V  [libjvm.so+0x911048]  java_start(Thread*)+0x108
+C  [libpthread.so.0+0x77fc]  start_thread+0xdc
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f9dc8002000 JavaThread "Worker-1" [_thread_blocked, id=20953, stack(0x00007f9e475d2000,0x00007f9e476d3000)]
+  0x00007f9e60763000 JavaThread "Worker-0" [_thread_blocked, id=20937, stack(0x00007f9e453b3000,0x00007f9e454b4000)]
+  0x00007f9e603c8800 JavaThread "com.google.inject.internal.util.$Finalizer" daemon [_thread_blocked, id=20933, stack(0x00007f9e458b4000,0x00007f9e459b5000)]
+  0x00007f9e60302800 JavaThread "EMF Reference Cleaner" daemon [_thread_blocked, id=20931, stack(0x00007f9e4656f000,0x00007f9e46670000)]
+  0x00007f9e60613000 JavaThread "ReaderThread" [_thread_in_native, id=20923, stack(0x00007f9e45db5000,0x00007f9e45eb6000)]
+  0x00007f9de814c800 JavaThread "Worker-JM" [_thread_blocked, id=20897, stack(0x00007f9e469d7000,0x00007f9e46ad8000)]
+  0x00007f9e60617000 JavaThread "SCR Component Actor" daemon [_thread_blocked, id=20888, stack(0x00007f9e46af3000,0x00007f9e46bf4000)]
+  0x00007f9e60725800 JavaThread "Bundle File Closer" daemon [_thread_blocked, id=20885, stack(0x00007f9e46c58000,0x00007f9e46d59000)]
+  0x00007f9e602e4800 JavaThread "Start Level: Equinox Container: dd01d89c-28a6-44fe-936e-0fca31d3efe1" daemon [_thread_blocked, id=20884, stack(0x00007f9e46fbb000,0x00007f9e470bc000)]
+  0x00007f9e602cc000 JavaThread "Refresh Thread: Equinox Container: dd01d89c-28a6-44fe-936e-0fca31d3efe1" daemon [_thread_blocked, id=20883, stack(0x00007f9e472cf000,0x00007f9e473d0000)]
+  0x00007f9e602c8800 JavaThread "Framework Event Dispatcher: org.eclipse.osgi.internal.framework.EquinoxEventPublisher@6295d394" daemon [_thread_blocked, id=20882, stack(0x00007f9e473d0000,0x00007f9e474d1000)]
+  0x00007f9e60292800 JavaThread "Active Thread: Equinox Container: dd01d89c-28a6-44fe-936e-0fca31d3efe1" [_thread_blocked, id=20881, stack(0x00007f9e474d1000,0x00007f9e475d2000)]
+  0x00007f9e600d6000 JavaThread "Service Thread" daemon [_thread_blocked, id=20875, stack(0x00007f9e47cfd000,0x00007f9e47dfe000)]
+  0x00007f9e600d1000 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=20874, stack(0x00007f9e47dfe000,0x00007f9e47eff000)]
+  0x00007f9e600cf000 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=20873, stack(0x00007f9e47eff000,0x00007f9e48000000)]
+  0x00007f9e600cc800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=20872, stack(0x00007f9e4c06e000,0x00007f9e4c16f000)]
+  0x00007f9e14001000 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=20870, stack(0x00007f9e4c16f000,0x00007f9e4c270000)]
+  0x00007f9e600ca000 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=20868, stack(0x00007f9e4c270000,0x00007f9e4c371000)]
+=>0x00007f9e600c6800 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=20866, stack(0x00007f9e4c371000,0x00007f9e4c472000)]
+  0x00007f9e600b8800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=20864, stack(0x00007f9e4c676000,0x00007f9e4c777000)]
+  0x00007f9e60083000 JavaThread "Finalizer" daemon [_thread_blocked, id=20863, stack(0x00007f9e4c777000,0x00007f9e4c878000)]
+  0x00007f9e60081000 JavaThread "Reference Handler" daemon [_thread_blocked, id=20862, stack(0x00007f9e4c878000,0x00007f9e4c979000)]
+  0x00007f9e6000e000 JavaThread "main" [_thread_blocked, id=20850, stack(0x00007f9e66684000,0x00007f9e66785000)]
+
+Other Threads:
+  0x00007f9e6007c000 VMThread [stack: 0x00007f9e4c979000,0x00007f9e4ca7a000] [id=20861]
+  0x00007f9e600d9000 WatcherThread [stack: 0x00007f9e47bfc000,0x00007f9e47cfd000] [id=20876]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 290816K, used 53995K [0x000000076f900000, 0x0000000793200000, 0x00000007c0000000)
+  eden space 247808K, 21% used [0x000000076f900000,0x0000000772dbac40,0x000000077eb00000)
+  from space 43008K, 0% used [0x000000077eb00000,0x000000077eb00000,0x0000000781500000)
+  to   space 43520K, 0% used [0x0000000790780000,0x0000000790780000,0x0000000793200000)
+ ParOldGen       total 144384K, used 33967K [0x00000006cea00000, 0x00000006d7700000, 0x000000076f900000)
+  object space 144384K, 23% used [0x00000006cea00000,0x00000006d0b2bed8,0x00000006d7700000)
+ Metaspace       used 28189K, capacity 30261K, committed 30384K, reserved 1075200K
+  class space    used 3354K, capacity 4004K, committed 4016K, reserved 1048576K
+
+Card table byte_map: [0x00007f9e4f541000,0x00007f9e4fccd000] byte_map_base: 0x00007f9e4becc000
+
+Marking Bits: (ParMarkBitMap*) 0x00007f9e65b64660
+ Begin Bits: [0x00007f9e28750000, 0x00007f9e2c3a8000)
+ End Bits:   [0x00007f9e2c3a8000, 0x00007f9e30000000)
+
+Polling page: 0x00007f9e667ce000
+
+CodeCache: size=245760Kb used=13739Kb max_used=13845Kb free=232020Kb
+ bounds [0x00007f9e5008d000, 0x00007f9e50e2d000, 0x00007f9e5f08d000]
+ total_blobs=4122 nmethods=3691 adapters=352
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 31,466 Thread 0x00007f9e600d1000 4297       3       java.io.Writer::write (11 bytes)
+Event: 31,466 Thread 0x00007f9e600d1000 nmethod 4297 0x00007f9e50dd70d0 code [0x00007f9e50dd7240, 0x00007f9e50dd7568]
+Event: 31,497 Thread 0x00007f9e600cc800 nmethod 4259 0x00007f9e50dddf50 code [0x00007f9e50dde200, 0x00007f9e50de0ff0]
+Event: 31,497 Thread 0x00007f9e600cc800 4260       4       java.io.DataOutputStream::writeByte (14 bytes)
+Event: 31,507 Thread 0x00007f9e600cc800 nmethod 4260 0x00007f9e50dd9590 code [0x00007f9e50dd9740, 0x00007f9e50dda288]
+Event: 31,507 Thread 0x00007f9e600cc800 4261       4       org.eclipse.osgi.container.ModuleDatabase$Persistence::writeString (98 bytes)
+Event: 31,535 Thread 0x00007f9e600cc800 nmethod 4261 0x00007f9e50de5190 code [0x00007f9e50de5460, 0x00007f9e50de6a10]
+Event: 32,021 Thread 0x00007f9e600cf000 nmethod 4266 0x00007f9e50dfec10 code [0x00007f9e50dff8e0, 0x00007f9e50e14590]
+Event: 124,055 Thread 0x00007f9e600cc800 4298       4       org.eclipse.emf.ecore.impl.MinimalEObjectImpl::eDynamicClass (10 bytes)
+Event: 124,058 Thread 0x00007f9e600cc800 nmethod 4298 0x00007f9e50dd6bd0 code [0x00007f9e50dd6d20, 0x00007f9e50dd6f18]
+
+GC Heap History (10 events):
+Event: 3,067 GC heap before
+{Heap before GC invocations=4 (full 0):
+ PSYoungGen      total 72192K, used 72167K [0x000000076f900000, 0x0000000778600000, 0x00000007c0000000)
+  eden space 61952K, 100% used [0x000000076f900000,0x0000000773580000,0x0000000773580000)
+  from space 10240K, 99% used [0x0000000773580000,0x0000000773f79dc8,0x0000000773f80000)
+  to   space 10240K, 0% used [0x0000000777c00000,0x0000000777c00000,0x0000000778600000)
+ ParOldGen       total 165376K, used 14805K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 8% used [0x00000006cea00000,0x00000006cf875518,0x00000006d8b80000)
+ Metaspace       used 9117K, capacity 9234K, committed 9472K, reserved 1058816K
+  class space    used 906K, capacity 928K, committed 1024K, reserved 1048576K
+Event: 3,121 GC heap after
+Heap after GC invocations=4 (full 0):
+ PSYoungGen      total 134144K, used 10228K [0x000000076f900000, 0x0000000778600000, 0x00000007c0000000)
+  eden space 123904K, 0% used [0x000000076f900000,0x000000076f900000,0x0000000777200000)
+  from space 10240K, 99% used [0x0000000777c00000,0x00000007785fd2b8,0x0000000778600000)
+  to   space 10240K, 0% used [0x0000000777200000,0x0000000777200000,0x0000000777c00000)
+ ParOldGen       total 165376K, used 47560K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 28% used [0x00000006cea00000,0x00000006d1872398,0x00000006d8b80000)
+ Metaspace       used 9117K, capacity 9234K, committed 9472K, reserved 1058816K
+  class space    used 906K, capacity 928K, committed 1024K, reserved 1048576K
+}
+Event: 6,392 GC heap before
+{Heap before GC invocations=5 (full 0):
+ PSYoungGen      total 134144K, used 134132K [0x000000076f900000, 0x0000000778600000, 0x00000007c0000000)
+  eden space 123904K, 100% used [0x000000076f900000,0x0000000777200000,0x0000000777200000)
+  from space 10240K, 99% used [0x0000000777c00000,0x00000007785fd2b8,0x0000000778600000)
+  to   space 10240K, 0% used [0x0000000777200000,0x0000000777200000,0x0000000777c00000)
+ ParOldGen       total 165376K, used 47560K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 28% used [0x00000006cea00000,0x00000006d1872398,0x00000006d8b80000)
+ Metaspace       used 14825K, capacity 15800K, committed 15872K, reserved 1062912K
+  class space    used 1474K, capacity 1787K, committed 1792K, reserved 1048576K
+Event: 6,490 GC heap after
+Heap after GC invocations=5 (full 0):
+ PSYoungGen      total 134144K, used 10239K [0x000000076f900000, 0x0000000784400000, 0x00000007c0000000)
+  eden space 123904K, 0% used [0x000000076f900000,0x000000076f900000,0x0000000777200000)
+  from space 10240K, 99% used [0x0000000777200000,0x0000000777bffd90,0x0000000777c00000)
+  to   space 45568K, 0% used [0x0000000781780000,0x0000000781780000,0x0000000784400000)
+ ParOldGen       total 165376K, used 70550K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 42% used [0x00000006cea00000,0x00000006d2ee59b8,0x00000006d8b80000)
+ Metaspace       used 14825K, capacity 15800K, committed 15872K, reserved 1062912K
+  class space    used 1474K, capacity 1787K, committed 1792K, reserved 1048576K
+}
+Event: 7,040 GC heap before
+{Heap before GC invocations=6 (full 0):
+ PSYoungGen      total 134144K, used 134143K [0x000000076f900000, 0x0000000784400000, 0x00000007c0000000)
+  eden space 123904K, 100% used [0x000000076f900000,0x0000000777200000,0x0000000777200000)
+  from space 10240K, 99% used [0x0000000777200000,0x0000000777bffd90,0x0000000777c00000)
+  to   space 45568K, 0% used [0x0000000781780000,0x0000000781780000,0x0000000784400000)
+ ParOldGen       total 165376K, used 70550K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 42% used [0x00000006cea00000,0x00000006d2ee59b8,0x00000006d8b80000)
+ Metaspace       used 15191K, capacity 16184K, committed 16384K, reserved 1064960K
+  class space    used 1503K, capacity 1787K, committed 1792K, reserved 1048576K
+Event: 7,083 GC heap after
+Heap after GC invocations=6 (full 0):
+ PSYoungGen      total 288256K, used 21832K [0x000000076f900000, 0x0000000783f00000, 0x00000007c0000000)
+  eden space 247808K, 0% used [0x000000076f900000,0x000000076f900000,0x000000077eb00000)
+  from space 40448K, 53% used [0x0000000781780000,0x0000000782cd20f0,0x0000000783f00000)
+  to   space 43008K, 0% used [0x000000077eb00000,0x000000077eb00000,0x0000000781500000)
+ ParOldGen       total 165376K, used 70558K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 42% used [0x00000006cea00000,0x00000006d2ee79b8,0x00000006d8b80000)
+ Metaspace       used 15191K, capacity 16184K, committed 16384K, reserved 1064960K
+  class space    used 1503K, capacity 1787K, committed 1792K, reserved 1048576K
+}
+Event: 7,779 GC heap before
+{Heap before GC invocations=7 (full 0):
+ PSYoungGen      total 288256K, used 39896K [0x000000076f900000, 0x0000000783f00000, 0x00000007c0000000)
+  eden space 247808K, 7% used [0x000000076f900000,0x0000000770aa3fe0,0x000000077eb00000)
+  from space 40448K, 53% used [0x0000000781780000,0x0000000782cd20f0,0x0000000783f00000)
+  to   space 43008K, 0% used [0x000000077eb00000,0x000000077eb00000,0x0000000781500000)
+ ParOldGen       total 165376K, used 70558K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 42% used [0x00000006cea00000,0x00000006d2ee79b8,0x00000006d8b80000)
+ Metaspace       used 19422K, capacity 21183K, committed 21296K, reserved 1069056K
+  class space    used 2096K, capacity 2608K, committed 2608K, reserved 1048576K
+Event: 7,837 GC heap after
+Heap after GC invocations=7 (full 0):
+ PSYoungGen      total 290816K, used 10589K [0x000000076f900000, 0x0000000793200000, 0x00000007c0000000)
+  eden space 247808K, 0% used [0x000000076f900000,0x000000076f900000,0x000000077eb00000)
+  from space 43008K, 24% used [0x000000077eb00000,0x000000077f557450,0x0000000781500000)
+  to   space 43520K, 0% used [0x0000000790780000,0x0000000790780000,0x0000000793200000)
+ ParOldGen       total 165376K, used 75502K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 45% used [0x00000006cea00000,0x00000006d33bbb50,0x00000006d8b80000)
+ Metaspace       used 19422K, capacity 21183K, committed 21296K, reserved 1069056K
+  class space    used 2096K, capacity 2608K, committed 2608K, reserved 1048576K
+}
+Event: 7,837 GC heap before
+{Heap before GC invocations=8 (full 1):
+ PSYoungGen      total 290816K, used 10589K [0x000000076f900000, 0x0000000793200000, 0x00000007c0000000)
+  eden space 247808K, 0% used [0x000000076f900000,0x000000076f900000,0x000000077eb00000)
+  from space 43008K, 24% used [0x000000077eb00000,0x000000077f557450,0x0000000781500000)
+  to   space 43520K, 0% used [0x0000000790780000,0x0000000790780000,0x0000000793200000)
+ ParOldGen       total 165376K, used 75502K [0x00000006cea00000, 0x00000006d8b80000, 0x000000076f900000)
+  object space 165376K, 45% used [0x00000006cea00000,0x00000006d33bbb50,0x00000006d8b80000)
+ Metaspace       used 19422K, capacity 21183K, committed 21296K, reserved 1069056K
+  class space    used 2096K, capacity 2608K, committed 2608K, reserved 1048576K
+Event: 7,979 GC heap after
+Heap after GC invocations=8 (full 1):
+ PSYoungGen      total 290816K, used 0K [0x000000076f900000, 0x0000000793200000, 0x00000007c0000000)
+  eden space 247808K, 0% used [0x000000076f900000,0x000000076f900000,0x000000077eb00000)
+  from space 43008K, 0% used [0x000000077eb00000,0x000000077eb00000,0x0000000781500000)
+  to   space 43520K, 0% used [0x0000000790780000,0x0000000790780000,0x0000000793200000)
+ ParOldGen       total 144384K, used 33967K [0x00000006cea00000, 0x00000006d7700000, 0x000000076f900000)
+  object space 144384K, 23% used [0x00000006cea00000,0x00000006d0b2bed8,0x00000006d7700000)
+ Metaspace       used 19422K, capacity 21183K, committed 21296K, reserved 1069056K
+  class space    used 2096K, capacity 2608K, committed 2608K, reserved 1048576K
+}
+
+Deoptimization events (10 events):
+Event: 20,890 Thread 0x00007f9e6000e000 Uncommon trap: reason=unhandled action=none pc=0x00007f9e50afcb88 method=org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClassImpl(Ljava/lang/String;Ljava/util/List;)Ljava/lang/Class; @ 127
+Event: 31,335 Thread 0x00007f9e60292800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f9e507e9bc8 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 31,335 Thread 0x00007f9e60292800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f9e507e9bc8 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 31,335 Thread 0x00007f9e60292800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f9e507e9bc8 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 31,335 Thread 0x00007f9e60292800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f9e507e9bc8 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 31,360 Thread 0x00007f9e60292800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9e5088bc5c method=java.lang.StringCoding$StringEncoder.encode([CII)[B @ 20
+Event: 31,367 Thread 0x00007f9e60292800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9e5033d0b0 method=sun.nio.cs.UTF_8$Encoder.encode([CII[B)I @ 33
+Event: 31,367 Thread 0x00007f9e60292800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9e50b26864 method=java.io.DataOutputStream.writeUTF(Ljava/lang/String;Ljava/io/DataOutput;)I @ 37
+Event: 31,458 Thread 0x00007f9e60292800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9e50ce08dc method=java.util.Date.normalize()Lsun/util/calendar/BaseCalendar$Date; @ 4
+Event: 31,468 Thread 0x00007f9e60292800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9e5036aad8 method=java.util.concurrent.locks.AbstractQueuedSynchronizer.release(I)Z @ 14
+
+Internal exceptions (10 events):
+Event: 8,281 Thread 0x00007f9e6000e000 Exception <a 'java/lang/ArrayIndexOutOfBoundsException': 64> (0x0000000770dc86f8) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u51/3951/hotspot/src/share/vm/interpreter/interpreterRuntime.cpp, line 366]
+Event: 8,281 Thread 0x00007f9e6000e000 Exception <a 'java/lang/ArrayIndexOutOfBoundsException': 67> (0x0000000770dca560) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u51/3951/hotspot/src/share/vm/interpreter/interpreterRuntime.cpp, line 366]
+Event: 8,324 Thread 0x00007f9e6000e000 Exception <a 'java/lang/ArrayIndexOutOfBoundsException': 96> (0x0000000770ec82f0) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u51/3951/hotspot/src/share/vm/interpreter/interpreterRuntime.cpp, line 366]
+Event: 8,355 Thread 0x00007f9e6000e000 Exception <a 'java/lang/ArrayIndexOutOfBoundsException': 75> (0x0000000770f85860) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u51/3951/hotspot/src/share/vm/interpreter/interpreterRuntime.cpp, line 366]
+Event: 8,505 Thread 0x00007f9e6000e000 Exception <a 'java/lang/ArrayIndexOutOfBoundsException': 54> (0x000000077134f0e0) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u51/3951/hotspot/src/share/vm/interpreter/interpreterRuntime.cpp, line 366]
+Event: 8,574 Thread 0x00007f9e6000e000 Exception <a 'java/io/FileNotFoundException'> (0x000000077151d070) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u51/3951/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 8,576 Thread 0x00007f9e6000e000 Exception <a 'java/io/FileNotFoundException'> (0x0000000771529f58) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u51/3951/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 8,663 Thread 0x00007f9e6000e000 Exception <a 'java/lang/reflect/InvocationTargetException'> (0x000000077176d288) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u51/3951/hotspot/src/share/vm/runtime/reflection.cpp, line 1080]
+Event: 8,763 Thread 0x00007f9e6000e000 Implicit null exception at 0x00007f9e504edb48 to 0x00007f9e504f583d
+Event: 31,458 Thread 0x00007f9e60292800 Implicit null exception at 0x00007f9e50cdd856 to 0x00007f9e50ce08c9
+
+Events (10 events):
+Event: 325,280 Executing VM operation: EnterInterpOnlyMode
+Event: 325,280 Executing VM operation: EnterInterpOnlyMode done
+Event: 325,280 Executing VM operation: ChangeSingleStep
+Event: 325,280 Executing VM operation: ChangeSingleStep done
+Event: 325,280 Executing VM operation: ChangeSingleStep
+Event: 325,281 Executing VM operation: ChangeSingleStep done
+Event: 325,331 Executing VM operation: RevokeBias
+Event: 325,331 Executing VM operation: RevokeBias done
+Event: 325,336 Executing VM operation: RedefineClasses
+Event: 325,493 Executing VM operation: RedefineClasses done
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 fd:00 16126573                           /opt/java/jdk1.8.0_51/bin/java
+00600000-00601000 rw-p 00000000 fd:00 16126573                           /opt/java/jdk1.8.0_51/bin/java
+01c06000-01c27000 rw-p 00000000 00:00 0                                  [heap]
+6cea00000-6d7700000 rw-p 00000000 00:00 0 
+6d7700000-76f900000 ---p 00000000 00:00 0 
+76f900000-793200000 rw-p 00000000 00:00 0 
+793200000-7c0000000 ---p 00000000 00:00 0 
+7c0000000-7c03ec000 rw-p 00000000 00:00 0 
+7c03ec000-800000000 ---p 00000000 00:00 0 
+7f9dc4000000-7f9dc4021000 rw-p 00000000 00:00 0 
+7f9dc4021000-7f9dc8000000 ---p 00000000 00:00 0 
+7f9dc8000000-7f9dc8021000 rw-p 00000000 00:00 0 
+7f9dc8021000-7f9dcc000000 ---p 00000000 00:00 0 
+7f9dcc000000-7f9dcc037000 rw-p 00000000 00:00 0 
+7f9dcc037000-7f9dd0000000 ---p 00000000 00:00 0 
+7f9dd0000000-7f9dd0021000 rw-p 00000000 00:00 0 
+7f9dd0021000-7f9dd4000000 ---p 00000000 00:00 0 
+7f9dd4000000-7f9dd4021000 rw-p 00000000 00:00 0 
+7f9dd4021000-7f9dd8000000 ---p 00000000 00:00 0 
+7f9dd8000000-7f9dd8021000 rw-p 00000000 00:00 0 
+7f9dd8021000-7f9ddc000000 ---p 00000000 00:00 0 
+7f9ddc000000-7f9ddc021000 rw-p 00000000 00:00 0 
+7f9ddc021000-7f9de0000000 ---p 00000000 00:00 0 
+7f9de0000000-7f9de0021000 rw-p 00000000 00:00 0 
+7f9de0021000-7f9de4000000 ---p 00000000 00:00 0 
+7f9de4000000-7f9de403b000 rw-p 00000000 00:00 0 
+7f9de403b000-7f9de8000000 ---p 00000000 00:00 0 
+7f9de8000000-7f9de8906000 rw-p 00000000 00:00 0 
+7f9de8906000-7f9dec000000 ---p 00000000 00:00 0 
+7f9dec000000-7f9dec035000 rw-p 00000000 00:00 0 
+7f9dec035000-7f9df0000000 ---p 00000000 00:00 0 
+7f9df0000000-7f9df0021000 rw-p 00000000 00:00 0 
+7f9df0021000-7f9df4000000 ---p 00000000 00:00 0 
+7f9df4000000-7f9df4021000 rw-p 00000000 00:00 0 
+7f9df4021000-7f9df8000000 ---p 00000000 00:00 0 
+7f9df8000000-7f9df8021000 rw-p 00000000 00:00 0 
+7f9df8021000-7f9dfc000000 ---p 00000000 00:00 0 
+7f9dfc000000-7f9dfc021000 rw-p 00000000 00:00 0 
+7f9dfc021000-7f9e00000000 ---p 00000000 00:00 0 
+7f9e00000000-7f9e00021000 rw-p 00000000 00:00 0 
+7f9e00021000-7f9e04000000 ---p 00000000 00:00 0 
+7f9e04000000-7f9e06d07000 rw-p 00000000 00:00 0 
+7f9e06d07000-7f9e08000000 ---p 00000000 00:00 0 
+7f9e08000000-7f9e090d6000 rw-p 00000000 00:00 0 
+7f9e090d6000-7f9e0c000000 ---p 00000000 00:00 0 
+7f9e0c000000-7f9e0c021000 rw-p 00000000 00:00 0 
+7f9e0c021000-7f9e10000000 ---p 00000000 00:00 0 
+7f9e10000000-7f9e1241d000 rw-p 00000000 00:00 0 
+7f9e1241d000-7f9e14000000 ---p 00000000 00:00 0 
+7f9e14000000-7f9e1437b000 rw-p 00000000 00:00 0 
+7f9e1437b000-7f9e18000000 ---p 00000000 00:00 0 
+7f9e18000000-7f9e18021000 rw-p 00000000 00:00 0 
+7f9e18021000-7f9e1c000000 ---p 00000000 00:00 0 
+7f9e1c000000-7f9e1c021000 rw-p 00000000 00:00 0 
+7f9e1c021000-7f9e20000000 ---p 00000000 00:00 0 
+7f9e20000000-7f9e20021000 rw-p 00000000 00:00 0 
+7f9e20021000-7f9e24000000 ---p 00000000 00:00 0 
+7f9e24000000-7f9e24021000 rw-p 00000000 00:00 0 
+7f9e24021000-7f9e28000000 ---p 00000000 00:00 0 
+7f9e28750000-7f9e30000000 rw-p 00000000 00:00 0 
+7f9e30000000-7f9e30021000 rw-p 00000000 00:00 0 
+7f9e30021000-7f9e34000000 ---p 00000000 00:00 0 
+7f9e34000000-7f9e34344000 rw-p 00000000 00:00 0 
+7f9e34344000-7f9e38000000 ---p 00000000 00:00 0 
+7f9e38000000-7f9e38021000 rw-p 00000000 00:00 0 
+7f9e38021000-7f9e3c000000 ---p 00000000 00:00 0 
+7f9e40000000-7f9e40021000 rw-p 00000000 00:00 0 
+7f9e40021000-7f9e44000000 ---p 00000000 00:00 0 
+7f9e451b3000-7f9e45373000 rw-p 00000000 00:00 0 
+7f9e45373000-7f9e453b3000 ---p 00000000 00:00 0 
+7f9e453b3000-7f9e453b6000 ---p 00000000 00:00 0 
+7f9e453b6000-7f9e456b4000 rw-p 00000000 00:00 0 
+7f9e456b4000-7f9e458b4000 rw-p 00000000 00:00 0 
+7f9e458b4000-7f9e458b7000 ---p 00000000 00:00 0 
+7f9e458b7000-7f9e45bb5000 rw-p 00000000 00:00 0 
+7f9e45bb5000-7f9e45db5000 rw-p 00000000 00:00 0 
+7f9e45db5000-7f9e45db8000 ---p 00000000 00:00 0 
+7f9e45db8000-7f9e460b6000 rw-p 00000000 00:00 0 
+7f9e460b6000-7f9e462b6000 rw-p 00000000 00:00 0 
+7f9e46357000-7f9e46557000 rw-p 00000000 00:00 0 
+7f9e4656f000-7f9e46572000 ---p 00000000 00:00 0 
+7f9e46572000-7f9e46670000 rw-p 00000000 00:00 0 
+7f9e46670000-7f9e46673000 ---p 00000000 00:00 0 
+7f9e46673000-7f9e46971000 rw-p 00000000 00:00 0 
+7f9e469d7000-7f9e469da000 ---p 00000000 00:00 0 
+7f9e469da000-7f9e46ad8000 rw-p 00000000 00:00 0 
+7f9e46af3000-7f9e46af6000 ---p 00000000 00:00 0 
+7f9e46af6000-7f9e46bf4000 rw-p 00000000 00:00 0 
+7f9e46bf4000-7f9e46c58000 r--s 00b1c000 fd:00 16694180                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/com.ibm.icu_58.2.0.v20170418-1837.jar
+7f9e46c58000-7f9e46c5b000 ---p 00000000 00:00 0 
+7f9e46c5b000-7f9e46d59000 rw-p 00000000 00:00 0 
+7f9e46d95000-7f9e46dc5000 r--s 0025e000 fd:00 16694175                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/com.google.guava_21.0.0.v20170206-1425.jar
+7f9e46dc5000-7f9e46dd1000 r--s 00074000 fd:00 16694176                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/com.google.inject_3.0.0.v201312141243.jar
+7f9e46dd1000-7f9e46e07000 r--s 0035a000 fd:00 16695083                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.ui.workbench_3.110.1.v20170704-1208.jar
+7f9e46e07000-7f9e46e0a000 r--s 0001b000 fd:00 16694530                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.common_3.9.0.v20170207-1454.jar
+7f9e46e0a000-7f9e46e0e000 r--s 00014000 fd:00 16695272                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.w3c.dom.svg_1.1.0.v201011041433.jar
+7f9e46e0e000-7f9e46e10000 r--s 00008000 fd:00 16695266                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.w3c.css.sac_1.3.1.v200903091627.jar
+7f9e46e10000-7f9e46e17000 r--s 00052000 fd:00 16695260                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.sat4j.core_2.3.5.v201308161310.jar
+7f9e46e17000-7f9e46e23000 r--s 0006d000 fd:00 16695239                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.jupiter.params_5.0.0.v20170910-2246.jar
+7f9e46e23000-7f9e46e28000 r--s 00037000 fd:00 16695224                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xtext.ui_2.12.0.v20170519-0809.jar
+7f9e46e28000-7f9e46e37000 r--s 000e9000 fd:00 16695220                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xtext.generator_2.12.0.v20170518-0959.jar
+7f9e46e37000-7f9e46e42000 r--s 0007e000 fd:00 16695216                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xbase.ui_2.12.0.v20170519-0809.jar
+7f9e46e42000-7f9e46e46000 r--s 00023000 fd:00 16695214                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xbase.testing_2.12.0.v20170519-0752.jar
+7f9e46e46000-7f9e46e62000 r--s 00393000 fd:00 16126509                   /opt/java/jdk1.8.0_51/jre/lib/ext/cldrdata.jar
+7f9e46e62000-7f9e46e65000 r--s 0001a000 fd:00 16695264                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.tukaani.xz_1.5.0.v20170111-1717.jar
+7f9e46e65000-7f9e46e68000 r--s 0001e000 fd:00 16694652                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.preferences_3.7.0.v20170126-2132.jar
+7f9e46e68000-7f9e46e69000 r--s 00004000 fd:00 16695270                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.w3c.dom.smil_1.0.1.v200903091627.jar
+7f9e46e69000-7f9e46e6b000 r--s 00007000 fd:00 16695262                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.slf4j.api_1.7.2.v20121108-1250.jar
+7f9e46e6b000-7f9e46e6f000 r--s 00021000 fd:00 16695211                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xbase.lib_2.12.0.v20170518-0757.jar
+7f9e46e6f000-7f9e46e73000 r--s 0002c000 fd:00 16695209                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xbase.junit_2.12.0.v20170519-0809.jar
+7f9e46e73000-7f9e46e77000 r--s 00092000 fd:00 16695207                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xbase.ide_2.12.0.v20170519-0752.jar
+7f9e46e77000-7f9e46e99000 r--s 00245000 fd:00 16695206                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xbase_2.12.0.v20170519-0752.jar
+7f9e46e99000-7f9e46eac000 r--s 000c0000 fd:00 16695167                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.generator_2.12.0.v20170519-0752.jar
+7f9e46eac000-7f9e46edc000 r--s 0024b000 fd:00 16695146                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext_2.12.0.v20170518-0959.jar
+7f9e46edc000-7f9e46ee6000 r--s 00116000 fd:00 16126503                   /opt/java/jdk1.8.0_51/jre/lib/ext/localedata.jar
+7f9e46ee6000-7f9e46eeb000 r--s 00037000 fd:00 16695261                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.sat4j.pb_2.3.5.v201404071733.jar
+7f9e46eeb000-7f9e46eed000 r--s 00004000 fd:00 16695258                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.opentest4j_1.0.0.v20170910-2246.jar
+7f9e46eed000-7f9e46ef3000 r--s 0003e000 fd:00 16695204                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.util_2.12.0.v20170518-0959.jar
+7f9e46ef3000-7f9e46ef5000 r--s 0003a000 fd:00 16694961                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.osgi.compatibility.state_1.1.0.v20170516-1513.jar
+7f9e46ef5000-7f9e46ef7000 r--s 00008000 fd:00 16695256                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.objectweb.asm.tree_5.0.1.v201404251740.jar
+7f9e46efc000-7f9e46f04000 r--s 0005e000 fd:00 16694293                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.apache.log4j_1.2.15.v201012070815.jar
+7f9e46f04000-7f9e46f06000 r--s 0000e000 fd:00 16695254                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.objectweb.asm_5.0.1.v201404251740.jar
+7f9e46f06000-7f9e46f09000 r--s 00010000 fd:00 16695252                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.vintage.engine_4.12.0.v20170910-2246.jar
+7f9e46f09000-7f9e46f0b000 r--s 00009000 fd:00 16695237                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar
+7f9e46f0b000-7f9e46f0f000 r--s 0001f000 fd:00 16695235                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.jupiter.engine_5.0.0.v20170910-2246.jar
+7f9e46f0f000-7f9e46f3b000 r--s 0019c000 fd:00 16695231                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.gradle.toolingapi_3.5.0.v20170801075239.jar
+7f9e46f3b000-7f9e46f3e000 r--s 00010000 fd:00 16695226                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xtext.ui.graph_2.12.0.v20170519-0809.jar
+7f9e46f3e000-7f9e46f3f000 r--s 0001c000 fd:00 16695222                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xtext.ide_2.12.0.v20170518-0959.jar
+7f9e46f3f000-7f9e46f41000 r--s 00006000 fd:00 16695218                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xbase.ui.testing_2.12.0.v20170519-0809.jar
+7f9e46f41000-7f9e46f44000 r--s 00010000 fd:00 16695202                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.ui.testing_2.12.0.v20170519-0809.jar
+7f9e46f44000-7f9e46f46000 r--s 0000c000 fd:00 16695199                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.ui.shared_2.12.0.v20170519-0809.jar
+7f9e46f46000-7f9e46f47000 r--s 00003000 fd:00 16695197                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.ui.ecore_2.12.0.v20170519-0809.jar
+7f9e46f47000-7f9e46f4d000 r--s 00035000 fd:00 16695195                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.ui.codetemplates.ui_2.12.0.v20170519-0809.jar
+7f9e46f4d000-7f9e46f54000 r--s 0003c000 fd:00 16695193                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.ui.codetemplates_2.12.0.v20170519-0809.jar
+7f9e46f54000-7f9e46f79000 r--s 00189000 fd:00 16695192                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.ui_2.12.0.v20170519-0809.jar
+7f9e46f79000-7f9e46f7d000 r--s 00026000 fd:00 16695190                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.testing_2.12.0.v20170518-0959.jar
+7f9e46f7d000-7f9e46f7e000 r--s 00004000 fd:00 16695187                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.smap_2.12.0.v20170519-0752.jar
+7f9e46f7e000-7f9e46f80000 r--s 00007000 fd:00 16695185                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.purexbase.ui_2.12.0.v20170519-0809.jar
+7f9e46f80000-7f9e46f82000 r--s 0003b000 fd:00 16695182                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.purexbase.ide_2.12.0.v20170519-0752.jar
+7f9e46f82000-7f9e46f85000 r--s 00033000 fd:00 16695181                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.purexbase_2.12.0.v20170519-0752.jar
+7f9e46f85000-7f9e46f87000 r--s 00002000 fd:00 16695177                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.logging_1.2.15.v20170519-0809.jar
+7f9e46f87000-7f9e46f8c000 r--s 00037000 fd:00 16695175                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.junit4_2.12.0.v20170519-0809.jar
+7f9e46f8c000-7f9e46f8d000 r--s 0000b000 fd:00 16695173                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.java_2.12.0.v20170519-0752.jar
+7f9e46f8d000-7f9e46f8e000 r--s 00019000 fd:00 16695171                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.idea.generator_2.12.0.v20170519-0809.jar
+7f9e46f8e000-7f9e46f94000 r--s 00045000 fd:00 16695169                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.ide_2.12.0.v20170518-0959.jar
+7f9e46f94000-7f9e46f98000 r--s 00683000 fd:00 16695164                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.doc_2.12.0.v20170519-0809.jar
+7f9e46f98000-7f9e46f9e000 r--s 00039000 fd:00 16695161                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.common.types.ui_2.12.0.v20170519-0809.jar
+7f9e46f9e000-7f9e46fa9000 r--s 00033000 fd:00 16695154                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.common.types.edit_2.12.0.v20170519-0809.jar
+7f9e46fa9000-7f9e46fb4000 r--s 0006e000 fd:00 16695153                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.common.types_2.12.0.v20170519-0752.jar
+7f9e46fb4000-7f9e46fbb000 r--s 00051000 fd:00 16695149                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.builder_2.12.0.v20170519-0809.jar
+7f9e46fbb000-7f9e46fbe000 ---p 00000000 00:00 0 
+7f9e46fbe000-7f9e470bc000 rw-p 00000000 00:00 0 
+7f9e470bc000-7f9e470cd000 r-xp 00000000 fd:00 16694558                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.551.v20171108-1834/eclipse_1630.so
+7f9e470cd000-7f9e472cc000 ---p 00011000 fd:00 16694558                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.551.v20171108-1834/eclipse_1630.so
+7f9e472cc000-7f9e472cd000 r--p 00010000 fd:00 16694558                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.551.v20171108-1834/eclipse_1630.so
+7f9e472cd000-7f9e472ce000 rw-p 00011000 fd:00 16694558                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.551.v20171108-1834/eclipse_1630.so
+7f9e472ce000-7f9e472cf000 rw-p 00000000 00:00 0 
+7f9e472cf000-7f9e472d2000 ---p 00000000 00:00 0 
+7f9e472d2000-7f9e473d0000 rw-p 00000000 00:00 0 
+7f9e473d0000-7f9e473d3000 ---p 00000000 00:00 0 
+7f9e473d3000-7f9e474d1000 rw-p 00000000 00:00 0 
+7f9e474d1000-7f9e474d4000 ---p 00000000 00:00 0 
+7f9e474d4000-7f9e475d2000 rw-p 00000000 00:00 0 
+7f9e475d2000-7f9e475d5000 ---p 00000000 00:00 0 
+7f9e475d5000-7f9e476d3000 rw-p 00000000 00:00 0 
+7f9e476d3000-7f9e476d6000 ---p 00000000 00:00 0 
+7f9e476d6000-7f9e477d4000 rw-p 00000000 00:00 0 
+7f9e477d4000-7f9e477e5000 r-xp 00000000 fd:00 16126488                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnio.so
+7f9e477e5000-7f9e479e4000 ---p 00011000 fd:00 16126488                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnio.so
+7f9e479e4000-7f9e479e5000 rw-p 00010000 fd:00 16126488                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnio.so
+7f9e479e5000-7f9e479fb000 r-xp 00000000 fd:00 16126461                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnet.so
+7f9e479fb000-7f9e47bfb000 ---p 00016000 fd:00 16126461                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnet.so
+7f9e47bfb000-7f9e47bfc000 rw-p 00016000 fd:00 16126461                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnet.so
+7f9e47bfc000-7f9e47bfd000 ---p 00000000 00:00 0 
+7f9e47bfd000-7f9e47cfd000 rw-p 00000000 00:00 0 
+7f9e47cfd000-7f9e47d00000 ---p 00000000 00:00 0 
+7f9e47d00000-7f9e47dfe000 rw-p 00000000 00:00 0 
+7f9e47dfe000-7f9e47e01000 ---p 00000000 00:00 0 
+7f9e47e01000-7f9e47eff000 rw-p 00000000 00:00 0 
+7f9e47eff000-7f9e47f02000 ---p 00000000 00:00 0 
+7f9e47f02000-7f9e48000000 rw-p 00000000 00:00 0 
+7f9e48000000-7f9e48021000 rw-p 00000000 00:00 0 
+7f9e48021000-7f9e4c000000 ---p 00000000 00:00 0 
+7f9e4c000000-7f9e4c001000 r--s 00004000 fd:00 16695157                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.common.types.shared.jdt38_2.12.0.v20170519-0809.jar
+7f9e4c001000-7f9e4c003000 r--s 0000b000 fd:00 16695151                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.builder.standalone_2.12.0.v20170519-0752.jar
+7f9e4c003000-7f9e4c005000 r--s 0000f000 fd:00 16695145                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtend.typesystem.emf_2.2.0.v201605260315.jar
+7f9e4c005000-7f9e4c007000 r--s 00001000 fd:00 16695143                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtend.standalone_2.12.0.v20170519-0902.jar
+7f9e4c008000-7f9e4c009000 r--s 00002000 fd:00 16694340                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.core.filesystem.linux.x86_64_1.2.200.v20140124-1940.jar
+7f9e4c009000-7f9e4c00b000 r--s 0000f000 fd:00 16694339                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.core.filesystem_1.7.0.v20170406-1337.jar
+7f9e4c00b000-7f9e4c016000 r--s 000cf000 fd:00 16694347                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.core.resources_3.12.0.v20170417-1558.jar
+7f9e4c016000-7f9e4c01a000 r--s 00031000 fd:00 16694198                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.antlr.runtime_3.2.0.v201101311130.jar
+7f9e4c01a000-7f9e4c01e000 r--s 00035000 fd:00 16694476                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.emf.ecore.xmi_2.13.0.v20170609-0707.jar
+7f9e4c01e000-7f9e4c030000 r--s 00114000 fd:00 16694453                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.emf.ecore_2.13.0.v20170609-0707.jar
+7f9e4c030000-7f9e4c037000 r--s 00051000 fd:00 16694442                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.emf.common_2.13.0.v20170609-0707.jar
+7f9e4c037000-7f9e4c03f000 r--s 00045000 fd:00 16780447                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit_4.12.0.v201504281640/junit.jar
+7f9e4c03f000-7f9e4c041000 r--s 00005000 fd:00 16694716                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.jdt.junit4.runtime_1.1.650.v20170920-1015.jar
+7f9e4c041000-7f9e4c043000 r--s 0000c000 fd:00 16694713                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.jdt.junit.runtime_3.4.651.v20171130-0906.jar
+7f9e4c043000-7f9e4c046000 r--s 0001b000 fd:00 16694533                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.console_1.1.300.v20170512-2111.jar
+7f9e4c046000-7f9e4c048000 r--s 00016000 fd:00 16695233                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.jupiter.api_5.0.0.v20170910-2246.jar
+7f9e4c048000-7f9e4c04a000 r--s 00006000 fd:00 16695249                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.platform.suite.api_1.0.0.v20170910-2246.jar
+7f9e4c04a000-7f9e4c04e000 r--s 0002a000 fd:00 16694654                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.registry_3.7.0.v20170222-1344.jar
+7f9e4c04e000-7f9e4c050000 r--s 00005000 fd:00 16695001                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.pde.junit.runtime_3.5.50.v20170923-0844.jar
+7f9e4c050000-7f9e4c053000 r--s 00017000 fd:00 16695087                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.update.configurator_3.3.400.v20160506-0750.jar
+7f9e4c053000-7f9e4c055000 r--s 0000e000 fd:00 16695075                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.ui.trace_1.1.0.v20170201-2036.jar
+7f9e4c055000-7f9e4c058000 r--s 00018000 fd:00 16694342                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.core.jobs_3.9.2.v20171030-1027.jar
+7f9e4c058000-7f9e4c06e000 r--s 0013d000 fd:00 16694926                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.osgi_3.12.50.v20170928-1321.jar
+7f9e4c06e000-7f9e4c071000 ---p 00000000 00:00 0 
+7f9e4c071000-7f9e4c16f000 rw-p 00000000 00:00 0 
+7f9e4c16f000-7f9e4c172000 ---p 00000000 00:00 0 
+7f9e4c172000-7f9e4c270000 rw-p 00000000 00:00 0 
+7f9e4c270000-7f9e4c273000 ---p 00000000 00:00 0 
+7f9e4c273000-7f9e4c371000 rw-p 00000000 00:00 0 
+7f9e4c371000-7f9e4c374000 ---p 00000000 00:00 0 
+7f9e4c374000-7f9e4c472000 rw-p 00000000 00:00 0 
+7f9e4c472000-7f9e4c476000 r-xp 00000000 fd:00 16126428                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libdt_socket.so
+7f9e4c476000-7f9e4c675000 ---p 00004000 fd:00 16126428                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libdt_socket.so
+7f9e4c675000-7f9e4c676000 rw-p 00003000 fd:00 16126428                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libdt_socket.so
+7f9e4c676000-7f9e4c679000 ---p 00000000 00:00 0 
+7f9e4c679000-7f9e4c777000 rw-p 00000000 00:00 0 
+7f9e4c777000-7f9e4c77a000 ---p 00000000 00:00 0 
+7f9e4c77a000-7f9e4c878000 rw-p 00000000 00:00 0 
+7f9e4c878000-7f9e4c87b000 ---p 00000000 00:00 0 
+7f9e4c87b000-7f9e4c979000 rw-p 00000000 00:00 0 
+7f9e4c979000-7f9e4c97a000 ---p 00000000 00:00 0 
+7f9e4c97a000-7f9e4da5c000 rw-p 00000000 00:00 0 
+7f9e4da5c000-7f9e4dc34000 r--s 03d0c000 fd:00 15864385                   /opt/java/jdk1.8.0_51/jre/lib/rt.jar
+7f9e4dc34000-7f9e4ec35000 rw-p 00000000 00:00 0 
+7f9e4ec35000-7f9e4ec36000 ---p 00000000 00:00 0 
+7f9e4ec36000-7f9e4ed36000 rw-p 00000000 00:00 0 
+7f9e4ed36000-7f9e4ed37000 ---p 00000000 00:00 0 
+7f9e4ed37000-7f9e4ee37000 rw-p 00000000 00:00 0 
+7f9e4ee37000-7f9e4ee38000 ---p 00000000 00:00 0 
+7f9e4ee38000-7f9e4ef38000 rw-p 00000000 00:00 0 
+7f9e4ef38000-7f9e4ef39000 ---p 00000000 00:00 0 
+7f9e4ef39000-7f9e4f080000 rw-p 00000000 00:00 0 
+7f9e4f080000-7f9e4f541000 ---p 00000000 00:00 0 
+7f9e4f541000-7f9e4f588000 rw-p 00000000 00:00 0 
+7f9e4f588000-7f9e4fa48000 ---p 00000000 00:00 0 
+7f9e4fa48000-7f9e4fb65000 rw-p 00000000 00:00 0 
+7f9e4fb65000-7f9e4fccc000 ---p 00000000 00:00 0 
+7f9e4fccc000-7f9e4fd04000 rw-p 00000000 00:00 0 
+7f9e4fd04000-7f9e5008d000 ---p 00000000 00:00 0 
+7f9e5008d000-7f9e50e2d000 rwxp 00000000 00:00 0 
+7f9e50e2d000-7f9e5f08d000 ---p 00000000 00:00 0 
+7f9e5f08d000-7f9e5f0a7000 r-xp 00000000 fd:00 16126456                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libzip.so
+7f9e5f0a7000-7f9e5f2a7000 ---p 0001a000 fd:00 16126456                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libzip.so
+7f9e5f2a7000-7f9e5f2a8000 rw-p 0001a000 fd:00 16126456                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libzip.so
+7f9e5f2a8000-7f9e5f2b3000 r-xp 00000000 fd:00 6422813                    /lib/x86_64-linux-gnu/libnss_files-2.26.so
+7f9e5f2b3000-7f9e5f4b2000 ---p 0000b000 fd:00 6422813                    /lib/x86_64-linux-gnu/libnss_files-2.26.so
+7f9e5f4b2000-7f9e5f4b3000 r--p 0000a000 fd:00 6422813                    /lib/x86_64-linux-gnu/libnss_files-2.26.so
+7f9e5f4b3000-7f9e5f4b4000 rw-p 0000b000 fd:00 6422813                    /lib/x86_64-linux-gnu/libnss_files-2.26.so
+7f9e5f4b4000-7f9e5f4ba000 rw-p 00000000 00:00 0 
+7f9e5f4ba000-7f9e5f4c5000 r-xp 00000000 fd:00 6422828                    /lib/x86_64-linux-gnu/libnss_nis-2.26.so
+7f9e5f4c5000-7f9e5f6c4000 ---p 0000b000 fd:00 6422828                    /lib/x86_64-linux-gnu/libnss_nis-2.26.so
+7f9e5f6c4000-7f9e5f6c5000 r--p 0000a000 fd:00 6422828                    /lib/x86_64-linux-gnu/libnss_nis-2.26.so
+7f9e5f6c5000-7f9e5f6c6000 rw-p 0000b000 fd:00 6422828                    /lib/x86_64-linux-gnu/libnss_nis-2.26.so
+7f9e5f6c6000-7f9e5f6dd000 r-xp 00000000 fd:00 6422802                    /lib/x86_64-linux-gnu/libnsl-2.26.so
+7f9e5f6dd000-7f9e5f8dc000 ---p 00017000 fd:00 6422802                    /lib/x86_64-linux-gnu/libnsl-2.26.so
+7f9e5f8dc000-7f9e5f8dd000 r--p 00016000 fd:00 6422802                    /lib/x86_64-linux-gnu/libnsl-2.26.so
+7f9e5f8dd000-7f9e5f8de000 rw-p 00017000 fd:00 6422802                    /lib/x86_64-linux-gnu/libnsl-2.26.so
+7f9e5f8de000-7f9e5f8e0000 rw-p 00000000 00:00 0 
+7f9e5f8e0000-7f9e5f8e8000 r-xp 00000000 fd:00 6422808                    /lib/x86_64-linux-gnu/libnss_compat-2.26.so
+7f9e5f8e8000-7f9e5fae7000 ---p 00008000 fd:00 6422808                    /lib/x86_64-linux-gnu/libnss_compat-2.26.so
+7f9e5fae7000-7f9e5fae8000 r--p 00007000 fd:00 6422808                    /lib/x86_64-linux-gnu/libnss_compat-2.26.so
+7f9e5fae8000-7f9e5fae9000 rw-p 00008000 fd:00 6422808                    /lib/x86_64-linux-gnu/libnss_compat-2.26.so
+7f9e5fae9000-7f9e5fdc6000 r--p 00000000 fd:00 25298358                   /usr/lib/locale/locale-archive
+7f9e5fdc6000-7f9e5fdff000 r-xp 00000000 fd:00 16126445                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libjdwp.so
+7f9e5fdff000-7f9e5fffe000 ---p 00039000 fd:00 16126445                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libjdwp.so
+7f9e5fffe000-7f9e60000000 rw-p 00038000 fd:00 16126445                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libjdwp.so
+7f9e60000000-7f9e609ce000 rw-p 00000000 00:00 0 
+7f9e609ce000-7f9e64000000 ---p 00000000 00:00 0 
+7f9e64000000-7f9e64001000 r--s 00004000 fd:00 16695156                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.common.types.shared_2.12.0.v20170519-0809.jar
+7f9e64001000-7f9e64002000 r--s 00003000 fd:00 16695165                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.ecore_2.12.0.v20170519-0752.jar
+7f9e64002000-7f9e64003000 r--s 00003000 fd:00 16695141                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtend.m2e_2.12.0.v20170519-0902.jar
+7f9e64003000-7f9e64004000 r--s 0000d000 fd:00 16694279                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.apache.felix.gogo.command_0.10.0.v201209301215.jar
+7f9e64004000-7f9e64007000 r--s 00017000 fd:00 16694323                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.core.contenttype_3.6.0.v20170207-1037.jar
+7f9e64007000-7f9e64009000 r--s 00007000 fd:00 16695247                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.platform.runner_1.0.0.v20170910-2246.jar
+7f9e64009000-7f9e6402a000 rw-p 00000000 00:00 0 
+7f9e6402a000-7f9e6402c000 r-xp 00000000 fd:00 16126438                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnpt.so
+7f9e6402c000-7f9e6422c000 ---p 00002000 fd:00 16126438                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnpt.so
+7f9e6422c000-7f9e6422d000 rw-p 00002000 fd:00 16126438                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libnpt.so
+7f9e6422d000-7f9e64257000 r-xp 00000000 fd:00 16126434                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libjava.so
+7f9e64257000-7f9e64457000 ---p 0002a000 fd:00 16126434                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libjava.so
+7f9e64457000-7f9e64459000 rw-p 0002a000 fd:00 16126434                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libjava.so
+7f9e64459000-7f9e64466000 r-xp 00000000 fd:00 16126450                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libverify.so
+7f9e64466000-7f9e64666000 ---p 0000d000 fd:00 16126450                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libverify.so
+7f9e64666000-7f9e64668000 rw-p 0000d000 fd:00 16126450                   /opt/java/jdk1.8.0_51/jre/lib/amd64/libverify.so
+7f9e64668000-7f9e6466f000 r-xp 00000000 fd:00 6423316                    /lib/x86_64-linux-gnu/librt-2.26.so
+7f9e6466f000-7f9e6486e000 ---p 00007000 fd:00 6423316                    /lib/x86_64-linux-gnu/librt-2.26.so
+7f9e6486e000-7f9e6486f000 r--p 00006000 fd:00 6423316                    /lib/x86_64-linux-gnu/librt-2.26.so
+7f9e6486f000-7f9e64870000 rw-p 00007000 fd:00 6423316                    /lib/x86_64-linux-gnu/librt-2.26.so
+7f9e64870000-7f9e649c5000 r-xp 00000000 fd:00 6422782                    /lib/x86_64-linux-gnu/libm-2.26.so
+7f9e649c5000-7f9e64bc4000 ---p 00155000 fd:00 6422782                    /lib/x86_64-linux-gnu/libm-2.26.so
+7f9e64bc4000-7f9e64bc5000 r--p 00154000 fd:00 6422782                    /lib/x86_64-linux-gnu/libm-2.26.so
+7f9e64bc5000-7f9e64bc6000 rw-p 00155000 fd:00 6422782                    /lib/x86_64-linux-gnu/libm-2.26.so
+7f9e64bc6000-7f9e65874000 r-xp 00000000 fd:00 16126472                   /opt/java/jdk1.8.0_51/jre/lib/amd64/server/libjvm.so
+7f9e65874000-7f9e65a74000 ---p 00cae000 fd:00 16126472                   /opt/java/jdk1.8.0_51/jre/lib/amd64/server/libjvm.so
+7f9e65a74000-7f9e65b4b000 rw-p 00cae000 fd:00 16126472                   /opt/java/jdk1.8.0_51/jre/lib/amd64/server/libjvm.so
+7f9e65b4b000-7f9e65b8f000 rw-p 00000000 00:00 0 
+7f9e65b8f000-7f9e65d65000 r-xp 00000000 fd:00 6422755                    /lib/x86_64-linux-gnu/libc-2.26.so
+7f9e65d65000-7f9e65f65000 ---p 001d6000 fd:00 6422755                    /lib/x86_64-linux-gnu/libc-2.26.so
+7f9e65f65000-7f9e65f69000 r--p 001d6000 fd:00 6422755                    /lib/x86_64-linux-gnu/libc-2.26.so
+7f9e65f69000-7f9e65f6b000 rw-p 001da000 fd:00 6422755                    /lib/x86_64-linux-gnu/libc-2.26.so
+7f9e65f6b000-7f9e65f6f000 rw-p 00000000 00:00 0 
+7f9e65f6f000-7f9e65f72000 r-xp 00000000 fd:00 6422776                    /lib/x86_64-linux-gnu/libdl-2.26.so
+7f9e65f72000-7f9e66171000 ---p 00003000 fd:00 6422776                    /lib/x86_64-linux-gnu/libdl-2.26.so
+7f9e66171000-7f9e66172000 r--p 00002000 fd:00 6422776                    /lib/x86_64-linux-gnu/libdl-2.26.so
+7f9e66172000-7f9e66173000 rw-p 00003000 fd:00 6422776                    /lib/x86_64-linux-gnu/libdl-2.26.so
+7f9e66173000-7f9e66188000 r-xp 00000000 fd:00 15732969                   /opt/java/jdk1.8.0_51/lib/amd64/jli/libjli.so
+7f9e66188000-7f9e66388000 ---p 00015000 fd:00 15732969                   /opt/java/jdk1.8.0_51/lib/amd64/jli/libjli.so
+7f9e66388000-7f9e66389000 rw-p 00015000 fd:00 15732969                   /opt/java/jdk1.8.0_51/lib/amd64/jli/libjli.so
+7f9e66389000-7f9e663a3000 r-xp 00000000 fd:00 6423007                    /lib/x86_64-linux-gnu/libpthread-2.26.so
+7f9e663a3000-7f9e665a2000 ---p 0001a000 fd:00 6423007                    /lib/x86_64-linux-gnu/libpthread-2.26.so
+7f9e665a2000-7f9e665a3000 r--p 00019000 fd:00 6423007                    /lib/x86_64-linux-gnu/libpthread-2.26.so
+7f9e665a3000-7f9e665a4000 rw-p 0001a000 fd:00 6423007                    /lib/x86_64-linux-gnu/libpthread-2.26.so
+7f9e665a4000-7f9e665a8000 rw-p 00000000 00:00 0 
+7f9e665a8000-7f9e665cf000 r-xp 00000000 fd:00 6422570                    /lib/x86_64-linux-gnu/ld-2.26.so
+7f9e665cf000-7f9e665d0000 r--s 00004000 fd:00 16695179                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.m2e_2.12.0.v20170519-0809.jar
+7f9e665d0000-7f9e665d2000 r--s 00003000 fd:00 16694191                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/javax.inject_1.0.0.v20091030.jar
+7f9e665d2000-7f9e665d3000 r--s 0000e000 fd:00 16694283                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.apache.felix.gogo.shell_0.10.0.v201212101605.jar
+7f9e665d3000-7f9e665d5000 r--s 00014000 fd:00 16694526                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.app_1.3.400.v20150715-1528.jar
+7f9e665d5000-7f9e665d6000 r--s 00004000 fd:00 16695268                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.w3c.dom.events_3.0.0.draft20060413_v201105210656.jar
+7f9e665d6000-7f9e665d8000 r--s 00010000 fd:00 16695245                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.platform.launcher_1.0.0.v20170910-2246.jar
+7f9e665d8000-7f9e665db000 r--s 00018000 fd:00 16695243                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.platform.engine_1.0.0.v20170910-2246.jar
+7f9e665db000-7f9e665dd000 r--s 00012000 fd:00 16695241                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.junit.platform.commons_1.0.0.v20170910-2246.jar
+7f9e665dd000-7f9e66684000 rw-p 00000000 00:00 0 
+7f9e66684000-7f9e66687000 ---p 00000000 00:00 0 
+7f9e66687000-7f9e66789000 rw-p 00000000 00:00 0 
+7f9e66789000-7f9e6678a000 r--s 00002000 fd:00 16695147                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.activities_2.12.0.v20170519-0809.jar
+7f9e6678a000-7f9e6678c000 r--s 00011000 fd:00 16694349                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.core.runtime_3.13.0.v20170207-1030.jar
+7f9e6678c000-7f9e6678e000 r--s 0000c000 fd:00 16695162                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.hamcrest.core_1.3.0.v201303031735.jar
+7f9e6678e000-7f9e66790000 r--s 00012000 fd:00 16694281                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar
+7f9e66790000-7f9e66791000 r--s 00003000 fd:00 16695263                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.slf4j.impl.log4j12_1.7.2.v20131105-2200.jar
+7f9e66791000-7f9e66793000 r--s 00030000 fd:00 16695229                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xtext.wizard_2.12.0.v20170518-0959.jar
+7f9e66793000-7f9e66795000 r--s 000f4000 fd:00 16695225                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.xtext.xtext.ui.examples_2.12.0.v20170519-0809.jar
+7f9e66795000-7f9e66797000 r--s 0001a000 fd:00 15864378                   /opt/java/jdk1.8.0_51/jre/lib/jce.jar
+7f9e66797000-7f9e6679b000 r--s 00095000 fd:00 15864388                   /opt/java/jdk1.8.0_51/jre/lib/jsse.jar
+7f9e6679b000-7f9e6679d000 r--s 0000c000 fd:00 16694553                   /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar
+7f9e6679d000-7f9e667c5000 rw-p 00000000 00:00 0 
+7f9e667c5000-7f9e667cd000 rw-s 00000000 fd:00 27787425                   /tmp/hsperfdata_mleduc/20848
+7f9e667cd000-7f9e667ce000 rw-p 00000000 00:00 0 
+7f9e667ce000-7f9e667cf000 r--p 00000000 00:00 0 
+7f9e667cf000-7f9e667d0000 r--p 00027000 fd:00 6422570                    /lib/x86_64-linux-gnu/ld-2.26.so
+7f9e667d0000-7f9e667d1000 rw-p 00028000 fd:00 6422570                    /lib/x86_64-linux-gnu/ld-2.26.so
+7f9e667d1000-7f9e667d2000 rw-p 00000000 00:00 0 
+7ffe97afc000-7ffe97b1e000 rw-p 00000000 00:00 0                          [stack]
+7ffe97ba5000-7ffe97ba8000 r--p 00000000 00:00 0                          [vvar]
+7ffe97ba8000-7ffe97baa000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:42421 -ea -Declipse.pde.launch=true -Declipse.p2.data.area=@config.dir/p2 -Dfile.encoding=UTF-8 
+java_command: org.eclipse.equinox.launcher.Main -os linux -ws gtk -arch x86_64 -nl en_US -consoleLog -version 3 -port 39641 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -test fr.mleduc.gpfl.tests.GpflInterpreterTest:test1 -application org.eclipse.pde.junit.runtime.coretestapplication -data /home/mleduc/workspace-internal-vs-external/../junit-workspace -configuration file:/home/mleduc/workspace-internal-vs-external/.metadata/.plugins/org.eclipse.pde.core/pde-junit/ -dev file:/home/mleduc/workspace-internal-vs-external/.metadata/.plugins/org.eclipse.pde.core/pde-junit/dev.properties -os linux -ws gtk -arch x86_64 -nl en_US -consoleLog -testpluginname fr.mleduc.gpfl.tests
+java_class_path (initial): /home/mleduc/ide/eclipse-dsl-oxygen-2/plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/local/heroku/bin:/home/mleduc/.nix-profile/bin:/home/mleduc/.nix-profile/sbin:/home/mleduc/.opam/4.02.3/bin:/home/mleduc/tools/k/bin:/home/mleduc/.cargo/bin/:/home/mleduc/.local/bin:/home/mleduc/.nvm/versions/node/v9.4.0/bin:/home/mleduc/languages/swift-4.0-RELEASE-ubuntu16.10/usr/bin:/usr/local/go/bin:/home/mleduc/.cargo/bin:/usr/local/heroku/bin:/home/mleduc/.rvm/gems/ruby-2.1.6/bin:/home/mleduc/.rvm/gems/ruby-2.1.6@global/bin:/home/mleduc/.rvm/rubies/ruby-2.1.6/bin:/home/mleduc/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/mleduc/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/mleduc/bin:/bin:/home/mleduc/.rvm/bin:/home/mleduc/.local/bin/
+USERNAME=mleduc
+SHELL=/bin/zsh
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xaad540], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xaad540], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x90b6b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x90b6b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x90b6b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x90b6b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x90ccf0], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x90e040], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x90e040], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x90e040], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x90e040], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=17.10
+DISTRIB_CODENAME=artful
+DISTRIB_DESCRIPTION="Ubuntu 17.10"
+
+uname:Linux 4.13.0-32-generic #35-Ubuntu SMP Thu Jan 25 09:13:46 UTC 2018 x86_64
+libc:glibc 2.26 NPTL 2.26 
+rlimit: STACK 8192k, CORE 0k, NPROC 61636, NOFILE 4096, AS infinity
+load average:4,04 3,21 3,08
+
+/proc/meminfo:
+MemTotal:       15814808 kB
+MemFree:          836184 kB
+MemAvailable:    6816708 kB
+Buffers:         2760480 kB
+Cached:          3843844 kB
+SwapCached:          208 kB
+Active:          9869108 kB
+Inactive:        3947508 kB
+Active(anon):    6188972 kB
+Inactive(anon):  2105728 kB
+Active(file):    3680136 kB
+Inactive(file):  1841780 kB
+Unevictable:         368 kB
+Mlocked:             368 kB
+SwapTotal:      16650236 kB
+SwapFree:       16648700 kB
+Dirty:               476 kB
+Writeback:             0 kB
+AnonPages:       7212576 kB
+Mapped:          1715632 kB
+Shmem:           2000208 kB
+Slab:             939388 kB
+SReclaimable:     797852 kB
+SUnreclaim:       141536 kB
+KernelStack:       25392 kB
+PageTables:       100420 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    24557640 kB
+Committed_AS:   23402856 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      323072 kB
+DirectMap2M:    11640832 kB
+DirectMap1G:     5242880 kB
+
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 61 stepping 4, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 61
+model name	: Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+stepping	: 4
+microcode	: 0x25
+cpu MHz		: 2593.914
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt dtherm ida arat pln pts
+bugs		: cpu_meltdown spectre_v1 spectre_v2
+bogomips	: 5187.82
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 61
+model name	: Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+stepping	: 4
+microcode	: 0x25
+cpu MHz		: 2593.914
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt dtherm ida arat pln pts
+bugs		: cpu_meltdown spectre_v1 spectre_v2
+bogomips	: 5187.82
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 61
+model name	: Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+stepping	: 4
+microcode	: 0x25
+cpu MHz		: 2593.914
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt dtherm ida arat pln pts
+bugs		: cpu_meltdown spectre_v1 spectre_v2
+bogomips	: 5187.82
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 61
+model name	: Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+stepping	: 4
+microcode	: 0x25
+cpu MHz		: 2593.914
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt dtherm ida arat pln pts
+bugs		: cpu_meltdown spectre_v1 spectre_v2
+bogomips	: 5187.82
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 15814808k(836184k free), swap 16650236k(16648700k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.51-b03) for linux-amd64 JRE (1.8.0_51-b16), built on Jun  8 2015 19:28:07 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Thu Feb  8 15:14:47 2018
+elapsed time: 325 seconds (0d 0h 5m 25s)
+
