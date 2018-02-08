@@ -3,20 +3,15 @@
  */
 package fr.mleduc.gpfl
 
+import fr.mleduc.gpfl.interpreter.GpflInterpreter
+import fr.mleduc.gpfl.interpreter.IGpflInterpreter
+
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class GpflRuntimeModule extends AbstractGpflRuntimeModule {
-//	override Class<? extends IdentifiableSimpleNameProvider> bindIdentifiableSimpleNameProvider() {
-//		return GpflIdentifiableSimpleNameProvider
-//	}
-
-//	override Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
-//		return GpflResourceDescriptionStrategy
-//	}
-
-//	override Class<? extends ITypeComputer> bindITypeComputer() {
-//		return GpflTypeComputer
-//	}
+	def Class<? extends IGpflInterpreter> bindIGpflInterpreter() {
+		return GpflInterpreter
+	}
 
 }

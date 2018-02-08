@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.mleduc.cherry.converter.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.mleduc.cherry.converter.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: fr.mleduc.cherry.converter,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.mleduc.cherry.converter.ide.contentassist.antlr,
+ fr.mleduc.cherry.converter.ide.contentassist.antlr.internal
+

@@ -1,0 +1,27 @@
+
+zsquid:S1301À"KReplace this "switch" statement by "if" statements to increase readability.(ùÊëÔH¾­RMINORZ
+CODE_SMELL
+osquid:S1226k"AIntroduce a new variable instead of reusing the parameter "msgs".(†ñœ¢HÁ­RMINORZ
+CODE_SMELL
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¾òÚûÿÿÿÿH»­RMINORZ
+CODE_SMELL
+k"squid:SwitchLastCaseIsDefaultChecké""Add a default case to this switch.(ùÊëÔHº­RCRITICALZ
+CODE_SMELL
+zsquid:S1301­"KReplace this "switch" statement by "if" statements to increase readability.(ùÊëÔH½­RMINORZ
+CODE_SMELL
+zsquid:S1301Õ"KReplace this "switch" statement by "if" statements to increase readability.(ùÊëÔH¿­RMINORZ
+CODE_SMELL
+squid:MaximumInheritanceDepth*"<This class has 6 parents which is greater than 5 authorized.(Šª¿ãúÿÿÿÿHÂ­RMAJORZ
+CODE_SMELL
+k"squid:SwitchLastCaseIsDefaultCheck›""Add a default case to this switch.(ùÊëÔH¶­RCRITICALZ
+CODE_SMELL
+k"squid:SwitchLastCaseIsDefaultCheckÀ""Add a default case to this switch.(ùÊëÔH¸­RCRITICALZ
+CODE_SMELL
+zsquid:S1301é"KReplace this "switch" statement by "if" statements to increase readability.(ùÊëÔHÀ­RMINORZ
+CODE_SMELL
+k"squid:SwitchLastCaseIsDefaultCheck­""Add a default case to this switch.(ùÊëÔH·­RCRITICALZ
+CODE_SMELL
+k"squid:SwitchLastCaseIsDefaultCheckÕ""Add a default case to this switch.(ùÊëÔH¹­RCRITICALZ
+CODE_SMELL
+zsquid:S1301›"KReplace this "switch" statement by "if" statements to increase readability.(ùÊëÔH¼­RMINORZ
+CODE_SMELL

@@ -1,0 +1,18 @@
+grammar fr.mleduc.gpfl.sequence.Sequence with org.eclipse.xtext.xbase.Xbase
+
+generate sequence "http://www.mleduc.fr/gpfl/sequence/Sequence"
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
+
+Model:
+	'package' name=ID 
+	events+=Event*;
+
+Event:
+	time=INT direction=Port values+=Field*;
+
+Field:
+	name=ID '->' value=XExpression;
+
+Port returns xbase::XExpression:
+// ports are privimites of the languages
+	{InPort} "inSide" | {OutPort} "outSide";

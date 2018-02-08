@@ -606,21 +606,21 @@ public class GpflInterpreter implements IGpflInterpreter {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("IterStmt ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
   protected Object _doEvaluate(final NopCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("NopCmd ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
   protected Object _doEvaluate(final SendCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("SendCmd ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
   protected Object _doEvaluate(final SetCmd expression, final GpflInterpreter.Context context) {
@@ -715,5 +715,9 @@ public class GpflInterpreter implements IGpflInterpreter {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(expression, context).toString());
     }
+  }
+  
+  public int doEvalute(final IntLitCmd intLit, final GpflInterpreter.Context context) {
+    return _doEvalute(intLit, context);
   }
 }

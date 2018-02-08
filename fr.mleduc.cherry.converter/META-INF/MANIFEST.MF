@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.mleduc.cherry.converter
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.mleduc.cherry.converter; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.mleduc.cherry.converter.cherry1to2.util,
+ fr.mleduc.cherry.converter.parser.antlr.internal,
+ fr.mleduc.cherry.converter.serializer,
+ fr.mleduc.cherry.converter.parser.antlr,
+ fr.mleduc.cherry.converter,
+ fr.mleduc.cherry.converter.cherry1to2,
+ fr.mleduc.cherry.converter.cherry1to2.impl,
+ fr.mleduc.cherry.converter.scoping,
+ fr.mleduc.cherry.converter.services,
+ fr.mleduc.cherry.converter.validation,
+ fr.mleduc.cherry.converter.generator
+Import-Package: org.apache.log4j
