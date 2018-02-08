@@ -1,14 +1,15 @@
 package fr.mleduc.gpfl.interpreter;
 
 import com.google.common.base.Objects;
-import com.google.inject.Inject;
 import fr.mleduc.gpfl.gpfl.AcceptCmd;
 import fr.mleduc.gpfl.gpfl.AlarmCmd;
 import fr.mleduc.gpfl.gpfl.AutomataDef;
 import fr.mleduc.gpfl.gpfl.AutomatonCmd;
 import fr.mleduc.gpfl.gpfl.CondStmt;
 import fr.mleduc.gpfl.gpfl.DropCmd;
+import fr.mleduc.gpfl.gpfl.GExpression;
 import fr.mleduc.gpfl.gpfl.InPort;
+import fr.mleduc.gpfl.gpfl.IntLitCmd;
 import fr.mleduc.gpfl.gpfl.InterruptStmt;
 import fr.mleduc.gpfl.gpfl.IterStmt;
 import fr.mleduc.gpfl.gpfl.NopCmd;
@@ -28,46 +29,11 @@ import java.util.PriorityQueue;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtend.lib.annotations.ToString;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.util.CancelIndicator;
-import org.eclipse.xtext.xbase.XAbstractFeatureCall;
-import org.eclipse.xtext.xbase.XAssignment;
-import org.eclipse.xtext.xbase.XBasicForLoopExpression;
-import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XBooleanLiteral;
-import org.eclipse.xtext.xbase.XCastedExpression;
-import org.eclipse.xtext.xbase.XClosure;
-import org.eclipse.xtext.xbase.XConstructorCall;
-import org.eclipse.xtext.xbase.XDoWhileExpression;
-import org.eclipse.xtext.xbase.XExpression;
-import org.eclipse.xtext.xbase.XFeatureCall;
-import org.eclipse.xtext.xbase.XForLoopExpression;
-import org.eclipse.xtext.xbase.XIfExpression;
-import org.eclipse.xtext.xbase.XInstanceOfExpression;
-import org.eclipse.xtext.xbase.XListLiteral;
-import org.eclipse.xtext.xbase.XMemberFeatureCall;
-import org.eclipse.xtext.xbase.XNullLiteral;
-import org.eclipse.xtext.xbase.XNumberLiteral;
-import org.eclipse.xtext.xbase.XReturnExpression;
-import org.eclipse.xtext.xbase.XSetLiteral;
-import org.eclipse.xtext.xbase.XStringLiteral;
-import org.eclipse.xtext.xbase.XSwitchExpression;
-import org.eclipse.xtext.xbase.XSynchronizedExpression;
-import org.eclipse.xtext.xbase.XThrowExpression;
-import org.eclipse.xtext.xbase.XTryCatchFinallyExpression;
-import org.eclipse.xtext.xbase.XTypeLiteral;
-import org.eclipse.xtext.xbase.XVariableDeclaration;
-import org.eclipse.xtext.xbase.XWhileExpression;
-import org.eclipse.xtext.xbase.interpreter.IEvaluationContext;
-import org.eclipse.xtext.xbase.interpreter.IEvaluationResult;
-import org.eclipse.xtext.xbase.interpreter.impl.XbaseInterpreter;
-import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociations;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -76,7 +42,7 @@ import org.eclipse.xtext.xbase.lib.Pure;
 import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
 
 @SuppressWarnings("all")
-public class GpflInterpreter extends XbaseInterpreter {
+public class GpflInterpreter {
   public enum Port {
     IN,
     
@@ -211,26 +177,70 @@ public class GpflInterpreter extends XbaseInterpreter {
     }
   }
   
-  @Inject
-  @Extension
-  private IJvmModelAssociations _iJvmModelAssociations;
+  @Accessors
+  public static class Context {
+    private final Map<String, Object> values = CollectionLiterals.<String, Object>newHashMap();
+    
+    private final GpflInterpreter.Context parent;
+    
+    public Context() {
+      this.parent = null;
+    }
+    
+    private Context(final GpflInterpreter.Context parent) {
+      this.parent = parent;
+    }
+    
+    public GpflInterpreter.Context fork() {
+      return new GpflInterpreter.Context(this);
+    }
+    
+    public Object getValue(final String key) {
+      Object _xifexpression = null;
+      boolean _containsKey = this.values.containsKey(key);
+      if (_containsKey) {
+        _xifexpression = this.values.get(key);
+      } else {
+        Object _xifexpression_1 = null;
+        if ((this.parent != null)) {
+          _xifexpression_1 = this.parent.getValue(key);
+        } else {
+          _xifexpression_1 = null;
+        }
+        _xifexpression = _xifexpression_1;
+      }
+      return _xifexpression;
+    }
+    
+    public Object setValue(final String key, final Object value) {
+      return this.values.put(key, value);
+    }
+    
+    @Pure
+    public Map<String, Object> getValues() {
+      return this.values;
+    }
+    
+    @Pure
+    public GpflInterpreter.Context getParent() {
+      return this.parent;
+    }
+  }
   
-  private final CancelIndicator indicator = CancelIndicator.NullImpl;
+  public GpflInterpreter.Context createContext() {
+    return new GpflInterpreter.Context();
+  }
   
   private final GpflInterpreter.GlobalState state = new GpflInterpreter.GlobalState();
   
   public List<String> run(final Program program, final List<GpflInterpreter.Tuple<Integer, GpflInterpreter.Packet>> packets) {
     ArrayList<String> _xblockexpression = null;
     {
-      final Consumer<EObject> _function = (EObject it) -> {
-        this._iJvmModelAssociations.getSourceElements(it);
+      final GpflInterpreter.Context context = this.createContext();
+      final Consumer<GExpression> _function = (GExpression it) -> {
+        this.doEvaluate(it, context);
       };
-      this._iJvmModelAssociations.getJvmElements(program).forEach(_function);
-      final IEvaluationContext context = this.createContext();
-      final Consumer<XExpression> _function_1 = (XExpression it) -> {
-        this.doEvaluate(it, context, this.indicator);
-      };
-      program.getInitStmts().forEach(_function_1);
+      program.getInitStmts().forEach(_function);
       final GpflInterpreter.TimedPriorityQueue<GpflInterpreter.Packet> stack = new GpflInterpreter.TimedPriorityQueue<GpflInterpreter.Packet>(packets);
       while ((!stack.isEmpty())) {
         {
@@ -241,23 +251,22 @@ public class GpflInterpreter extends XbaseInterpreter {
           while (this.interrupted(this.state.interrupts)) {
             {
               final GpflInterpreter.Tuple<Integer, InterruptStmt> interruption = this.state.interrupts.poll();
-              XExpression _periodic = interruption.right.getPeriodic();
+              GExpression _periodic = interruption.right.getPeriodic();
               boolean _isIsTrue = ((XBooleanLiteral) _periodic).isIsTrue();
               if (_isIsTrue) {
                 int _timeout = interruption.right.getTimeout();
                 int _plus = ((this.state.currentTime).intValue() + _timeout);
-                EList<XExpression> _stmts = interruption.right.getStmts();
+                EList<GExpression> _stmts = interruption.right.getStmts();
                 GpflInterpreter.Tuple _tuple = new GpflInterpreter.Tuple(Integer.valueOf(_plus), _stmts);
                 this.state.interrupts.add(_tuple);
               }
-              final Consumer<XExpression> _function_2 = (XExpression it) -> {
-                this.doEvaluate(it, context, this.indicator);
+              final Consumer<GExpression> _function_1 = (GExpression it) -> {
+                this.doEvaluate(it, context);
               };
-              interruption.right.getStmts().forEach(_function_2);
+              interruption.right.getStmts().forEach(_function_1);
             }
           }
-          final IEvaluationContext packetContext = context.fork();
-          QualifiedName _create = QualifiedName.create("_inPort");
+          final GpflInterpreter.Context packetContext = context.fork();
           String _xifexpression = null;
           GpflInterpreter.Port _port = package_.getPort();
           boolean _equals = Objects.equal(_port, GpflInterpreter.Port.IN);
@@ -266,15 +275,15 @@ public class GpflInterpreter extends XbaseInterpreter {
           } else {
             _xifexpression = "outSide";
           }
-          packetContext.newValue(_create, _xifexpression);
-          final BiConsumer<String, String> _function_2 = (String p1, String p2) -> {
-            packetContext.newValue(QualifiedName.create(p1), p2);
+          packetContext.setValue("_inPort", _xifexpression);
+          final BiConsumer<String, String> _function_1 = (String p1, String p2) -> {
+            packetContext.setValue(p1, p2);
           };
-          package_.datas.forEach(_function_2);
-          final Consumer<XExpression> _function_3 = (XExpression it) -> {
-            this.doEvaluate(it, packetContext, this.indicator);
+          package_.datas.forEach(_function_1);
+          final Consumer<GExpression> _function_2 = (GExpression it) -> {
+            this.doEvaluate(it, packetContext);
           };
-          program.getStmts().forEach(_function_3);
+          program.getStmts().forEach(_function_2);
         }
       }
       InputOutput.<GpflInterpreter.GlobalState>println(this.state);
@@ -287,57 +296,61 @@ public class GpflInterpreter extends XbaseInterpreter {
     return ((!interruptions.isEmpty()) && (interruptions.peek().left.compareTo(this.state.currentTime) <= 0));
   }
   
-  protected Object _doEvaluate(final AcceptCmd expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final AcceptCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("AcceptCmd ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
-  protected Object _doEvaluate(final AlarmCmd expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final IntLitCmd intLit, final GpflInterpreter.Context context) {
+    return Integer.valueOf(intLit.getValue());
+  }
+  
+  protected Object _doEvaluate(final AlarmCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("AlarmCmd ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
-  protected Object _doEvaluate(final AutomatonCmd expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final AutomatonCmd expression, final GpflInterpreter.Context context) {
     GpflInterpreter.AutomatonInstance _xblockexpression = null;
     {
       AutomataDef _automaton = expression.getAutomaton();
       State _init = expression.getAutomaton().getInit();
       final GpflInterpreter.AutomatonInstance auto = new GpflInterpreter.AutomatonInstance(_automaton, _init);
-      context.newValue(QualifiedName.create(expression.getName()), auto);
+      context.setValue(expression.getName(), auto);
       _xblockexpression = auto;
     }
     return _xblockexpression;
   }
   
-  protected Object _doEvaluate(final CondStmt condStmt, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final CondStmt condStmt, final GpflInterpreter.Context context) {
     Object _xblockexpression = null;
     {
-      final IEvaluationResult exp = this.evaluate(condStmt.getExp(), context, indicator);
+      final Object conditionResult = this.doEvaluate(condStmt.getExp(), context);
       Object _xifexpression = null;
-      boolean _equals = Objects.equal(Boolean.TRUE, exp);
+      boolean _equals = Boolean.TRUE.equals(conditionResult);
       if (_equals) {
-        final Function1<XExpression, Object> _function = (XExpression it) -> {
-          return this.internalEvaluate(it, context, indicator);
+        final Function1<GExpression, Object> _function = (GExpression it) -> {
+          return this.doEvaluate(it, context);
         };
-        _xifexpression = IterableExtensions.<Object>last(ListExtensions.<XExpression, Object>map(condStmt.getStmts(), _function));
+        _xifexpression = IterableExtensions.<Object>last(ListExtensions.<GExpression, Object>map(condStmt.getStmts(), _function));
       }
       _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }
   
-  protected Object _doEvaluate(final DropCmd expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final DropCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("DropCmd ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
-  protected Object _doEvaluate(final InPort expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final InPort expression, final GpflInterpreter.Context context) {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
@@ -349,7 +362,7 @@ public class GpflInterpreter extends XbaseInterpreter {
     return _xblockexpression;
   }
   
-  protected Object _doEvaluate(final OutPort expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final OutPort expression, final GpflInterpreter.Context context) {
     String _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
@@ -361,135 +374,83 @@ public class GpflInterpreter extends XbaseInterpreter {
     return _xblockexpression;
   }
   
-  protected Object _doEvaluate(final InterruptStmt expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final InterruptStmt expression, final GpflInterpreter.Context context) {
     int _timeout = expression.getTimeout();
     int _plus = ((this.state.currentTime).intValue() + _timeout);
     GpflInterpreter.Tuple<Integer, InterruptStmt> _tuple = new GpflInterpreter.Tuple<Integer, InterruptStmt>(Integer.valueOf(_plus), expression);
     return Boolean.valueOf(this.state.interrupts.add(_tuple));
   }
   
-  protected Object _doEvaluate(final IterStmt expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final IterStmt expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("IterStmt ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
-  protected Object _doEvaluate(final NopCmd expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final NopCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("NopCmd ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
-  protected Object _doEvaluate(final SendCmd expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final SendCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("SendCmd ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
-  protected Object _doEvaluate(final SetCmd expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final SetCmd expression, final GpflInterpreter.Context context) {
     Object _xblockexpression = null;
     {
-      final Object assigned = this.doEvaluate(expression.getExp(), context, indicator);
-      context.newValue(QualifiedName.create(expression.getName()), assigned);
+      final Object assigned = this.doEvaluate(expression.getExp(), context);
+      context.setValue(expression.getName(), assigned);
       _xblockexpression = assigned;
     }
     return _xblockexpression;
   }
   
-  protected Object _doEvaluate(final StpCmd expression, final IEvaluationContext context, final CancelIndicator indicator) {
+  protected Object _doEvaluate(final StpCmd expression, final GpflInterpreter.Context context) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("StpCmd ");
     _builder.append(expression);
-    return InputOutput.<Object>println(_builder.toString());
+    return InputOutput.<String>println(_builder.toString());
   }
   
-  public Object doEvaluate(final XExpression expression, final IEvaluationContext context, final CancelIndicator indicator) {
-    if (expression instanceof XAssignment) {
-      return _doEvaluate((XAssignment)expression, context, indicator);
-    } else if (expression instanceof XDoWhileExpression) {
-      return _doEvaluate((XDoWhileExpression)expression, context, indicator);
-    } else if (expression instanceof XFeatureCall) {
-      return _doEvaluate((XFeatureCall)expression, context, indicator);
-    } else if (expression instanceof XListLiteral) {
-      return _doEvaluate((XListLiteral)expression, context, indicator);
-    } else if (expression instanceof XMemberFeatureCall) {
-      return _doEvaluate((XMemberFeatureCall)expression, context, indicator);
-    } else if (expression instanceof XSetLiteral) {
-      return _doEvaluate((XSetLiteral)expression, context, indicator);
-    } else if (expression instanceof XWhileExpression) {
-      return _doEvaluate((XWhileExpression)expression, context, indicator);
-    } else if (expression instanceof AcceptCmd) {
-      return _doEvaluate((AcceptCmd)expression, context, indicator);
+  public Object doEvaluate(final GExpression expression, final GpflInterpreter.Context context) {
+    if (expression instanceof AcceptCmd) {
+      return _doEvaluate((AcceptCmd)expression, context);
     } else if (expression instanceof AlarmCmd) {
-      return _doEvaluate((AlarmCmd)expression, context, indicator);
+      return _doEvaluate((AlarmCmd)expression, context);
     } else if (expression instanceof AutomatonCmd) {
-      return _doEvaluate((AutomatonCmd)expression, context, indicator);
+      return _doEvaluate((AutomatonCmd)expression, context);
     } else if (expression instanceof CondStmt) {
-      return _doEvaluate((CondStmt)expression, context, indicator);
+      return _doEvaluate((CondStmt)expression, context);
     } else if (expression instanceof DropCmd) {
-      return _doEvaluate((DropCmd)expression, context, indicator);
+      return _doEvaluate((DropCmd)expression, context);
     } else if (expression instanceof InPort) {
-      return _doEvaluate((InPort)expression, context, indicator);
+      return _doEvaluate((InPort)expression, context);
+    } else if (expression instanceof IntLitCmd) {
+      return _doEvaluate((IntLitCmd)expression, context);
     } else if (expression instanceof InterruptStmt) {
-      return _doEvaluate((InterruptStmt)expression, context, indicator);
+      return _doEvaluate((InterruptStmt)expression, context);
     } else if (expression instanceof IterStmt) {
-      return _doEvaluate((IterStmt)expression, context, indicator);
+      return _doEvaluate((IterStmt)expression, context);
     } else if (expression instanceof NopCmd) {
-      return _doEvaluate((NopCmd)expression, context, indicator);
+      return _doEvaluate((NopCmd)expression, context);
     } else if (expression instanceof OutPort) {
-      return _doEvaluate((OutPort)expression, context, indicator);
+      return _doEvaluate((OutPort)expression, context);
     } else if (expression instanceof SendCmd) {
-      return _doEvaluate((SendCmd)expression, context, indicator);
+      return _doEvaluate((SendCmd)expression, context);
     } else if (expression instanceof SetCmd) {
-      return _doEvaluate((SetCmd)expression, context, indicator);
+      return _doEvaluate((SetCmd)expression, context);
     } else if (expression instanceof StpCmd) {
-      return _doEvaluate((StpCmd)expression, context, indicator);
-    } else if (expression instanceof XAbstractFeatureCall) {
-      return _doEvaluate((XAbstractFeatureCall)expression, context, indicator);
-    } else if (expression instanceof XBasicForLoopExpression) {
-      return _doEvaluate((XBasicForLoopExpression)expression, context, indicator);
-    } else if (expression instanceof XBlockExpression) {
-      return _doEvaluate((XBlockExpression)expression, context, indicator);
-    } else if (expression instanceof XBooleanLiteral) {
-      return _doEvaluate((XBooleanLiteral)expression, context, indicator);
-    } else if (expression instanceof XCastedExpression) {
-      return _doEvaluate((XCastedExpression)expression, context, indicator);
-    } else if (expression instanceof XClosure) {
-      return _doEvaluate((XClosure)expression, context, indicator);
-    } else if (expression instanceof XConstructorCall) {
-      return _doEvaluate((XConstructorCall)expression, context, indicator);
-    } else if (expression instanceof XForLoopExpression) {
-      return _doEvaluate((XForLoopExpression)expression, context, indicator);
-    } else if (expression instanceof XIfExpression) {
-      return _doEvaluate((XIfExpression)expression, context, indicator);
-    } else if (expression instanceof XInstanceOfExpression) {
-      return _doEvaluate((XInstanceOfExpression)expression, context, indicator);
-    } else if (expression instanceof XNullLiteral) {
-      return _doEvaluate((XNullLiteral)expression, context, indicator);
-    } else if (expression instanceof XNumberLiteral) {
-      return _doEvaluate((XNumberLiteral)expression, context, indicator);
-    } else if (expression instanceof XReturnExpression) {
-      return _doEvaluate((XReturnExpression)expression, context, indicator);
-    } else if (expression instanceof XStringLiteral) {
-      return _doEvaluate((XStringLiteral)expression, context, indicator);
-    } else if (expression instanceof XSwitchExpression) {
-      return _doEvaluate((XSwitchExpression)expression, context, indicator);
-    } else if (expression instanceof XSynchronizedExpression) {
-      return _doEvaluate((XSynchronizedExpression)expression, context, indicator);
-    } else if (expression instanceof XThrowExpression) {
-      return _doEvaluate((XThrowExpression)expression, context, indicator);
-    } else if (expression instanceof XTryCatchFinallyExpression) {
-      return _doEvaluate((XTryCatchFinallyExpression)expression, context, indicator);
-    } else if (expression instanceof XTypeLiteral) {
-      return _doEvaluate((XTypeLiteral)expression, context, indicator);
-    } else if (expression instanceof XVariableDeclaration) {
-      return _doEvaluate((XVariableDeclaration)expression, context, indicator);
+      return _doEvaluate((StpCmd)expression, context);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(expression, context, indicator).toString());
+        Arrays.<Object>asList(expression, context).toString());
     }
   }
 }
