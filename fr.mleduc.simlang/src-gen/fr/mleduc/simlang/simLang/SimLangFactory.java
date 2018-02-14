@@ -78,6 +78,15 @@ public interface SimLangFactory extends EFactory
   IterStmt createIterStmt();
 
   /**
+   * Returns a new object of class '<em>Nop Cmd</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Nop Cmd</em>'.
+   * @generated
+   */
+  NopCmd createNopCmd();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

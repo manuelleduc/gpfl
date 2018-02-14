@@ -4,6 +4,7 @@ import fr.mleduc.simlang.simLang.CondStmt
 import fr.mleduc.simlang.simLang.IterStmt
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState
 import org.eclipse.xtext.xbase.typesystem.computation.XbaseTypeComputer
+import fr.mleduc.simlang.simLang.NopCmd
 
 class SimLangTypeComputer extends XbaseTypeComputer {
 
@@ -18,6 +19,10 @@ class SimLangTypeComputer extends XbaseTypeComputer {
 		state.withExpectation(getRawTypeForName(Long, state)).computeTypes(expression.exp)
 		val bodyState = reassignCheckedType(expression.exp, expression.body, state.withoutExpectation());
 		bodyState.computeTypes(expression.body);
+	}
+	
+	def dispatch void computeTypes(NopCmd expression, ITypeComputationState state) {
+		println("DOES NOTHING")
 	}
 
 }

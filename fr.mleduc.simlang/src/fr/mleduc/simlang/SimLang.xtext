@@ -18,10 +18,15 @@ RootBlockExpression returns xbase::XBlockExpression:
 AutomataDef:
 	'AUTOMATA' name=ID 'init' '=' init=[State|ID] states+=State;
 
-@ Override XPrimaryExpression returns xbase::XExpression:
+@Override
+XPrimaryExpression returns xbase::XExpression:
+	Cmd |
 	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' |
 	{IterStmt} "iter" "(" exp=XExpression "," body=XExpression ")" |
 	super;
+	
+Cmd returns xbase::XExpression:
+	{NopCmd} "nop";
 
 State:
 	name=ID transitions+=Transition*;

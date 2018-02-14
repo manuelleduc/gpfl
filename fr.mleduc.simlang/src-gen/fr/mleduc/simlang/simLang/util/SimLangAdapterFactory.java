@@ -108,6 +108,11 @@ public class SimLangAdapterFactory extends AdapterFactoryImpl
         return createIterStmtAdapter();
       }
       @Override
+      public Adapter caseNopCmd(NopCmd object)
+      {
+        return createNopCmdAdapter();
+      }
+      @Override
       public Adapter caseXExpression(XExpression object)
       {
         return createXExpressionAdapter();
@@ -220,6 +225,21 @@ public class SimLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIterStmtAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link fr.mleduc.simlang.simLang.NopCmd <em>Nop Cmd</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.mleduc.simlang.simLang.NopCmd
+   * @generated
+   */
+  public Adapter createNopCmdAdapter()
   {
     return null;
   }

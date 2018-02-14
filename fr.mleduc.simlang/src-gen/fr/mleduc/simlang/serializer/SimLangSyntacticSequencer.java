@@ -182,6 +182,7 @@ public class SimLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'if' '(' if=XExpression
 	 *     (rule start) (ambiguity) 'iter' '(' exp=XExpression
 	 *     (rule start) (ambiguity) 'new' constructor=[JvmConstructor|QualifiedName]
+	 *     (rule start) (ambiguity) 'nop' (rule start)
 	 *     (rule start) (ambiguity) 'null' (rule start)
 	 *     (rule start) (ambiguity) 'return' (rule start)
 	 *     (rule start) (ambiguity) 'return' expression=XExpression
@@ -236,6 +237,7 @@ public class SimLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'if' '(' if=XExpression
 	 *     (rule start) (ambiguity) 'iter' '(' exp=XExpression
 	 *     (rule start) (ambiguity) 'new' constructor=[JvmConstructor|QualifiedName]
+	 *     (rule start) (ambiguity) 'nop' ')' (rule start)
 	 *     (rule start) (ambiguity) 'null' ')' (rule start)
 	 *     (rule start) (ambiguity) 'return' ')' (rule start)
 	 *     (rule start) (ambiguity) 'return' expression=XExpression

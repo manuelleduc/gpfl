@@ -8,6 +8,7 @@ import fr.mleduc.simlang.services.SimLangGrammarAccess;
 import fr.mleduc.simlang.simLang.AutomataDef;
 import fr.mleduc.simlang.simLang.CondStmt;
 import fr.mleduc.simlang.simLang.IterStmt;
+import fr.mleduc.simlang.simLang.NopCmd;
 import fr.mleduc.simlang.simLang.Program;
 import fr.mleduc.simlang.simLang.SimLangPackage;
 import fr.mleduc.simlang.simLang.State;
@@ -90,6 +91,9 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case SimLangPackage.ITER_STMT:
 				sequence_XPrimaryExpression(context, (IterStmt) semanticObject); 
+				return; 
+			case SimLangPackage.NOP_CMD:
+				sequence_Cmd(context, (NopCmd) semanticObject); 
 				return; 
 			case SimLangPackage.PROGRAM:
 				sequence_Program(context, (Program) semanticObject); 
@@ -364,6 +368,48 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     XPrimaryExpression returns NopCmd
+	 *     Cmd returns NopCmd
+	 *     XExpression returns NopCmd
+	 *     XAssignment returns NopCmd
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns NopCmd
+	 *     XOrExpression returns NopCmd
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns NopCmd
+	 *     XAndExpression returns NopCmd
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns NopCmd
+	 *     XEqualityExpression returns NopCmd
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns NopCmd
+	 *     XRelationalExpression returns NopCmd
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns NopCmd
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns NopCmd
+	 *     XOtherOperatorExpression returns NopCmd
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns NopCmd
+	 *     XAdditiveExpression returns NopCmd
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns NopCmd
+	 *     XMultiplicativeExpression returns NopCmd
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns NopCmd
+	 *     XUnaryOperation returns NopCmd
+	 *     XCastedExpression returns NopCmd
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns NopCmd
+	 *     XPostfixOperation returns NopCmd
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns NopCmd
+	 *     XMemberFeatureCall returns NopCmd
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns NopCmd
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns NopCmd
+	 *     XPrimaryExpression returns NopCmd
+	 *     XParenthesizedExpression returns NopCmd
+	 *     XExpressionOrVarDeclaration returns NopCmd
+	 *
+	 * Constraint:
+	 *     {NopCmd}
+	 */
+	protected void sequence_Cmd(ISerializationContext context, NopCmd semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Program returns Program
 	 *
 	 * Constraint:
@@ -463,8 +509,8 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SimLangPackage.Literals.COND_STMT__THEN));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getIfXExpressionParserRuleCall_0_3_0(), semanticObject.getIf());
-		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getThenXExpressionParserRuleCall_0_5_0(), semanticObject.getThen());
+		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getIfXExpressionParserRuleCall_1_3_0(), semanticObject.getIf());
+		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getThenXExpressionParserRuleCall_1_5_0(), semanticObject.getThen());
 		feeder.finish();
 	}
 	
@@ -513,8 +559,8 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SimLangPackage.Literals.ITER_STMT__BODY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getExpXExpressionParserRuleCall_1_3_0(), semanticObject.getExp());
-		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getBodyXExpressionParserRuleCall_1_5_0(), semanticObject.getBody());
+		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getExpXExpressionParserRuleCall_2_3_0(), semanticObject.getExp());
+		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getBodyXExpressionParserRuleCall_2_5_0(), semanticObject.getBody());
 		feeder.finish();
 	}
 	

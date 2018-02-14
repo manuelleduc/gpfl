@@ -336,28 +336,37 @@ ruleXPrimaryExpression returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		{
+			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getCmdParserRuleCall_0());
+		}
+		this_Cmd_0=ruleCmd
+		{
+			$current = $this_Cmd_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
 		(
 			(
 				{
 					$current = forceCreateModelElement(
-						grammarAccess.getXPrimaryExpressionAccess().getCondStmtAction_0_0(),
+						grammarAccess.getXPrimaryExpressionAccess().getCondStmtAction_1_0(),
 						$current);
 				}
 			)
-			otherlv_1='cond'
+			otherlv_2='cond'
 			{
-				newLeafNode(otherlv_1, grammarAccess.getXPrimaryExpressionAccess().getCondKeyword_0_1());
+				newLeafNode(otherlv_2, grammarAccess.getXPrimaryExpressionAccess().getCondKeyword_1_1());
 			}
-			otherlv_2='('
+			otherlv_3='('
 			{
-				newLeafNode(otherlv_2, grammarAccess.getXPrimaryExpressionAccess().getLeftParenthesisKeyword_0_2());
+				newLeafNode(otherlv_3, grammarAccess.getXPrimaryExpressionAccess().getLeftParenthesisKeyword_1_2());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getIfXExpressionParserRuleCall_0_3_0());
+						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getIfXExpressionParserRuleCall_1_3_0());
 					}
-					lv_if_3_0=ruleXExpression
+					lv_if_4_0=ruleXExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getXPrimaryExpressionRule());
@@ -365,22 +374,22 @@ ruleXPrimaryExpression returns [EObject current=null]
 						set(
 							$current,
 							"if",
-							lv_if_3_0,
+							lv_if_4_0,
 							"org.eclipse.xtext.xbase.Xbase.XExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_4=','
+			otherlv_5=','
 			{
-				newLeafNode(otherlv_4, grammarAccess.getXPrimaryExpressionAccess().getCommaKeyword_0_4());
+				newLeafNode(otherlv_5, grammarAccess.getXPrimaryExpressionAccess().getCommaKeyword_1_4());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getThenXExpressionParserRuleCall_0_5_0());
+						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getThenXExpressionParserRuleCall_1_5_0());
 					}
-					lv_then_5_0=ruleXExpression
+					lv_then_6_0=ruleXExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getXPrimaryExpressionRule());
@@ -388,15 +397,15 @@ ruleXPrimaryExpression returns [EObject current=null]
 						set(
 							$current,
 							"then",
-							lv_then_5_0,
+							lv_then_6_0,
 							"org.eclipse.xtext.xbase.Xbase.XExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_6=')'
+			otherlv_7=')'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getXPrimaryExpressionAccess().getRightParenthesisKeyword_0_6());
+				newLeafNode(otherlv_7, grammarAccess.getXPrimaryExpressionAccess().getRightParenthesisKeyword_1_6());
 			}
 		)
 		    |
@@ -404,24 +413,24 @@ ruleXPrimaryExpression returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElement(
-						grammarAccess.getXPrimaryExpressionAccess().getIterStmtAction_1_0(),
+						grammarAccess.getXPrimaryExpressionAccess().getIterStmtAction_2_0(),
 						$current);
 				}
 			)
-			otherlv_8='iter'
+			otherlv_9='iter'
 			{
-				newLeafNode(otherlv_8, grammarAccess.getXPrimaryExpressionAccess().getIterKeyword_1_1());
+				newLeafNode(otherlv_9, grammarAccess.getXPrimaryExpressionAccess().getIterKeyword_2_1());
 			}
-			otherlv_9='('
+			otherlv_10='('
 			{
-				newLeafNode(otherlv_9, grammarAccess.getXPrimaryExpressionAccess().getLeftParenthesisKeyword_1_2());
+				newLeafNode(otherlv_10, grammarAccess.getXPrimaryExpressionAccess().getLeftParenthesisKeyword_2_2());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getExpXExpressionParserRuleCall_1_3_0());
+						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getExpXExpressionParserRuleCall_2_3_0());
 					}
-					lv_exp_10_0=ruleXExpression
+					lv_exp_11_0=ruleXExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getXPrimaryExpressionRule());
@@ -429,22 +438,22 @@ ruleXPrimaryExpression returns [EObject current=null]
 						set(
 							$current,
 							"exp",
-							lv_exp_10_0,
+							lv_exp_11_0,
 							"org.eclipse.xtext.xbase.Xbase.XExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_11=','
+			otherlv_12=','
 			{
-				newLeafNode(otherlv_11, grammarAccess.getXPrimaryExpressionAccess().getCommaKeyword_1_4());
+				newLeafNode(otherlv_12, grammarAccess.getXPrimaryExpressionAccess().getCommaKeyword_2_4());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getBodyXExpressionParserRuleCall_1_5_0());
+						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getBodyXExpressionParserRuleCall_2_5_0());
 					}
-					lv_body_12_0=ruleXExpression
+					lv_body_13_0=ruleXExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getXPrimaryExpressionRule());
@@ -452,25 +461,55 @@ ruleXPrimaryExpression returns [EObject current=null]
 						set(
 							$current,
 							"body",
-							lv_body_12_0,
+							lv_body_13_0,
 							"org.eclipse.xtext.xbase.Xbase.XExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_13=')'
+			otherlv_14=')'
 			{
-				newLeafNode(otherlv_13, grammarAccess.getXPrimaryExpressionAccess().getRightParenthesisKeyword_1_6());
+				newLeafNode(otherlv_14, grammarAccess.getXPrimaryExpressionAccess().getRightParenthesisKeyword_2_6());
 			}
 		)
 		    |
 		{
-			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXPrimaryExpressionParserRuleCall_2());
+			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXPrimaryExpressionParserRuleCall_3());
 		}
-		this_XPrimaryExpression_14=superXPrimaryExpression
+		this_XPrimaryExpression_15=superXPrimaryExpression
 		{
-			$current = $this_XPrimaryExpression_14.current;
+			$current = $this_XPrimaryExpression_15.current;
 			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleCmd
+entryRuleCmd returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getCmdRule()); }
+	iv_ruleCmd=ruleCmd
+	{ $current=$iv_ruleCmd.current; }
+	EOF;
+
+// Rule Cmd
+ruleCmd returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getCmdAccess().getNopCmdAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='nop'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getCmdAccess().getNopKeyword_1());
 		}
 	)
 ;
@@ -5494,7 +5533,7 @@ ruleXReturnExpression returns [EObject current=null]
 			newLeafNode(otherlv_1, grammarAccess.getXReturnExpressionAccess().getReturnKeyword_1());
 		}
 		(
-			('extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'cond' | 'iter' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
+			('extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'nop' | 'cond' | 'iter' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
 			(
 				{
 					newCompositeNode(grammarAccess.getXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0());

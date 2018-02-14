@@ -33,5 +33,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimLang.ecore#//IterStmt/exp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimLang.ecore#//IterStmt/body"/>
     </genClasses>
+    <genClasses ecoreClass="SimLang.ecore#//NopCmd"/>
   </genPackages>
 </genmodel:GenModel>

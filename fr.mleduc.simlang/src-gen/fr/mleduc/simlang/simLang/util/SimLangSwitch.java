@@ -119,6 +119,14 @@ public class SimLangSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SimLangPackage.NOP_CMD:
+      {
+        NopCmd nopCmd = (NopCmd)theEObject;
+        T result = caseNopCmd(nopCmd);
+        if (result == null) result = caseXExpression(nopCmd);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -215,6 +223,22 @@ public class SimLangSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIterStmt(IterStmt object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Nop Cmd</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Nop Cmd</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNopCmd(NopCmd object)
   {
     return null;
   }

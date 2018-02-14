@@ -308,6 +308,25 @@ public interface SimLangPackage extends EPackage
    */
   int ITER_STMT_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
 
+  /**
+   * The meta object id for the '{@link fr.mleduc.simlang.simLang.impl.NopCmdImpl <em>Nop Cmd</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see fr.mleduc.simlang.simLang.impl.NopCmdImpl
+   * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getNopCmd()
+   * @generated
+   */
+  int NOP_CMD = 6;
+
+  /**
+   * The number of structural features of the '<em>Nop Cmd</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NOP_CMD_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
 
   /**
    * Returns the meta object for class '{@link fr.mleduc.simlang.simLang.Program <em>Program</em>}'.
@@ -535,6 +554,16 @@ public interface SimLangPackage extends EPackage
   EReference getIterStmt_Body();
 
   /**
+   * Returns the meta object for class '{@link fr.mleduc.simlang.simLang.NopCmd <em>Nop Cmd</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Nop Cmd</em>'.
+   * @see fr.mleduc.simlang.simLang.NopCmd
+   * @generated
+   */
+  EClass getNopCmd();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -736,6 +765,16 @@ public interface SimLangPackage extends EPackage
      * @generated
      */
     EReference ITER_STMT__BODY = eINSTANCE.getIterStmt_Body();
+
+    /**
+     * The meta object literal for the '{@link fr.mleduc.simlang.simLang.impl.NopCmdImpl <em>Nop Cmd</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see fr.mleduc.simlang.simLang.impl.NopCmdImpl
+     * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getNopCmd()
+     * @generated
+     */
+    EClass NOP_CMD = eINSTANCE.getNopCmd();
 
   }
 

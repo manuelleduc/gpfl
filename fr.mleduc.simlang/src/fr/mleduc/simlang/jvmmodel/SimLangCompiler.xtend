@@ -5,6 +5,7 @@ import fr.mleduc.simlang.simLang.IterStmt
 import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
+import fr.mleduc.simlang.simLang.NopCmd
 
 class SimLangCompiler extends XbaseCompiler {
 	def dispatch void toJavaStatement(CondStmt expr, ITreeAppendable b, boolean isReferenced) {
@@ -59,10 +60,15 @@ class SimLangCompiler extends XbaseCompiler {
 		b.decreaseIndentation().newLine().append("}");
 	}
 
+	def dispatch void toJavaStatement(NopCmd expr, ITreeAppendable b, boolean isReferenced) {
+	}
+
 	override protected doInternalToJavaStatement(XExpression obj, ITreeAppendable appendable, boolean isReferenced) {
 		if (obj instanceof CondStmt)
 			this.toJavaStatement(obj, appendable, isReferenced)
 		else if (obj instanceof IterStmt)
+			this.toJavaStatement(obj, appendable, isReferenced)
+		else if (obj instanceof NopCmd)
 			this.toJavaStatement(obj, appendable, isReferenced)
 		else
 			super.doInternalToJavaStatement(obj, appendable, isReferenced)

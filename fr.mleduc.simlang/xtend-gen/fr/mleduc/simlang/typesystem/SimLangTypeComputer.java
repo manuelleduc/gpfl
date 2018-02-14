@@ -2,6 +2,7 @@ package fr.mleduc.simlang.typesystem;
 
 import fr.mleduc.simlang.simLang.CondStmt;
 import fr.mleduc.simlang.simLang.IterStmt;
+import fr.mleduc.simlang.simLang.NopCmd;
 import java.util.Arrays;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XAssignment;
@@ -29,6 +30,7 @@ import org.eclipse.xtext.xbase.XTryCatchFinallyExpression;
 import org.eclipse.xtext.xbase.XTypeLiteral;
 import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState;
 import org.eclipse.xtext.xbase.typesystem.computation.XbaseTypeComputer;
 
@@ -45,6 +47,10 @@ public class SimLangTypeComputer extends XbaseTypeComputer {
     state.withExpectation(this.getRawTypeForName(Long.class, state)).computeTypes(expression.getExp());
     final ITypeComputationState bodyState = this.reassignCheckedType(expression.getExp(), expression.getBody(), state.withoutExpectation());
     bodyState.computeTypes(expression.getBody());
+  }
+  
+  protected void _computeTypes(final NopCmd expression, final ITypeComputationState state) {
+    InputOutput.<String>println("DOES NOTHING");
   }
   
   public void computeTypes(final XExpression expression, final ITypeComputationState state) {
@@ -68,6 +74,9 @@ public class SimLangTypeComputer extends XbaseTypeComputer {
       return;
     } else if (expression instanceof IterStmt) {
       _computeTypes((IterStmt)expression, state);
+      return;
+    } else if (expression instanceof NopCmd) {
+      _computeTypes((NopCmd)expression, state);
       return;
     } else if (expression instanceof XAbstractFeatureCall) {
       _computeTypes((XAbstractFeatureCall)expression, state);

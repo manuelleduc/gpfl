@@ -77,8 +77,9 @@ public class SimLangParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRootBlockExpressionAccess().getGroup(), "rule__RootBlockExpression__Group__0");
 					put(grammarAccess.getRootBlockExpressionAccess().getGroup_1(), "rule__RootBlockExpression__Group_1__0");
 					put(grammarAccess.getAutomataDefAccess().getGroup(), "rule__AutomataDef__Group__0");
-					put(grammarAccess.getXPrimaryExpressionAccess().getGroup_0(), "rule__XPrimaryExpression__Group_0__0");
 					put(grammarAccess.getXPrimaryExpressionAccess().getGroup_1(), "rule__XPrimaryExpression__Group_1__0");
+					put(grammarAccess.getXPrimaryExpressionAccess().getGroup_2(), "rule__XPrimaryExpression__Group_2__0");
+					put(grammarAccess.getCmdAccess().getGroup(), "rule__Cmd__Group__0");
 					put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 					put(grammarAccess.getTransitionAccess().getGroup(), "rule__Transition__Group__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_0(), "rule__XAssignment__Group_0__0");
@@ -268,10 +269,10 @@ public class SimLangParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAutomataDefAccess().getNameAssignment_1(), "rule__AutomataDef__NameAssignment_1");
 					put(grammarAccess.getAutomataDefAccess().getInitAssignment_4(), "rule__AutomataDef__InitAssignment_4");
 					put(grammarAccess.getAutomataDefAccess().getStatesAssignment_5(), "rule__AutomataDef__StatesAssignment_5");
-					put(grammarAccess.getXPrimaryExpressionAccess().getIfAssignment_0_3(), "rule__XPrimaryExpression__IfAssignment_0_3");
-					put(grammarAccess.getXPrimaryExpressionAccess().getThenAssignment_0_5(), "rule__XPrimaryExpression__ThenAssignment_0_5");
-					put(grammarAccess.getXPrimaryExpressionAccess().getExpAssignment_1_3(), "rule__XPrimaryExpression__ExpAssignment_1_3");
-					put(grammarAccess.getXPrimaryExpressionAccess().getBodyAssignment_1_5(), "rule__XPrimaryExpression__BodyAssignment_1_5");
+					put(grammarAccess.getXPrimaryExpressionAccess().getIfAssignment_1_3(), "rule__XPrimaryExpression__IfAssignment_1_3");
+					put(grammarAccess.getXPrimaryExpressionAccess().getThenAssignment_1_5(), "rule__XPrimaryExpression__ThenAssignment_1_5");
+					put(grammarAccess.getXPrimaryExpressionAccess().getExpAssignment_2_3(), "rule__XPrimaryExpression__ExpAssignment_2_3");
+					put(grammarAccess.getXPrimaryExpressionAccess().getBodyAssignment_2_5(), "rule__XPrimaryExpression__BodyAssignment_2_5");
 					put(grammarAccess.getStateAccess().getNameAssignment_0(), "rule__State__NameAssignment_0");
 					put(grammarAccess.getStateAccess().getTransitionsAssignment_1(), "rule__State__TransitionsAssignment_1");
 					put(grammarAccess.getTransitionAccess().getEventAssignment_1(), "rule__Transition__EventAssignment_1");

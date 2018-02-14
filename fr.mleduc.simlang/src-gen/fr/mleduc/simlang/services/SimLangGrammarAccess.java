@@ -190,99 +190,122 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 	public class XPrimaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.mleduc.simlang.SimLang.XPrimaryExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cCondStmtAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final Keyword cCondKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
-		private final Assignment cIfAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
-		private final RuleCall cIfXExpressionParserRuleCall_0_3_0 = (RuleCall)cIfAssignment_0_3.eContents().get(0);
-		private final Keyword cCommaKeyword_0_4 = (Keyword)cGroup_0.eContents().get(4);
-		private final Assignment cThenAssignment_0_5 = (Assignment)cGroup_0.eContents().get(5);
-		private final RuleCall cThenXExpressionParserRuleCall_0_5_0 = (RuleCall)cThenAssignment_0_5.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_0_6 = (Keyword)cGroup_0.eContents().get(6);
+		private final RuleCall cCmdParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cIterStmtAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cIterKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Action cCondStmtAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cCondKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cExpAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cExpXExpressionParserRuleCall_1_3_0 = (RuleCall)cExpAssignment_1_3.eContents().get(0);
+		private final Assignment cIfAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cIfXExpressionParserRuleCall_1_3_0 = (RuleCall)cIfAssignment_1_3.eContents().get(0);
 		private final Keyword cCommaKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
-		private final Assignment cBodyAssignment_1_5 = (Assignment)cGroup_1.eContents().get(5);
-		private final RuleCall cBodyXExpressionParserRuleCall_1_5_0 = (RuleCall)cBodyAssignment_1_5.eContents().get(0);
+		private final Assignment cThenAssignment_1_5 = (Assignment)cGroup_1.eContents().get(5);
+		private final RuleCall cThenXExpressionParserRuleCall_1_5_0 = (RuleCall)cThenAssignment_1_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_1_6 = (Keyword)cGroup_1.eContents().get(6);
-		private final RuleCall cXPrimaryExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Action cIterStmtAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Keyword cIterKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		private final Assignment cExpAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
+		private final RuleCall cExpXExpressionParserRuleCall_2_3_0 = (RuleCall)cExpAssignment_2_3.eContents().get(0);
+		private final Keyword cCommaKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
+		private final Assignment cBodyAssignment_2_5 = (Assignment)cGroup_2.eContents().get(5);
+		private final RuleCall cBodyXExpressionParserRuleCall_2_5_0 = (RuleCall)cBodyAssignment_2_5.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2_6 = (Keyword)cGroup_2.eContents().get(6);
+		private final RuleCall cXPrimaryExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//@ Override XPrimaryExpression xbase::XExpression:
-		//	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
+		//	Cmd | {CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
 		//	body=XExpression ")" | super;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
+		//Cmd | {CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
 		//body=XExpression ")" | super
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//Cmd
+		public RuleCall getCmdParserRuleCall_0() { return cCmdParserRuleCall_0; }
+		
 		//{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')'
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{CondStmt}
-		public Action getCondStmtAction_0_0() { return cCondStmtAction_0_0; }
-		
-		//'cond'
-		public Keyword getCondKeyword_0_1() { return cCondKeyword_0_1; }
-		
-		//'('
-		public Keyword getLeftParenthesisKeyword_0_2() { return cLeftParenthesisKeyword_0_2; }
-		
-		//if=XExpression
-		public Assignment getIfAssignment_0_3() { return cIfAssignment_0_3; }
-		
-		//XExpression
-		public RuleCall getIfXExpressionParserRuleCall_0_3_0() { return cIfXExpressionParserRuleCall_0_3_0; }
-		
-		//','
-		public Keyword getCommaKeyword_0_4() { return cCommaKeyword_0_4; }
-		
-		//then=XExpression
-		public Assignment getThenAssignment_0_5() { return cThenAssignment_0_5; }
-		
-		//XExpression
-		public RuleCall getThenXExpressionParserRuleCall_0_5_0() { return cThenXExpressionParserRuleCall_0_5_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_0_6() { return cRightParenthesisKeyword_0_6; }
-		
-		//{IterStmt} "iter" "(" exp=XExpression "," body=XExpression ")"
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//{IterStmt}
-		public Action getIterStmtAction_1_0() { return cIterStmtAction_1_0; }
+		//{CondStmt}
+		public Action getCondStmtAction_1_0() { return cCondStmtAction_1_0; }
 		
-		//"iter"
-		public Keyword getIterKeyword_1_1() { return cIterKeyword_1_1; }
+		//'cond'
+		public Keyword getCondKeyword_1_1() { return cCondKeyword_1_1; }
 		
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_1_2() { return cLeftParenthesisKeyword_1_2; }
 		
-		//exp=XExpression
-		public Assignment getExpAssignment_1_3() { return cExpAssignment_1_3; }
+		//if=XExpression
+		public Assignment getIfAssignment_1_3() { return cIfAssignment_1_3; }
 		
 		//XExpression
-		public RuleCall getExpXExpressionParserRuleCall_1_3_0() { return cExpXExpressionParserRuleCall_1_3_0; }
+		public RuleCall getIfXExpressionParserRuleCall_1_3_0() { return cIfXExpressionParserRuleCall_1_3_0; }
 		
-		//","
+		//','
 		public Keyword getCommaKeyword_1_4() { return cCommaKeyword_1_4; }
 		
-		//body=XExpression
-		public Assignment getBodyAssignment_1_5() { return cBodyAssignment_1_5; }
+		//then=XExpression
+		public Assignment getThenAssignment_1_5() { return cThenAssignment_1_5; }
 		
 		//XExpression
-		public RuleCall getBodyXExpressionParserRuleCall_1_5_0() { return cBodyXExpressionParserRuleCall_1_5_0; }
+		public RuleCall getThenXExpressionParserRuleCall_1_5_0() { return cThenXExpressionParserRuleCall_1_5_0; }
 		
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_1_6() { return cRightParenthesisKeyword_1_6; }
 		
+		//{IterStmt} "iter" "(" exp=XExpression "," body=XExpression ")"
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//{IterStmt}
+		public Action getIterStmtAction_2_0() { return cIterStmtAction_2_0; }
+		
+		//"iter"
+		public Keyword getIterKeyword_2_1() { return cIterKeyword_2_1; }
+		
+		//"("
+		public Keyword getLeftParenthesisKeyword_2_2() { return cLeftParenthesisKeyword_2_2; }
+		
+		//exp=XExpression
+		public Assignment getExpAssignment_2_3() { return cExpAssignment_2_3; }
+		
+		//XExpression
+		public RuleCall getExpXExpressionParserRuleCall_2_3_0() { return cExpXExpressionParserRuleCall_2_3_0; }
+		
+		//","
+		public Keyword getCommaKeyword_2_4() { return cCommaKeyword_2_4; }
+		
+		//body=XExpression
+		public Assignment getBodyAssignment_2_5() { return cBodyAssignment_2_5; }
+		
+		//XExpression
+		public RuleCall getBodyXExpressionParserRuleCall_2_5_0() { return cBodyXExpressionParserRuleCall_2_5_0; }
+		
+		//")"
+		public Keyword getRightParenthesisKeyword_2_6() { return cRightParenthesisKeyword_2_6; }
+		
 		//super
-		public RuleCall getXPrimaryExpressionParserRuleCall_2() { return cXPrimaryExpressionParserRuleCall_2; }
+		public RuleCall getXPrimaryExpressionParserRuleCall_3() { return cXPrimaryExpressionParserRuleCall_3; }
+	}
+	public class CmdElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.mleduc.simlang.SimLang.Cmd");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cNopCmdAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cNopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//Cmd xbase::XExpression:
+		//	{NopCmd} "nop";
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{NopCmd} "nop"
+		public Group getGroup() { return cGroup; }
+		
+		//{NopCmd}
+		public Action getNopCmdAction_0() { return cNopCmdAction_0; }
+		
+		//"nop"
+		public Keyword getNopKeyword_1() { return cNopKeyword_1; }
 	}
 	public class StateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.mleduc.simlang.SimLang.State");
@@ -356,6 +379,7 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 	private final RootBlockExpressionElements pRootBlockExpression;
 	private final AutomataDefElements pAutomataDef;
 	private final XPrimaryExpressionElements pXPrimaryExpression;
+	private final CmdElements pCmd;
 	private final StateElements pState;
 	private final TransitionElements pTransition;
 	
@@ -376,6 +400,7 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 		this.pRootBlockExpression = new RootBlockExpressionElements();
 		this.pAutomataDef = new AutomataDefElements();
 		this.pXPrimaryExpression = new XPrimaryExpressionElements();
+		this.pCmd = new CmdElements();
 		this.pState = new StateElements();
 		this.pTransition = new TransitionElements();
 	}
@@ -446,7 +471,7 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//@ Override XPrimaryExpression xbase::XExpression:
-	//	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
+	//	Cmd | {CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
 	//	body=XExpression ")" | super;
 	public XPrimaryExpressionElements getXPrimaryExpressionAccess() {
 		return pXPrimaryExpression;
@@ -454,6 +479,16 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getXPrimaryExpressionRule() {
 		return getXPrimaryExpressionAccess().getRule();
+	}
+	
+	//Cmd xbase::XExpression:
+	//	{NopCmd} "nop";
+	public CmdElements getCmdAccess() {
+		return pCmd;
+	}
+	
+	public ParserRule getCmdRule() {
+		return getCmdAccess().getRule();
 	}
 	
 	//State:

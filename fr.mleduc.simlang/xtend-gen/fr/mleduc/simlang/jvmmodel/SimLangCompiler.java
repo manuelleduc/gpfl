@@ -2,6 +2,7 @@ package fr.mleduc.simlang.jvmmodel;
 
 import fr.mleduc.simlang.simLang.CondStmt;
 import fr.mleduc.simlang.simLang.IterStmt;
+import fr.mleduc.simlang.simLang.NopCmd;
 import java.util.Arrays;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
@@ -98,6 +99,9 @@ public class SimLangCompiler extends XbaseCompiler {
     b.decreaseIndentation().newLine().append("}");
   }
   
+  protected void _toJavaStatement(final NopCmd expr, final ITreeAppendable b, final boolean isReferenced) {
+  }
+  
   @Override
   protected void doInternalToJavaStatement(final XExpression obj, final ITreeAppendable appendable, final boolean isReferenced) {
     if ((obj instanceof CondStmt)) {
@@ -106,7 +110,11 @@ public class SimLangCompiler extends XbaseCompiler {
       if ((obj instanceof IterStmt)) {
         this.toJavaStatement(obj, appendable, isReferenced);
       } else {
-        super.doInternalToJavaStatement(obj, appendable, isReferenced);
+        if ((obj instanceof NopCmd)) {
+          this.toJavaStatement(obj, appendable, isReferenced);
+        } else {
+          super.doInternalToJavaStatement(obj, appendable, isReferenced);
+        }
       }
     }
   }
@@ -132,6 +140,9 @@ public class SimLangCompiler extends XbaseCompiler {
       return;
     } else if (expr instanceof IterStmt) {
       _toJavaStatement((IterStmt)expr, b, isReferenced);
+      return;
+    } else if (expr instanceof NopCmd) {
+      _toJavaStatement((NopCmd)expr, b, isReferenced);
       return;
     } else if (expr instanceof XAbstractFeatureCall) {
       _toJavaStatement((XAbstractFeatureCall)expr, b, isReferenced);
