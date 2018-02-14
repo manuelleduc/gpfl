@@ -1,32 +1,68 @@
 package fr.mleduc.simlang.jvmmodel
 
 import fr.mleduc.simlang.simLang.CondStmt
+import fr.mleduc.simlang.simLang.IterStmt
+import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
-import org.eclipse.xtext.xbase.XExpression
 
 class SimLangCompiler extends XbaseCompiler {
 	def dispatch void toJavaStatement(CondStmt expr, ITreeAppendable b, boolean isReferenced) {
 		if (isReferenced)
-			declareSyntheticVariable(expr, b);
-		internalToJavaStatement(expr.^if, b, true);
-		b.newLine().append("if (");
-		internalToJavaExpression(expr.^if, b);
-		b.append(") {").increaseIndentation();
-		val canBeReferenced = isReferenced && !isPrimitiveVoid(expr.then);
-		internalToJavaStatement(expr.then, b, canBeReferenced);
+			expr.declareSyntheticVariable(b)
+		expr.^if.internalToJavaStatement(b, true)
+		b.newLine.append("if (")
+		expr.^if.internalToJavaExpression(b)
+		b.append(") {").increaseIndentation
+		val canBeReferenced = isReferenced && !expr.then.isPrimitiveVoid
+		expr.then.internalToJavaStatement(b, canBeReferenced)
 		if (canBeReferenced) {
-			b.newLine();
-			b.append(getVarName(expr, b));
-			b.append(" = ");
-			internalToConvertedExpression(expr.then, b, getLightweightType(expr));
+			b.newLine
+			b.append(expr.getVarName(b))
+			b.append(" = ")
+			expr.then.internalToConvertedExpression(b, getLightweightType(expr))
+			b.append(";")
+		}
+		b.decreaseIndentation.newLine.append("}")
+	}
+
+	def dispatch void toJavaStatement(IterStmt expr, ITreeAppendable b, boolean isReferenced) {
+		val needsStatement = !canCompileToJavaExpression(expr.exp, b);
+		var String varName = null;
+		if (needsStatement) {
+			internalToJavaStatement(expr.exp, b, true);
+			varName = b.declareSyntheticVariable(expr, "_while");
+			b.newLine().append("boolean ").append(varName).append(" = ");
+			internalToJavaExpression(expr.exp, b);
 			b.append(";");
 		}
+
+		val loopVarName = varName = b.declareSyntheticVariable(expr, "_iter");
+
+		b.newLine().append('''for(long «loopVarName»=0; «loopVarName»<''');
+		if (needsStatement) {
+			b.append(varName);
+		} else {
+			internalToJavaExpression(expr.exp, b);
+		}
+		b.append('''; «loopVarName»++) {''').increaseIndentation();
+		b.openPseudoScope();
+		internalToJavaStatement(expr.getBody(), b, false);
+		if (needsStatement && !isEarlyExit(expr.getBody())) {
+			internalToJavaStatement(expr.exp, b, true);
+			b.newLine();
+			b.append(varName).append(" = ");
+			internalToJavaExpression(expr.exp, b);
+			b.append(";");
+		}
+		b.closeScope();
 		b.decreaseIndentation().newLine().append("}");
 	}
 
 	override protected doInternalToJavaStatement(XExpression obj, ITreeAppendable appendable, boolean isReferenced) {
 		if (obj instanceof CondStmt)
+			this.toJavaStatement(obj, appendable, isReferenced)
+		else if (obj instanceof IterStmt)
 			this.toJavaStatement(obj, appendable, isReferenced)
 		else
 			super.doInternalToJavaStatement(obj, appendable, isReferenced)

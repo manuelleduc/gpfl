@@ -57,8 +57,4 @@ class SimLangJvmModelInferrer extends AbstractModelInferrer {
 			]
 		]
 	}
-	
-	def dispatch void infer(CondStmt element, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		
-	}
 }

@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.mleduc.lambdafsm.ui
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.mleduc.lambdafsm.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: fr.mleduc.lambdafsm,
+ fr.mleduc.lambdafsm.ide,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.ui,
+ org.eclipse.compare,
+ org.eclipse.xtext.builder,
+ org.eclipse.xtend.lib;resolution:=optional,
+ org.eclipse.xtext.xbase.lib,
+ fr.mleduc.fsm.ui;bundle-version="1.0.0"
+Import-Package: fr.mleduc.fsm.ui.contentassist,
+ org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.mleduc.lambdafsm.ui.quickfix,
+ fr.mleduc.lambdafsm.ui.contentassist,
+ fr.mleduc.lambdafsm.ui.internal
+Bundle-Activator: fr.mleduc.lambdafsm.ui.internal.LambdafsmActivator

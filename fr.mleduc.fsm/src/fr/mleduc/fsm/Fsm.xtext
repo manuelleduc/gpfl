@@ -1,0 +1,14 @@
+grammar fr.mleduc.fsm.Fsm with org.eclipse.xtext.common.Terminals
+
+generate fsm "http://www.mleduc.fr/fsm/Fsm"
+
+Fsm:
+	'fsm' name=ID 'init' '=' state=[State|ID]
+	(states+=State)*;
+
+State:
+	name=ID
+	('-' transitions+=Transition)*;
+
+Transition:
+	name=ID '=>' state=[State|ID];

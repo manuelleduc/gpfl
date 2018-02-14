@@ -271,6 +271,43 @@ public interface SimLangPackage extends EPackage
    */
   int COND_STMT_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
 
+  /**
+   * The meta object id for the '{@link fr.mleduc.simlang.simLang.impl.IterStmtImpl <em>Iter Stmt</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see fr.mleduc.simlang.simLang.impl.IterStmtImpl
+   * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getIterStmt()
+   * @generated
+   */
+  int ITER_STMT = 5;
+
+  /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ITER_STMT__EXP = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ITER_STMT__BODY = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Iter Stmt</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ITER_STMT_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
+
 
   /**
    * Returns the meta object for class '{@link fr.mleduc.simlang.simLang.Program <em>Program</em>}'.
@@ -466,6 +503,38 @@ public interface SimLangPackage extends EPackage
   EReference getCondStmt_Then();
 
   /**
+   * Returns the meta object for class '{@link fr.mleduc.simlang.simLang.IterStmt <em>Iter Stmt</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Iter Stmt</em>'.
+   * @see fr.mleduc.simlang.simLang.IterStmt
+   * @generated
+   */
+  EClass getIterStmt();
+
+  /**
+   * Returns the meta object for the containment reference '{@link fr.mleduc.simlang.simLang.IterStmt#getExp <em>Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exp</em>'.
+   * @see fr.mleduc.simlang.simLang.IterStmt#getExp()
+   * @see #getIterStmt()
+   * @generated
+   */
+  EReference getIterStmt_Exp();
+
+  /**
+   * Returns the meta object for the containment reference '{@link fr.mleduc.simlang.simLang.IterStmt#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see fr.mleduc.simlang.simLang.IterStmt#getBody()
+   * @see #getIterStmt()
+   * @generated
+   */
+  EReference getIterStmt_Body();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -641,6 +710,32 @@ public interface SimLangPackage extends EPackage
      * @generated
      */
     EReference COND_STMT__THEN = eINSTANCE.getCondStmt_Then();
+
+    /**
+     * The meta object literal for the '{@link fr.mleduc.simlang.simLang.impl.IterStmtImpl <em>Iter Stmt</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see fr.mleduc.simlang.simLang.impl.IterStmtImpl
+     * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getIterStmt()
+     * @generated
+     */
+    EClass ITER_STMT = eINSTANCE.getIterStmt();
+
+    /**
+     * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ITER_STMT__EXP = eINSTANCE.getIterStmt_Exp();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ITER_STMT__BODY = eINSTANCE.getIterStmt_Body();
 
   }
 

@@ -5,6 +5,7 @@ package fr.mleduc.simlang.simLang.impl;
 
 import fr.mleduc.simlang.simLang.AutomataDef;
 import fr.mleduc.simlang.simLang.CondStmt;
+import fr.mleduc.simlang.simLang.IterStmt;
 import fr.mleduc.simlang.simLang.Program;
 import fr.mleduc.simlang.simLang.SimLangFactory;
 import fr.mleduc.simlang.simLang.SimLangPackage;
@@ -64,6 +65,13 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
    * @generated
    */
   private EClass condStmtEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass iterStmtEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -317,6 +325,36 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getIterStmt()
+  {
+    return iterStmtEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIterStmt_Exp()
+  {
+    return (EReference)iterStmtEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIterStmt_Body()
+  {
+    return (EReference)iterStmtEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public SimLangFactory getSimLangFactory()
   {
     return (SimLangFactory)getEFactoryInstance();
@@ -364,6 +402,10 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
     condStmtEClass = createEClass(COND_STMT);
     createEReference(condStmtEClass, COND_STMT__IF);
     createEReference(condStmtEClass, COND_STMT__THEN);
+
+    iterStmtEClass = createEClass(ITER_STMT);
+    createEReference(iterStmtEClass, ITER_STMT__EXP);
+    createEReference(iterStmtEClass, ITER_STMT__BODY);
   }
 
   /**
@@ -399,6 +441,7 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
 
     // Add supertypes to classes
     condStmtEClass.getESuperTypes().add(theXbasePackage.getXExpression());
+    iterStmtEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -423,6 +466,10 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
     initEClass(condStmtEClass, CondStmt.class, "CondStmt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCondStmt_If(), theXbasePackage.getXExpression(), null, "if", null, 0, 1, CondStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCondStmt_Then(), theXbasePackage.getXExpression(), null, "then", null, 0, 1, CondStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(iterStmtEClass, IterStmt.class, "IterStmt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIterStmt_Exp(), theXbasePackage.getXExpression(), null, "exp", null, 0, 1, IterStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIterStmt_Body(), theXbasePackage.getXExpression(), null, "body", null, 0, 1, IterStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

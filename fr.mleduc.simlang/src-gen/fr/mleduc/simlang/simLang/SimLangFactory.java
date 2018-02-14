@@ -69,6 +69,15 @@ public interface SimLangFactory extends EFactory
   CondStmt createCondStmt();
 
   /**
+   * Returns a new object of class '<em>Iter Stmt</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Iter Stmt</em>'.
+   * @generated
+   */
+  IterStmt createIterStmt();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -400,12 +400,76 @@ ruleXPrimaryExpression returns [EObject current=null]
 			}
 		)
 		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getXPrimaryExpressionAccess().getIterStmtAction_1_0(),
+						$current);
+				}
+			)
+			otherlv_8='iter'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getXPrimaryExpressionAccess().getIterKeyword_1_1());
+			}
+			otherlv_9='('
+			{
+				newLeafNode(otherlv_9, grammarAccess.getXPrimaryExpressionAccess().getLeftParenthesisKeyword_1_2());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getExpXExpressionParserRuleCall_1_3_0());
+					}
+					lv_exp_10_0=ruleXExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getXPrimaryExpressionRule());
+						}
+						set(
+							$current,
+							"exp",
+							lv_exp_10_0,
+							"org.eclipse.xtext.xbase.Xbase.XExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_11=','
+			{
+				newLeafNode(otherlv_11, grammarAccess.getXPrimaryExpressionAccess().getCommaKeyword_1_4());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getBodyXExpressionParserRuleCall_1_5_0());
+					}
+					lv_body_12_0=ruleXExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getXPrimaryExpressionRule());
+						}
+						set(
+							$current,
+							"body",
+							lv_body_12_0,
+							"org.eclipse.xtext.xbase.Xbase.XExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_13=')'
+			{
+				newLeafNode(otherlv_13, grammarAccess.getXPrimaryExpressionAccess().getRightParenthesisKeyword_1_6());
+			}
+		)
+		    |
 		{
-			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXPrimaryExpressionParserRuleCall_1());
+			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXPrimaryExpressionParserRuleCall_2());
 		}
-		this_XPrimaryExpression_7=superXPrimaryExpression
+		this_XPrimaryExpression_14=superXPrimaryExpression
 		{
-			$current = $this_XPrimaryExpression_7.current;
+			$current = $this_XPrimaryExpression_14.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -5430,7 +5494,7 @@ ruleXReturnExpression returns [EObject current=null]
 			newLeafNode(otherlv_1, grammarAccess.getXReturnExpressionAccess().getReturnKeyword_1());
 		}
 		(
-			('extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'cond' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
+			('extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'cond' | 'iter' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
 			(
 				{
 					newCompositeNode(grammarAccess.getXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0());

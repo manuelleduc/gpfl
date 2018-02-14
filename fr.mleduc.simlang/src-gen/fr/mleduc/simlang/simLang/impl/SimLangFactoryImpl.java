@@ -70,6 +70,7 @@ public class SimLangFactoryImpl extends EFactoryImpl implements SimLangFactory
       case SimLangPackage.STATE: return createState();
       case SimLangPackage.TRANSITION: return createTransition();
       case SimLangPackage.COND_STMT: return createCondStmt();
+      case SimLangPackage.ITER_STMT: return createIterStmt();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -128,6 +129,17 @@ public class SimLangFactoryImpl extends EFactoryImpl implements SimLangFactory
   {
     CondStmtImpl condStmt = new CondStmtImpl();
     return condStmt;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IterStmt createIterStmt()
+  {
+    IterStmtImpl iterStmt = new IterStmtImpl();
+    return iterStmt;
   }
 
   /**

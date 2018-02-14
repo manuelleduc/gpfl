@@ -29,5 +29,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimLang.ecore#//CondStmt/if"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimLang.ecore#//CondStmt/then"/>
     </genClasses>
+    <genClasses ecoreClass="SimLang.ecore#//IterStmt">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimLang.ecore#//IterStmt/exp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimLang.ecore#//IterStmt/body"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

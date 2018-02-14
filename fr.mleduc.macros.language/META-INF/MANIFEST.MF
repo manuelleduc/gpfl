@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.mleduc.macros.language
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.mleduc.macros.language; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.mleduc.macros.language,
+ fr.mleduc.macros.language.scoping,
+ fr.mleduc.macros.language.generator,
+ fr.mleduc.macros.language.services,
+ fr.mleduc.macros.language.parser.antlr,
+ fr.mleduc.macros.language.serializer,
+ fr.mleduc.macros.language.parser.antlr.internal,
+ fr.mleduc.macros.language.validation,
+ fr.mleduc.macros.language.macrosLang.util,
+ fr.mleduc.macros.language.macrosLang.impl,
+ fr.mleduc.macros.language.jvmmodel,
+ fr.mleduc.macros.language.macrosLang
+Import-Package: org.apache.log4j

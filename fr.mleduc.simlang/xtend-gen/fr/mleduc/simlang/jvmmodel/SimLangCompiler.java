@@ -1,7 +1,9 @@
 package fr.mleduc.simlang.jvmmodel;
 
 import fr.mleduc.simlang.simLang.CondStmt;
+import fr.mleduc.simlang.simLang.IterStmt;
 import java.util.Arrays;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XBasicForLoopExpression;
 import org.eclipse.xtext.xbase.XBlockExpression;
@@ -53,12 +55,59 @@ public class SimLangCompiler extends XbaseCompiler {
     b.decreaseIndentation().newLine().append("}");
   }
   
+  protected void _toJavaStatement(final IterStmt expr, final ITreeAppendable b, final boolean isReferenced) {
+    boolean _canCompileToJavaExpression = this.canCompileToJavaExpression(expr.getExp(), b);
+    final boolean needsStatement = (!_canCompileToJavaExpression);
+    String varName = null;
+    if (needsStatement) {
+      this.internalToJavaStatement(expr.getExp(), b, true);
+      varName = b.declareSyntheticVariable(expr, "_while");
+      b.newLine().append("boolean ").append(varName).append(" = ");
+      this.internalToJavaExpression(expr.getExp(), b);
+      b.append(";");
+    }
+    final String loopVarName = varName = b.declareSyntheticVariable(expr, "_iter");
+    ITreeAppendable _newLine = b.newLine();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("for(long ");
+    _builder.append(loopVarName);
+    _builder.append("=0; ");
+    _builder.append(loopVarName);
+    _builder.append("<");
+    _newLine.append(_builder);
+    if (needsStatement) {
+      b.append(varName);
+    } else {
+      this.internalToJavaExpression(expr.getExp(), b);
+    }
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("; ");
+    _builder_1.append(loopVarName);
+    _builder_1.append("++) {");
+    b.append(_builder_1).increaseIndentation();
+    b.openPseudoScope();
+    this.internalToJavaStatement(expr.getBody(), b, false);
+    if ((needsStatement && (!this.isEarlyExit(expr.getBody())))) {
+      this.internalToJavaStatement(expr.getExp(), b, true);
+      b.newLine();
+      b.append(varName).append(" = ");
+      this.internalToJavaExpression(expr.getExp(), b);
+      b.append(";");
+    }
+    b.closeScope();
+    b.decreaseIndentation().newLine().append("}");
+  }
+  
   @Override
   protected void doInternalToJavaStatement(final XExpression obj, final ITreeAppendable appendable, final boolean isReferenced) {
     if ((obj instanceof CondStmt)) {
       this.toJavaStatement(obj, appendable, isReferenced);
     } else {
-      super.doInternalToJavaStatement(obj, appendable, isReferenced);
+      if ((obj instanceof IterStmt)) {
+        this.toJavaStatement(obj, appendable, isReferenced);
+      } else {
+        super.doInternalToJavaStatement(obj, appendable, isReferenced);
+      }
     }
   }
   
@@ -80,6 +129,9 @@ public class SimLangCompiler extends XbaseCompiler {
       return;
     } else if (expr instanceof CondStmt) {
       _toJavaStatement((CondStmt)expr, b, isReferenced);
+      return;
+    } else if (expr instanceof IterStmt) {
+      _toJavaStatement((IterStmt)expr, b, isReferenced);
       return;
     } else if (expr instanceof XAbstractFeatureCall) {
       _toJavaStatement((XAbstractFeatureCall)expr, b, isReferenced);

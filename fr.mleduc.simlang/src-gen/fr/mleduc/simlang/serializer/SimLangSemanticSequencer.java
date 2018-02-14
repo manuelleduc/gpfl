@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import fr.mleduc.simlang.services.SimLangGrammarAccess;
 import fr.mleduc.simlang.simLang.AutomataDef;
 import fr.mleduc.simlang.simLang.CondStmt;
+import fr.mleduc.simlang.simLang.IterStmt;
 import fr.mleduc.simlang.simLang.Program;
 import fr.mleduc.simlang.simLang.SimLangPackage;
 import fr.mleduc.simlang.simLang.State;
@@ -86,6 +87,9 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case SimLangPackage.COND_STMT:
 				sequence_XPrimaryExpression(context, (CondStmt) semanticObject); 
+				return; 
+			case SimLangPackage.ITER_STMT:
+				sequence_XPrimaryExpression(context, (IterStmt) semanticObject); 
 				return; 
 			case SimLangPackage.PROGRAM:
 				sequence_Program(context, (Program) semanticObject); 
@@ -461,6 +465,56 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getIfXExpressionParserRuleCall_0_3_0(), semanticObject.getIf());
 		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getThenXExpressionParserRuleCall_0_5_0(), semanticObject.getThen());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XPrimaryExpression returns IterStmt
+	 *     XExpression returns IterStmt
+	 *     XAssignment returns IterStmt
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns IterStmt
+	 *     XOrExpression returns IterStmt
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns IterStmt
+	 *     XAndExpression returns IterStmt
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns IterStmt
+	 *     XEqualityExpression returns IterStmt
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns IterStmt
+	 *     XRelationalExpression returns IterStmt
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns IterStmt
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns IterStmt
+	 *     XOtherOperatorExpression returns IterStmt
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns IterStmt
+	 *     XAdditiveExpression returns IterStmt
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns IterStmt
+	 *     XMultiplicativeExpression returns IterStmt
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns IterStmt
+	 *     XUnaryOperation returns IterStmt
+	 *     XCastedExpression returns IterStmt
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns IterStmt
+	 *     XPostfixOperation returns IterStmt
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns IterStmt
+	 *     XMemberFeatureCall returns IterStmt
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns IterStmt
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns IterStmt
+	 *     XPrimaryExpression returns IterStmt
+	 *     XParenthesizedExpression returns IterStmt
+	 *     XExpressionOrVarDeclaration returns IterStmt
+	 *
+	 * Constraint:
+	 *     (exp=XExpression body=XExpression)
+	 */
+	protected void sequence_XPrimaryExpression(ISerializationContext context, IterStmt semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SimLangPackage.Literals.ITER_STMT__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SimLangPackage.Literals.ITER_STMT__EXP));
+			if (transientValues.isValueTransient(semanticObject, SimLangPackage.Literals.ITER_STMT__BODY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SimLangPackage.Literals.ITER_STMT__BODY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getExpXExpressionParserRuleCall_1_3_0(), semanticObject.getExp());
+		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getBodyXExpressionParserRuleCall_1_5_0(), semanticObject.getBody());
 		feeder.finish();
 	}
 	

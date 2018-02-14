@@ -4,7 +4,6 @@
 package fr.mleduc.simlang.jvmmodel;
 
 import com.google.inject.Inject;
-import fr.mleduc.simlang.simLang.CondStmt;
 import fr.mleduc.simlang.simLang.Program;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
@@ -74,14 +73,8 @@ public class SimLangJvmModelInferrer extends AbstractModelInferrer {
     acceptor.<JvmGenericType>accept(this._jvmTypesBuilder.toClass(element, element.getName()), _function);
   }
   
-  protected void _infer(final CondStmt element, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
-  }
-  
   public void infer(final EObject element, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
-    if (element instanceof CondStmt) {
-      _infer((CondStmt)element, acceptor, isPreIndexingPhase);
-      return;
-    } else if (element instanceof Program) {
+    if (element instanceof Program) {
       _infer((Program)element, acceptor, isPreIndexingPhase);
       return;
     } else if (element != null) {

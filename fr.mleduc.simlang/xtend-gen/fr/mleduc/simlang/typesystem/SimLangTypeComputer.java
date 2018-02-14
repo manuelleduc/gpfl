@@ -1,6 +1,7 @@
 package fr.mleduc.simlang.typesystem;
 
 import fr.mleduc.simlang.simLang.CondStmt;
+import fr.mleduc.simlang.simLang.IterStmt;
 import java.util.Arrays;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XAssignment;
@@ -40,6 +41,12 @@ public class SimLangTypeComputer extends XbaseTypeComputer {
     thenState.computeTypes(thenExpression);
   }
   
+  protected void _computeTypes(final IterStmt expression, final ITypeComputationState state) {
+    state.withExpectation(this.getRawTypeForName(Long.class, state)).computeTypes(expression.getExp());
+    final ITypeComputationState bodyState = this.reassignCheckedType(expression.getExp(), expression.getBody(), state.withoutExpectation());
+    bodyState.computeTypes(expression.getBody());
+  }
+  
   public void computeTypes(final XExpression expression, final ITypeComputationState state) {
     if (expression instanceof XAssignment) {
       _computeTypes((XAssignment)expression, state);
@@ -58,6 +65,9 @@ public class SimLangTypeComputer extends XbaseTypeComputer {
       return;
     } else if (expression instanceof CondStmt) {
       _computeTypes((CondStmt)expression, state);
+      return;
+    } else if (expression instanceof IterStmt) {
+      _computeTypes((IterStmt)expression, state);
       return;
     } else if (expression instanceof XAbstractFeatureCall) {
       _computeTypes((XAbstractFeatureCall)expression, state);

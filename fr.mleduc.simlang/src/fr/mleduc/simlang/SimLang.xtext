@@ -20,6 +20,7 @@ AutomataDef:
 
 @ Override XPrimaryExpression returns xbase::XExpression:
 	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' |
+	{IterStmt} "iter" "(" exp=XExpression "," body=XExpression ")" |
 	super;
 
 State:

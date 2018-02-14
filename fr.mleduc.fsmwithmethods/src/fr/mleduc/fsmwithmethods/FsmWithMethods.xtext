@@ -1,0 +1,33 @@
+grammar fr.mleduc.fsmwithmethods.FsmWithMethods with org.eclipse.xtext.common.Terminals
+
+generate fsmWithMethods "http://www.mleduc.fr/fsmwithmethods/FsmWithMethods"
+
+Fsm:
+	{Fsm} 'fsm' name=ID 'init' '=' state=[State|ID]
+	(expressions+=FExpression)*;
+
+FExpression returns FExpression:
+	Method | Transition | MethodCall | State | Event;
+
+Method returns FExpression:
+	{Method} 'def' name=ID '(' (params+=Param (',' params+=Param)*)? ')' '{'
+	(expressions+=FExpression)*
+	'}';
+
+Param returns FExpression:
+	name=ID;
+
+MethodCall returns FExpression:
+	{MethodCall} 'call' method=[Method|ID] '(' (params+=Referentiable (',' params+=Referentiable)*)? ')';
+
+Referentiable:
+	State | Event | Param;
+
+State returns FExpression:
+	{State} 'state' name=ID;
+
+Transition returns FExpression:
+	{Transition} 'transition' event=[FExpression|ID] ':' from=[FExpression|ID] '->' to=[FExpression|ID];
+
+Event returns FExpression:
+	{Event} 'event' name=ID;

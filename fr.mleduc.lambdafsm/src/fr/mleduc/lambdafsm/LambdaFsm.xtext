@@ -1,0 +1,22 @@
+grammar fr.mleduc.lambdafsm.LambdaFsm with fr.mleduc.fsm.Fsm
+
+generate lambdaFsm "http://www.mleduc.fr/lambdafsm/LambdaFsm"
+
+
+import "http://www.mleduc.fr/fsm/Fsm" as fsm
+
+Lambda returns fsm::Fsm:
+	Fsm::Fsm // root	
+;
+
+
+@Override
+State returns fsm::State:
+	{MethodDef} 'def' name=ID '(' (params+=Parameter (',' params+=Parameter)*)? ')' '{'
+	stmts+=State*
+	'}' |
+	super |
+	{MethodCall} 'call' method=[MethodDef|ID] '(' (params+=State (',' params+=State)*)? ')';
+
+Parameter:
+	{Parameter} name=ID;

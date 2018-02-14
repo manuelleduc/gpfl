@@ -200,13 +200,25 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cThenAssignment_0_5 = (Assignment)cGroup_0.eContents().get(5);
 		private final RuleCall cThenXExpressionParserRuleCall_0_5_0 = (RuleCall)cThenAssignment_0_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_0_6 = (Keyword)cGroup_0.eContents().get(6);
-		private final RuleCall cXPrimaryExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cIterStmtAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cIterKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cExpAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cExpXExpressionParserRuleCall_1_3_0 = (RuleCall)cExpAssignment_1_3.eContents().get(0);
+		private final Keyword cCommaKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final Assignment cBodyAssignment_1_5 = (Assignment)cGroup_1.eContents().get(5);
+		private final RuleCall cBodyXExpressionParserRuleCall_1_5_0 = (RuleCall)cBodyAssignment_1_5.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_6 = (Keyword)cGroup_1.eContents().get(6);
+		private final RuleCall cXPrimaryExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//@ Override XPrimaryExpression xbase::XExpression:
-		//	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | super;
+		//	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
+		//	body=XExpression ")" | super;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | super
+		//{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
+		//body=XExpression ")" | super
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')'
@@ -239,8 +251,38 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_0_6() { return cRightParenthesisKeyword_0_6; }
 		
+		//{IterStmt} "iter" "(" exp=XExpression "," body=XExpression ")"
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{IterStmt}
+		public Action getIterStmtAction_1_0() { return cIterStmtAction_1_0; }
+		
+		//"iter"
+		public Keyword getIterKeyword_1_1() { return cIterKeyword_1_1; }
+		
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_2() { return cLeftParenthesisKeyword_1_2; }
+		
+		//exp=XExpression
+		public Assignment getExpAssignment_1_3() { return cExpAssignment_1_3; }
+		
+		//XExpression
+		public RuleCall getExpXExpressionParserRuleCall_1_3_0() { return cExpXExpressionParserRuleCall_1_3_0; }
+		
+		//","
+		public Keyword getCommaKeyword_1_4() { return cCommaKeyword_1_4; }
+		
+		//body=XExpression
+		public Assignment getBodyAssignment_1_5() { return cBodyAssignment_1_5; }
+		
+		//XExpression
+		public RuleCall getBodyXExpressionParserRuleCall_1_5_0() { return cBodyXExpressionParserRuleCall_1_5_0; }
+		
+		//")"
+		public Keyword getRightParenthesisKeyword_1_6() { return cRightParenthesisKeyword_1_6; }
+		
 		//super
-		public RuleCall getXPrimaryExpressionParserRuleCall_1() { return cXPrimaryExpressionParserRuleCall_1; }
+		public RuleCall getXPrimaryExpressionParserRuleCall_2() { return cXPrimaryExpressionParserRuleCall_2; }
 	}
 	public class StateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.mleduc.simlang.SimLang.State");
@@ -404,7 +446,8 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//@ Override XPrimaryExpression xbase::XExpression:
-	//	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | super;
+	//	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
+	//	body=XExpression ")" | super;
 	public XPrimaryExpressionElements getXPrimaryExpressionAccess() {
 		return pXPrimaryExpression;
 	}

@@ -20,8 +20,8 @@ public class SimLangValidator extends AbstractSimLangValidator {
   protected boolean isValueExpectedRecursive(final XExpression expr) {
     final EStructuralFeature feature = expr.eContainingFeature();
     boolean _xifexpression = false;
-    boolean _equals = Objects.equal(feature, SimLangPackage.Literals.COND_STMT__IF);
-    if (_equals) {
+    if ((Objects.equal(feature, SimLangPackage.Literals.COND_STMT__IF) || 
+      Objects.equal(feature, SimLangPackage.Literals.ITER_STMT__EXP))) {
       _xifexpression = true;
     } else {
       _xifexpression = super.isValueExpectedRecursive(expr);

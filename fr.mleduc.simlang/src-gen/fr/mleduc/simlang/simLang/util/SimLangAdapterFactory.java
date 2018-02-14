@@ -103,6 +103,11 @@ public class SimLangAdapterFactory extends AdapterFactoryImpl
         return createCondStmtAdapter();
       }
       @Override
+      public Adapter caseIterStmt(IterStmt object)
+      {
+        return createIterStmtAdapter();
+      }
+      @Override
       public Adapter caseXExpression(XExpression object)
       {
         return createXExpressionAdapter();
@@ -200,6 +205,21 @@ public class SimLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCondStmtAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link fr.mleduc.simlang.simLang.IterStmt <em>Iter Stmt</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.mleduc.simlang.simLang.IterStmt
+   * @generated
+   */
+  public Adapter createIterStmtAdapter()
   {
     return null;
   }
