@@ -23,6 +23,8 @@ XPrimaryExpression returns xbase::XExpression:
 	Cmd |
 	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' |
 	{IterStmt} "iter" "(" exp=XExpression "," body=XExpression ")" |
+	{AcceptCmd} "accept" |
+	{DropCmd} "drop" |
 	super;
 	
 Cmd returns xbase::XExpression:

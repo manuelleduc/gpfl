@@ -108,6 +108,16 @@ public class SimLangAdapterFactory extends AdapterFactoryImpl
         return createIterStmtAdapter();
       }
       @Override
+      public Adapter caseAcceptCmd(AcceptCmd object)
+      {
+        return createAcceptCmdAdapter();
+      }
+      @Override
+      public Adapter caseDropCmd(DropCmd object)
+      {
+        return createDropCmdAdapter();
+      }
+      @Override
       public Adapter caseNopCmd(NopCmd object)
       {
         return createNopCmdAdapter();
@@ -225,6 +235,36 @@ public class SimLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIterStmtAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link fr.mleduc.simlang.simLang.AcceptCmd <em>Accept Cmd</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.mleduc.simlang.simLang.AcceptCmd
+   * @generated
+   */
+  public Adapter createAcceptCmdAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link fr.mleduc.simlang.simLang.DropCmd <em>Drop Cmd</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.mleduc.simlang.simLang.DropCmd
+   * @generated
+   */
+  public Adapter createDropCmdAdapter()
   {
     return null;
   }

@@ -1,6 +1,8 @@
 package fr.mleduc.simlang.typesystem;
 
+import fr.mleduc.simlang.simLang.AcceptCmd;
 import fr.mleduc.simlang.simLang.CondStmt;
+import fr.mleduc.simlang.simLang.DropCmd;
 import fr.mleduc.simlang.simLang.IterStmt;
 import fr.mleduc.simlang.simLang.NopCmd;
 import java.util.Arrays;
@@ -30,7 +32,6 @@ import org.eclipse.xtext.xbase.XTryCatchFinallyExpression;
 import org.eclipse.xtext.xbase.XTypeLiteral;
 import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState;
 import org.eclipse.xtext.xbase.typesystem.computation.XbaseTypeComputer;
 
@@ -50,7 +51,12 @@ public class SimLangTypeComputer extends XbaseTypeComputer {
   }
   
   protected void _computeTypes(final NopCmd expression, final ITypeComputationState state) {
-    InputOutput.<String>println("DOES NOTHING");
+  }
+  
+  protected void _computeTypes(final AcceptCmd expression, final ITypeComputationState state) {
+  }
+  
+  protected void _computeTypes(final DropCmd expression, final ITypeComputationState state) {
   }
   
   public void computeTypes(final XExpression expression, final ITypeComputationState state) {
@@ -69,8 +75,14 @@ public class SimLangTypeComputer extends XbaseTypeComputer {
     } else if (expression instanceof XWhileExpression) {
       _computeTypes((XWhileExpression)expression, state);
       return;
+    } else if (expression instanceof AcceptCmd) {
+      _computeTypes((AcceptCmd)expression, state);
+      return;
     } else if (expression instanceof CondStmt) {
       _computeTypes((CondStmt)expression, state);
+      return;
+    } else if (expression instanceof DropCmd) {
+      _computeTypes((DropCmd)expression, state);
       return;
     } else if (expression instanceof IterStmt) {
       _computeTypes((IterStmt)expression, state);

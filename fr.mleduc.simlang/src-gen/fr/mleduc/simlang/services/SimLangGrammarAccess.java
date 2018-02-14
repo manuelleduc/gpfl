@@ -211,15 +211,21 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cBodyAssignment_2_5 = (Assignment)cGroup_2.eContents().get(5);
 		private final RuleCall cBodyXExpressionParserRuleCall_2_5_0 = (RuleCall)cBodyAssignment_2_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2_6 = (Keyword)cGroup_2.eContents().get(6);
-		private final RuleCall cXPrimaryExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Action cAcceptCmdAction_3_0 = (Action)cGroup_3.eContents().get(0);
+		private final Keyword cAcceptKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
+		private final Action cDropCmdAction_4_0 = (Action)cGroup_4.eContents().get(0);
+		private final Keyword cDropKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final RuleCall cXPrimaryExpressionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//@ Override XPrimaryExpression xbase::XExpression:
 		//	Cmd | {CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
-		//	body=XExpression ")" | super;
+		//	body=XExpression ")" | {AcceptCmd} "accept" | {DropCmd} "drop" | super;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//Cmd | {CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
-		//body=XExpression ")" | super
+		//body=XExpression ")" | {AcceptCmd} "accept" | {DropCmd} "drop" | super
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Cmd
@@ -285,8 +291,26 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_2_6() { return cRightParenthesisKeyword_2_6; }
 		
+		//{AcceptCmd} "accept"
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//{AcceptCmd}
+		public Action getAcceptCmdAction_3_0() { return cAcceptCmdAction_3_0; }
+		
+		//"accept"
+		public Keyword getAcceptKeyword_3_1() { return cAcceptKeyword_3_1; }
+		
+		//{DropCmd} "drop"
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//{DropCmd}
+		public Action getDropCmdAction_4_0() { return cDropCmdAction_4_0; }
+		
+		//"drop"
+		public Keyword getDropKeyword_4_1() { return cDropKeyword_4_1; }
+		
 		//super
-		public RuleCall getXPrimaryExpressionParserRuleCall_3() { return cXPrimaryExpressionParserRuleCall_3; }
+		public RuleCall getXPrimaryExpressionParserRuleCall_5() { return cXPrimaryExpressionParserRuleCall_5; }
 	}
 	public class CmdElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.mleduc.simlang.SimLang.Cmd");
@@ -472,7 +496,7 @@ public class SimLangGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//@ Override XPrimaryExpression xbase::XExpression:
 	//	Cmd | {CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' | {IterStmt} "iter" "(" exp=XExpression ","
-	//	body=XExpression ")" | super;
+	//	body=XExpression ")" | {AcceptCmd} "accept" | {DropCmd} "drop" | super;
 	public XPrimaryExpressionElements getXPrimaryExpressionAccess() {
 		return pXPrimaryExpression;
 	}

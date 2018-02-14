@@ -53,7 +53,18 @@ class SimLangJvmModelInferrer extends AbstractModelInferrer {
 			members += element.toMethod('main', typeRef(Void.TYPE)) [
 				static = true
 				parameters += element.toParameter('args', typeRef(String).addArrayTypeDimension)
+				body = '''
+					final «element.name» prog = new «element.name»();
+					prog.init();
+					// TODO : loop over params
+				'''
+			]
+			members += element.toMethod('init', typeRef(Void.TYPE)) [
 				body = element.init
+			]
+
+			members += element.toMethod('packet', typeRef(Void.TYPE)) [
+				body = element.body
 			]
 		]
 	}

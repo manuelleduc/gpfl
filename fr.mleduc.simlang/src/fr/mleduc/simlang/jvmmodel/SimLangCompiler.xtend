@@ -1,11 +1,14 @@
 package fr.mleduc.simlang.jvmmodel
 
+import fr.mleduc.simlang.simLang.AcceptCmd
 import fr.mleduc.simlang.simLang.CondStmt
 import fr.mleduc.simlang.simLang.IterStmt
+import fr.mleduc.simlang.simLang.NopCmd
 import org.eclipse.xtext.xbase.XExpression
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
-import fr.mleduc.simlang.simLang.NopCmd
+import fr.mleduc.simlang.simLang.DropCmd
+import fr.mleduc.simlang.simLang.Program
 
 class SimLangCompiler extends XbaseCompiler {
 	def dispatch void toJavaStatement(CondStmt expr, ITreeAppendable b, boolean isReferenced) {
@@ -63,12 +66,17 @@ class SimLangCompiler extends XbaseCompiler {
 	def dispatch void toJavaStatement(NopCmd expr, ITreeAppendable b, boolean isReferenced) {
 	}
 
+	def dispatch void toJavaStatement(AcceptCmd expr, ITreeAppendable b, boolean isReferenced) {
+	}
+
+	def dispatch void toJavaStatement(DropCmd expr, ITreeAppendable b, boolean isReferenced) {
+	}
+
 	override protected doInternalToJavaStatement(XExpression obj, ITreeAppendable appendable, boolean isReferenced) {
-		if (obj instanceof CondStmt)
-			this.toJavaStatement(obj, appendable, isReferenced)
-		else if (obj instanceof IterStmt)
-			this.toJavaStatement(obj, appendable, isReferenced)
-		else if (obj instanceof NopCmd)
+		if (obj instanceof Program)
+			println("OKOK")
+		if (obj instanceof CondStmt || obj instanceof IterStmt || obj instanceof NopCmd || obj instanceof AcceptCmd ||
+			obj instanceof DropCmd)
 			this.toJavaStatement(obj, appendable, isReferenced)
 		else
 			super.doInternalToJavaStatement(obj, appendable, isReferenced)

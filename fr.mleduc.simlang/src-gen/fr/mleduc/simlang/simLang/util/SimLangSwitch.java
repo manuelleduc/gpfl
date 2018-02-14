@@ -119,6 +119,22 @@ public class SimLangSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SimLangPackage.ACCEPT_CMD:
+      {
+        AcceptCmd acceptCmd = (AcceptCmd)theEObject;
+        T result = caseAcceptCmd(acceptCmd);
+        if (result == null) result = caseXExpression(acceptCmd);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SimLangPackage.DROP_CMD:
+      {
+        DropCmd dropCmd = (DropCmd)theEObject;
+        T result = caseDropCmd(dropCmd);
+        if (result == null) result = caseXExpression(dropCmd);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SimLangPackage.NOP_CMD:
       {
         NopCmd nopCmd = (NopCmd)theEObject;
@@ -223,6 +239,38 @@ public class SimLangSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIterStmt(IterStmt object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Accept Cmd</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Accept Cmd</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAcceptCmd(AcceptCmd object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Drop Cmd</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Drop Cmd</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDropCmd(DropCmd object)
   {
     return null;
   }

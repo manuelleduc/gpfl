@@ -78,6 +78,24 @@ public interface SimLangFactory extends EFactory
   IterStmt createIterStmt();
 
   /**
+   * Returns a new object of class '<em>Accept Cmd</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Accept Cmd</em>'.
+   * @generated
+   */
+  AcceptCmd createAcceptCmd();
+
+  /**
+   * Returns a new object of class '<em>Drop Cmd</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Drop Cmd</em>'.
+   * @generated
+   */
+  DropCmd createDropCmd();
+
+  /**
    * Returns a new object of class '<em>Nop Cmd</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

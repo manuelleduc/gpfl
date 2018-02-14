@@ -309,6 +309,44 @@ public interface SimLangPackage extends EPackage
   int ITER_STMT_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link fr.mleduc.simlang.simLang.impl.AcceptCmdImpl <em>Accept Cmd</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see fr.mleduc.simlang.simLang.impl.AcceptCmdImpl
+   * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getAcceptCmd()
+   * @generated
+   */
+  int ACCEPT_CMD = 6;
+
+  /**
+   * The number of structural features of the '<em>Accept Cmd</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACCEPT_CMD_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link fr.mleduc.simlang.simLang.impl.DropCmdImpl <em>Drop Cmd</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see fr.mleduc.simlang.simLang.impl.DropCmdImpl
+   * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getDropCmd()
+   * @generated
+   */
+  int DROP_CMD = 7;
+
+  /**
+   * The number of structural features of the '<em>Drop Cmd</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DROP_CMD_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link fr.mleduc.simlang.simLang.impl.NopCmdImpl <em>Nop Cmd</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -316,7 +354,7 @@ public interface SimLangPackage extends EPackage
    * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getNopCmd()
    * @generated
    */
-  int NOP_CMD = 6;
+  int NOP_CMD = 8;
 
   /**
    * The number of structural features of the '<em>Nop Cmd</em>' class.
@@ -554,6 +592,26 @@ public interface SimLangPackage extends EPackage
   EReference getIterStmt_Body();
 
   /**
+   * Returns the meta object for class '{@link fr.mleduc.simlang.simLang.AcceptCmd <em>Accept Cmd</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Accept Cmd</em>'.
+   * @see fr.mleduc.simlang.simLang.AcceptCmd
+   * @generated
+   */
+  EClass getAcceptCmd();
+
+  /**
+   * Returns the meta object for class '{@link fr.mleduc.simlang.simLang.DropCmd <em>Drop Cmd</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Drop Cmd</em>'.
+   * @see fr.mleduc.simlang.simLang.DropCmd
+   * @generated
+   */
+  EClass getDropCmd();
+
+  /**
    * Returns the meta object for class '{@link fr.mleduc.simlang.simLang.NopCmd <em>Nop Cmd</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -765,6 +823,26 @@ public interface SimLangPackage extends EPackage
      * @generated
      */
     EReference ITER_STMT__BODY = eINSTANCE.getIterStmt_Body();
+
+    /**
+     * The meta object literal for the '{@link fr.mleduc.simlang.simLang.impl.AcceptCmdImpl <em>Accept Cmd</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see fr.mleduc.simlang.simLang.impl.AcceptCmdImpl
+     * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getAcceptCmd()
+     * @generated
+     */
+    EClass ACCEPT_CMD = eINSTANCE.getAcceptCmd();
+
+    /**
+     * The meta object literal for the '{@link fr.mleduc.simlang.simLang.impl.DropCmdImpl <em>Drop Cmd</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see fr.mleduc.simlang.simLang.impl.DropCmdImpl
+     * @see fr.mleduc.simlang.simLang.impl.SimLangPackageImpl#getDropCmd()
+     * @generated
+     */
+    EClass DROP_CMD = eINSTANCE.getDropCmd();
 
     /**
      * The meta object literal for the '{@link fr.mleduc.simlang.simLang.impl.NopCmdImpl <em>Nop Cmd</em>}' class.

@@ -8,6 +8,7 @@ import fr.mleduc.simlang.simLang.Program;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtend2.lib.StringConcatenationClient;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
@@ -65,10 +66,39 @@ public class SimLangJvmModelInferrer extends AbstractModelInferrer {
         EList<JvmFormalParameter> _parameters = it_1.getParameters();
         JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(element, "args", this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(String.class)));
         this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-        this._jvmTypesBuilder.setBody(it_1, element.getInit());
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("final ");
+            String _name = element.getName();
+            _builder.append(_name);
+            _builder.append(" prog = new ");
+            String _name_1 = element.getName();
+            _builder.append(_name_1);
+            _builder.append("();");
+            _builder.newLineIfNotEmpty();
+            _builder.append("prog.init();");
+            _builder.newLine();
+            _builder.append("// TODO : loop over params");
+            _builder.newLine();
+          }
+        };
+        this._jvmTypesBuilder.setBody(it_1, _client);
       };
       JvmOperation _method = this._jvmTypesBuilder.toMethod(element, "main", this._typeReferenceBuilder.typeRef(Void.TYPE), _function_1);
       this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
+      EList<JvmMember> _members_1 = it.getMembers();
+      final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
+        this._jvmTypesBuilder.setBody(it_1, element.getInit());
+      };
+      JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(element, "init", this._typeReferenceBuilder.typeRef(Void.TYPE), _function_2);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method_1);
+      EList<JvmMember> _members_2 = it.getMembers();
+      final Procedure1<JvmOperation> _function_3 = (JvmOperation it_1) -> {
+        this._jvmTypesBuilder.setBody(it_1, element.getBody());
+      };
+      JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(element, "packet", this._typeReferenceBuilder.typeRef(Void.TYPE), _function_3);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_2);
     };
     acceptor.<JvmGenericType>accept(this._jvmTypesBuilder.toClass(element, element.getName()), _function);
   }

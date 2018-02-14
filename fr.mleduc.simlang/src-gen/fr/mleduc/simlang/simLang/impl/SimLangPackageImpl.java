@@ -3,8 +3,10 @@
  */
 package fr.mleduc.simlang.simLang.impl;
 
+import fr.mleduc.simlang.simLang.AcceptCmd;
 import fr.mleduc.simlang.simLang.AutomataDef;
 import fr.mleduc.simlang.simLang.CondStmt;
+import fr.mleduc.simlang.simLang.DropCmd;
 import fr.mleduc.simlang.simLang.IterStmt;
 import fr.mleduc.simlang.simLang.NopCmd;
 import fr.mleduc.simlang.simLang.Program;
@@ -73,6 +75,20 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
    * @generated
    */
   private EClass iterStmtEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass acceptCmdEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dropCmdEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -363,6 +379,26 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAcceptCmd()
+  {
+    return acceptCmdEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDropCmd()
+  {
+    return dropCmdEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getNopCmd()
   {
     return nopCmdEClass;
@@ -425,6 +461,10 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
     createEReference(iterStmtEClass, ITER_STMT__EXP);
     createEReference(iterStmtEClass, ITER_STMT__BODY);
 
+    acceptCmdEClass = createEClass(ACCEPT_CMD);
+
+    dropCmdEClass = createEClass(DROP_CMD);
+
     nopCmdEClass = createEClass(NOP_CMD);
   }
 
@@ -462,6 +502,8 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
     // Add supertypes to classes
     condStmtEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     iterStmtEClass.getESuperTypes().add(theXbasePackage.getXExpression());
+    acceptCmdEClass.getESuperTypes().add(theXbasePackage.getXExpression());
+    dropCmdEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     nopCmdEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 
     // Initialize classes and features; add operations and parameters
@@ -491,6 +533,10 @@ public class SimLangPackageImpl extends EPackageImpl implements SimLangPackage
     initEClass(iterStmtEClass, IterStmt.class, "IterStmt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIterStmt_Exp(), theXbasePackage.getXExpression(), null, "exp", null, 0, 1, IterStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIterStmt_Body(), theXbasePackage.getXExpression(), null, "body", null, 0, 1, IterStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(acceptCmdEClass, AcceptCmd.class, "AcceptCmd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(dropCmdEClass, DropCmd.class, "DropCmd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(nopCmdEClass, NopCmd.class, "NopCmd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

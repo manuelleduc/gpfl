@@ -1,8 +1,11 @@
 package fr.mleduc.simlang.jvmmodel;
 
+import fr.mleduc.simlang.simLang.AcceptCmd;
 import fr.mleduc.simlang.simLang.CondStmt;
+import fr.mleduc.simlang.simLang.DropCmd;
 import fr.mleduc.simlang.simLang.IterStmt;
 import fr.mleduc.simlang.simLang.NopCmd;
+import fr.mleduc.simlang.simLang.Program;
 import java.util.Arrays;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
@@ -33,6 +36,7 @@ import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class SimLangCompiler extends XbaseCompiler {
@@ -102,20 +106,22 @@ public class SimLangCompiler extends XbaseCompiler {
   protected void _toJavaStatement(final NopCmd expr, final ITreeAppendable b, final boolean isReferenced) {
   }
   
+  protected void _toJavaStatement(final AcceptCmd expr, final ITreeAppendable b, final boolean isReferenced) {
+  }
+  
+  protected void _toJavaStatement(final DropCmd expr, final ITreeAppendable b, final boolean isReferenced) {
+  }
+  
   @Override
   protected void doInternalToJavaStatement(final XExpression obj, final ITreeAppendable appendable, final boolean isReferenced) {
-    if ((obj instanceof CondStmt)) {
+    if ((obj instanceof Program)) {
+      InputOutput.<String>println("OKOK");
+    }
+    if ((((((obj instanceof CondStmt) || (obj instanceof IterStmt)) || (obj instanceof NopCmd)) || (obj instanceof AcceptCmd)) || 
+      (obj instanceof DropCmd))) {
       this.toJavaStatement(obj, appendable, isReferenced);
     } else {
-      if ((obj instanceof IterStmt)) {
-        this.toJavaStatement(obj, appendable, isReferenced);
-      } else {
-        if ((obj instanceof NopCmd)) {
-          this.toJavaStatement(obj, appendable, isReferenced);
-        } else {
-          super.doInternalToJavaStatement(obj, appendable, isReferenced);
-        }
-      }
+      super.doInternalToJavaStatement(obj, appendable, isReferenced);
     }
   }
   
@@ -135,8 +141,14 @@ public class SimLangCompiler extends XbaseCompiler {
     } else if (expr instanceof XWhileExpression) {
       _toJavaStatement((XWhileExpression)expr, b, isReferenced);
       return;
+    } else if (expr instanceof AcceptCmd) {
+      _toJavaStatement((AcceptCmd)expr, b, isReferenced);
+      return;
     } else if (expr instanceof CondStmt) {
       _toJavaStatement((CondStmt)expr, b, isReferenced);
+      return;
+    } else if (expr instanceof DropCmd) {
+      _toJavaStatement((DropCmd)expr, b, isReferenced);
       return;
     } else if (expr instanceof IterStmt) {
       _toJavaStatement((IterStmt)expr, b, isReferenced);

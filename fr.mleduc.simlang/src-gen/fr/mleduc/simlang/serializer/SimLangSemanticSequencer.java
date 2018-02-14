@@ -5,8 +5,10 @@ package fr.mleduc.simlang.serializer;
 
 import com.google.inject.Inject;
 import fr.mleduc.simlang.services.SimLangGrammarAccess;
+import fr.mleduc.simlang.simLang.AcceptCmd;
 import fr.mleduc.simlang.simLang.AutomataDef;
 import fr.mleduc.simlang.simLang.CondStmt;
+import fr.mleduc.simlang.simLang.DropCmd;
 import fr.mleduc.simlang.simLang.IterStmt;
 import fr.mleduc.simlang.simLang.NopCmd;
 import fr.mleduc.simlang.simLang.Program;
@@ -83,11 +85,17 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == SimLangPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case SimLangPackage.ACCEPT_CMD:
+				sequence_XPrimaryExpression(context, (AcceptCmd) semanticObject); 
+				return; 
 			case SimLangPackage.AUTOMATA_DEF:
 				sequence_AutomataDef(context, (AutomataDef) semanticObject); 
 				return; 
 			case SimLangPackage.COND_STMT:
 				sequence_XPrimaryExpression(context, (CondStmt) semanticObject); 
+				return; 
+			case SimLangPackage.DROP_CMD:
+				sequence_XPrimaryExpression(context, (DropCmd) semanticObject); 
 				return; 
 			case SimLangPackage.ITER_STMT:
 				sequence_XPrimaryExpression(context, (IterStmt) semanticObject); 
@@ -467,6 +475,47 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     XPrimaryExpression returns AcceptCmd
+	 *     XExpression returns AcceptCmd
+	 *     XAssignment returns AcceptCmd
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns AcceptCmd
+	 *     XOrExpression returns AcceptCmd
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns AcceptCmd
+	 *     XAndExpression returns AcceptCmd
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns AcceptCmd
+	 *     XEqualityExpression returns AcceptCmd
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns AcceptCmd
+	 *     XRelationalExpression returns AcceptCmd
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns AcceptCmd
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns AcceptCmd
+	 *     XOtherOperatorExpression returns AcceptCmd
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns AcceptCmd
+	 *     XAdditiveExpression returns AcceptCmd
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns AcceptCmd
+	 *     XMultiplicativeExpression returns AcceptCmd
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns AcceptCmd
+	 *     XUnaryOperation returns AcceptCmd
+	 *     XCastedExpression returns AcceptCmd
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns AcceptCmd
+	 *     XPostfixOperation returns AcceptCmd
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns AcceptCmd
+	 *     XMemberFeatureCall returns AcceptCmd
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns AcceptCmd
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns AcceptCmd
+	 *     XPrimaryExpression returns AcceptCmd
+	 *     XParenthesizedExpression returns AcceptCmd
+	 *     XExpressionOrVarDeclaration returns AcceptCmd
+	 *
+	 * Constraint:
+	 *     {AcceptCmd}
+	 */
+	protected void sequence_XPrimaryExpression(ISerializationContext context, AcceptCmd semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     XPrimaryExpression returns CondStmt
 	 *     XExpression returns CondStmt
 	 *     XAssignment returns CondStmt
@@ -512,6 +561,47 @@ public class SimLangSemanticSequencer extends XbaseSemanticSequencer {
 		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getIfXExpressionParserRuleCall_1_3_0(), semanticObject.getIf());
 		feeder.accept(grammarAccess.getXPrimaryExpressionAccess().getThenXExpressionParserRuleCall_1_5_0(), semanticObject.getThen());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XPrimaryExpression returns DropCmd
+	 *     XExpression returns DropCmd
+	 *     XAssignment returns DropCmd
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns DropCmd
+	 *     XOrExpression returns DropCmd
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns DropCmd
+	 *     XAndExpression returns DropCmd
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns DropCmd
+	 *     XEqualityExpression returns DropCmd
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns DropCmd
+	 *     XRelationalExpression returns DropCmd
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns DropCmd
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns DropCmd
+	 *     XOtherOperatorExpression returns DropCmd
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns DropCmd
+	 *     XAdditiveExpression returns DropCmd
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns DropCmd
+	 *     XMultiplicativeExpression returns DropCmd
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns DropCmd
+	 *     XUnaryOperation returns DropCmd
+	 *     XCastedExpression returns DropCmd
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns DropCmd
+	 *     XPostfixOperation returns DropCmd
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns DropCmd
+	 *     XMemberFeatureCall returns DropCmd
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns DropCmd
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns DropCmd
+	 *     XPrimaryExpression returns DropCmd
+	 *     XParenthesizedExpression returns DropCmd
+	 *     XExpressionOrVarDeclaration returns DropCmd
+	 *
+	 * Constraint:
+	 *     {DropCmd}
+	 */
+	protected void sequence_XPrimaryExpression(ISerializationContext context, DropCmd semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

@@ -171,8 +171,10 @@ public class SimLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '[' declaredFormalParameters+=JvmFormalParameter
 	 *     (rule start) (ambiguity) '[' explicitSyntax?='|'
 	 *     (rule start) (ambiguity) '[' expression=XExpressionInClosure
+	 *     (rule start) (ambiguity) 'accept' (rule start)
 	 *     (rule start) (ambiguity) 'cond' '(' if=XExpression
 	 *     (rule start) (ambiguity) 'do' body=XExpression
+	 *     (rule start) (ambiguity) 'drop' (rule start)
 	 *     (rule start) (ambiguity) 'false' (rule start)
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' updateExpressions+=XExpression
@@ -226,8 +228,10 @@ public class SimLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '[' declaredFormalParameters+=JvmFormalParameter
 	 *     (rule start) (ambiguity) '[' explicitSyntax?='|'
 	 *     (rule start) (ambiguity) '[' expression=XExpressionInClosure
+	 *     (rule start) (ambiguity) 'accept' ')' (rule start)
 	 *     (rule start) (ambiguity) 'cond' '(' if=XExpression
 	 *     (rule start) (ambiguity) 'do' body=XExpression
+	 *     (rule start) (ambiguity) 'drop' ')' (rule start)
 	 *     (rule start) (ambiguity) 'false' ')' (rule start)
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' updateExpressions+=XExpression

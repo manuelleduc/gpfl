@@ -473,12 +473,40 @@ ruleXPrimaryExpression returns [EObject current=null]
 			}
 		)
 		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getXPrimaryExpressionAccess().getAcceptCmdAction_3_0(),
+						$current);
+				}
+			)
+			otherlv_16='accept'
+			{
+				newLeafNode(otherlv_16, grammarAccess.getXPrimaryExpressionAccess().getAcceptKeyword_3_1());
+			}
+		)
+		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getXPrimaryExpressionAccess().getDropCmdAction_4_0(),
+						$current);
+				}
+			)
+			otherlv_18='drop'
+			{
+				newLeafNode(otherlv_18, grammarAccess.getXPrimaryExpressionAccess().getDropKeyword_4_1());
+			}
+		)
+		    |
 		{
-			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXPrimaryExpressionParserRuleCall_3());
+			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXPrimaryExpressionParserRuleCall_5());
 		}
-		this_XPrimaryExpression_15=superXPrimaryExpression
+		this_XPrimaryExpression_19=superXPrimaryExpression
 		{
-			$current = $this_XPrimaryExpression_15.current;
+			$current = $this_XPrimaryExpression_19.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -5533,7 +5561,7 @@ ruleXReturnExpression returns [EObject current=null]
 			newLeafNode(otherlv_1, grammarAccess.getXReturnExpressionAccess().getReturnKeyword_1());
 		}
 		(
-			('extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'nop' | 'cond' | 'iter' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
+			('extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'nop' | 'cond' | 'iter' | 'accept' | 'drop' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
 			(
 				{
 					newCompositeNode(grammarAccess.getXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0());

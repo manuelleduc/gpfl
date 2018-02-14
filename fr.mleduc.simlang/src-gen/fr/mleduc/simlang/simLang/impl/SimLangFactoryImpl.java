@@ -71,6 +71,8 @@ public class SimLangFactoryImpl extends EFactoryImpl implements SimLangFactory
       case SimLangPackage.TRANSITION: return createTransition();
       case SimLangPackage.COND_STMT: return createCondStmt();
       case SimLangPackage.ITER_STMT: return createIterStmt();
+      case SimLangPackage.ACCEPT_CMD: return createAcceptCmd();
+      case SimLangPackage.DROP_CMD: return createDropCmd();
       case SimLangPackage.NOP_CMD: return createNopCmd();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -141,6 +143,28 @@ public class SimLangFactoryImpl extends EFactoryImpl implements SimLangFactory
   {
     IterStmtImpl iterStmt = new IterStmtImpl();
     return iterStmt;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AcceptCmd createAcceptCmd()
+  {
+    AcceptCmdImpl acceptCmd = new AcceptCmdImpl();
+    return acceptCmd;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DropCmd createDropCmd()
+  {
+    DropCmdImpl dropCmd = new DropCmdImpl();
+    return dropCmd;
   }
 
   /**

@@ -79,6 +79,8 @@ public class SimLangParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAutomataDefAccess().getGroup(), "rule__AutomataDef__Group__0");
 					put(grammarAccess.getXPrimaryExpressionAccess().getGroup_1(), "rule__XPrimaryExpression__Group_1__0");
 					put(grammarAccess.getXPrimaryExpressionAccess().getGroup_2(), "rule__XPrimaryExpression__Group_2__0");
+					put(grammarAccess.getXPrimaryExpressionAccess().getGroup_3(), "rule__XPrimaryExpression__Group_3__0");
+					put(grammarAccess.getXPrimaryExpressionAccess().getGroup_4(), "rule__XPrimaryExpression__Group_4__0");
 					put(grammarAccess.getCmdAccess().getGroup(), "rule__Cmd__Group__0");
 					put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 					put(grammarAccess.getTransitionAccess().getGroup(), "rule__Transition__Group__0");

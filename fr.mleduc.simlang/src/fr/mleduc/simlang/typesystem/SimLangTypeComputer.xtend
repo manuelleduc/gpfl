@@ -1,10 +1,12 @@
 package fr.mleduc.simlang.typesystem
 
+import fr.mleduc.simlang.simLang.AcceptCmd
 import fr.mleduc.simlang.simLang.CondStmt
+import fr.mleduc.simlang.simLang.DropCmd
 import fr.mleduc.simlang.simLang.IterStmt
+import fr.mleduc.simlang.simLang.NopCmd
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState
 import org.eclipse.xtext.xbase.typesystem.computation.XbaseTypeComputer
-import fr.mleduc.simlang.simLang.NopCmd
 
 class SimLangTypeComputer extends XbaseTypeComputer {
 
@@ -20,9 +22,14 @@ class SimLangTypeComputer extends XbaseTypeComputer {
 		val bodyState = reassignCheckedType(expression.exp, expression.body, state.withoutExpectation());
 		bodyState.computeTypes(expression.body);
 	}
-	
+
 	def dispatch void computeTypes(NopCmd expression, ITypeComputationState state) {
-		println("DOES NOTHING")
+	}
+
+	def dispatch void computeTypes(AcceptCmd expression, ITypeComputationState state) {
+	}
+
+	def dispatch void computeTypes(DropCmd expression, ITypeComputationState state) {
 	}
 
 }
