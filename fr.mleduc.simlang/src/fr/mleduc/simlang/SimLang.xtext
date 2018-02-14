@@ -1,0 +1,31 @@
+grammar fr.mleduc.simlang.SimLang with org.eclipse.xtext.xbase.Xbase
+
+generate simLang "http://www.mleduc.fr/simlang/SimLang"
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
+
+Program:
+	{Program}
+	'package' name=QualifiedName
+	'PROLOGUE'
+	("AUTOMATAS" automatas+=AutomataDef)?
+	("INIT" init=RootBlockExpression)?
+	"FILTER"
+	body=RootBlockExpression;
+
+RootBlockExpression returns xbase::XBlockExpression:
+	{xbase::XBlockExpression} (expressions+=XExpressionOrVarDeclaration ';'?)*;
+
+AutomataDef:
+	'AUTOMATA' name=ID 'init' '=' init=[State|ID] states+=State;
+
+@ Override XPrimaryExpression returns xbase::XExpression:
+	{CondStmt} 'cond' '(' if=XExpression ',' then=XExpression ')' |
+	super;
+
+State:
+	name=ID transitions+=Transition*;
+
+Transition:
+	'-' event=ID '->' target=[State|ID];
+	
+	
